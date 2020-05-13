@@ -1,6 +1,5 @@
 package com.example.oo_project;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
@@ -15,56 +14,21 @@ import androidx.annotation.RequiresApi;
  * {@link #length} 地圖邊長; {@link #map} save blocks;
  */
 public class GameMap {
-    int length;
-    Block[] map;
+    private int length,blocks;
+    Block[][] map;
     //constructor
-    GameMap(int n){
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    GameMap(int n,Context context,LinearLayout layout){
         this.length = n;
+        this.blocks = 3*(length*length)-3*length+1;
+        this.map = new Block[2*length-1][2*length-1];
+        mapLayout(context,layout);
+        createBlocksArray(layout,map);
     }
-
-    //不知道會不會再用到，先留著
-
-//    public void createMapInfo(){
-//        //blocks = map size
-//        int blocks = 3*(length*length)-3*length+1;
-//        map = new Block[blocks];
-//        //add blocks
-//        for(int i=0;i<blocks;i++){
-//            map[i] = new Block(i);
-//        }
-//        int middle = (3*(length*length)-5*length+2)/2;
-//        int temp = length,l = temp,count = 0,level = 0;
-//        //generate coordination of lower map nodes
-//        for(int i=0;i<middle+2*length-1;i++){
-//            if(i>temp-1){
-//                l++;
-//                temp = l + temp;
-//                count = 0;
-//                level++;
-//            }
-//            map[i].x = level;
-//            map[i].y = count;
-//            count++;
-//        }
-//        //generate coordination of upper map nodes
-//        for(int i=middle+2*length-1;i<blocks;i++){
-//            if(i>temp-1){
-//                l--;
-//                temp = l + temp;
-//                count = 0;
-//                level++;
-//            }
-//            map[i].x = level;
-//            map[i].y = count;
-//            count++;
-//        }
-//    }
-
-    //place block into map
 
     //Display map
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public void mapLayout(Context context,LinearLayout layout){
+    private void mapLayout(Context context,LinearLayout layout){
         /**新增第一層的Layout當容器，設定他的參數
          * 長寬與PARENT相同
          * 排列方式:垂直
@@ -140,27 +104,86 @@ public class GameMap {
 
     }
     //put all blocks into array
-    public void createMapInfo(View view){
-        //計算總BLOCKS數
-        int blocks = 3*(length*length)-3*length+1;
-        map = new Block[blocks];
+    private void createBlocksArray(View view,Block[][] finalmap){
+        Block[] tempMap = new Block[blocks];
         //透過ID找Layout上的BLOCK放進map
         for(int i=0;i<blocks;i++){
-            map[i] = (Block)view.findViewById(i);
+            tempMap[i] = (Block)view.findViewById(i);
         }
+
+        int middle = (3*(length*length)-5*length+2)/2;
+        int temp = length,l = temp,count = 0,level = 0;
+        //generate coordination of upper map nodes
+        for(int i=0;i<middle+2*length-1;i++){
+            if(i>temp-1){
+                l++;
+                temp = l + temp;
+                count = 0;
+                level++;
+            }
+            tempMap[i].x = level;
+            tempMap[i].y = count;
+            finalmap[level][count] = tempMap[i];
+            count++;
+        }
+        //generate coordination of bottom map nodes
+        int count2 = 1;
+        for(int i=middle+2*length-1;i<blocks;i++){
+            if(i>temp-1){
+                l--;
+                temp = l + temp;
+                count = count2;
+                count2++;
+                level++;
+            }
+            tempMap[i].x = level;
+            tempMap[i].y = count;
+            finalmap[level][count] = tempMap[i];
+            count++;
+        }
+
     }
 }
 
 /**
- * 繼承AppCompatImageView
+ * 繼承AppCompatImageView,
+ * {@link #NE,#E,#SE,#SW,#W,#NW} : directions,
+ * {@link #x,#y} : coordinates
+ * {@link #neighbors} : {NE,E,SE,SW,W,NW} Neighbors
  */
 class Block extends androidx.appcompat.widget.AppCompatImageView{
-    int x,y,actual_x,actual_y;
+    final int NE=0,E=1,SE=2,SW=3,W=4,NW=5;
+    int x,y; //coordinate
     Player player;
+    Chess chess;
+    private Block neighbors[] = new Block[6]; //{NE,E,SE,SW,W,NW} Neighbors
 
     public Block(Context context) {
         super(context);
     }
+
+    /**
+     * Auto find all block's neighbors, need GameMap information.
+     * @param map
+     */
+    public void AutoFindAllNeighbor(Block[][] map){
+        int max = map.length;
+        if(y-1>=0) neighbors[0] = map[y - 1][x];
+        if(x+1<max) neighbors[1] = map[y][x + 1];
+        if(x+1<max & y+1<max) neighbors[2] = map[y + 1][x + 1];
+        if(y+1<max) neighbors[3] = map[y + 1][x];
+        if(x-1>=0) neighbors[4] = map[y][x - 1];
+        if(x-1>=0 & y-1>=0) neighbors[5] = map[y - 1][x - 1];
+    }
+    /**
+     * use direction to get neighborhood, ex., getNeighbor(Block.NE)
+     * return null if there is no neighbor.
+     */
+    public Block getNeighbor(int direction){
+        return neighbors[direction];
+    }
+
+
 }
 
 
