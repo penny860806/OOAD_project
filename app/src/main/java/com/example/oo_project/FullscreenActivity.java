@@ -104,9 +104,8 @@ public class FullscreenActivity extends AppCompatActivity {
                 return false;
             }
         });
-        GameMap GM = new GameMap(5);
-        GM.mapLayout(this, (LinearLayout) mContentView);
-        GM.createMapInfo(mContentView);
+        GameMap GM = new GameMap(5,this,(LinearLayout)mContentView);
+
 
     }
 
