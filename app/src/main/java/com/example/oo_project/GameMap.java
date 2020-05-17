@@ -121,8 +121,8 @@ public class GameMap {
                 count = 0;
                 level++;
             }
-            tempMap[i].x = level;
-            tempMap[i].y = count;
+            tempMap[i].x = count;
+            tempMap[i].y = level;
             finalmap[level][count] = tempMap[i];
             count++;
         }
@@ -136,8 +136,8 @@ public class GameMap {
                 count2++;
                 level++;
             }
-            tempMap[i].x = level;
-            tempMap[i].y = count;
+            tempMap[i].x = count;
+            tempMap[i].y = level;
             finalmap[level][count] = tempMap[i];
             count++;
         }
