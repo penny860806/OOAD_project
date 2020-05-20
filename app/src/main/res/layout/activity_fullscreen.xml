@@ -9,5 +9,9 @@
     tools:context=".FullscreenActivity">
 
 
-
+    <Button
+        android:id="@+id/NewGame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="開新遊戲" />
 </LinearLayout>

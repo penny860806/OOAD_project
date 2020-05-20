@@ -6,11 +6,13 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 /**
@@ -22,6 +24,9 @@ public class FullscreenActivity extends AppCompatActivity {
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
      */
+
+    //
+
     private static final boolean AUTO_HIDE = true;
 
     /**
@@ -89,6 +94,16 @@ public class FullscreenActivity extends AppCompatActivity {
         mVisible = true;
         mContentView = (LinearLayout)findViewById(R.id.fullscreen_content);
 
+        Button NewGame = (Button) findViewById(R.id.NewGame);
+
+        NewGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(FullscreenActivity.this, NewGame.class);
+                startActivity(intent);
+            }
+        });
 
         // Set up the user interaction to manually show or hide the system UI.
         /**
@@ -104,9 +119,6 @@ public class FullscreenActivity extends AppCompatActivity {
                 return false;
             }
         });
-        GameMap GM = new GameMap(5,this,(LinearLayout)mContentView);
-
-
     }
 
     @Override
