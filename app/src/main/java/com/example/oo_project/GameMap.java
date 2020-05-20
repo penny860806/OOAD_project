@@ -73,7 +73,7 @@ public class GameMap {
             for(int j=0;j<i+length;j++){
                 Block btn = new Block(secondLayout.getContext()); //產生Button
                 btn.setId(count);
-                btn.setImageResource(R.drawable.blackblock);
+                btn.setImageResource(R.drawable.block);
                 btn.setBackgroundColor(Color.TRANSPARENT); //設定顏色
                 secondLayout.addView(btn, buttonParams);
                 count++;
@@ -96,7 +96,7 @@ public class GameMap {
                 Block btn = new Block(secondLayout.getContext()); //產生Block
                 btn.setId(count);
                 btn.setBackgroundColor(Color.TRANSPARENT); //設定顏色
-                btn.setImageResource(R.drawable.blackblock);
+                btn.setImageResource(R.drawable.block);
                 secondLayout.addView(btn, buttonParams);
                 count++;
             }
