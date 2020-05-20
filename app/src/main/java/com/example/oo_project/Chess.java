@@ -1,6 +1,6 @@
 package com.example.oo_project;
 
-public class chess {
+public class Chess {
 	public int  moveRange;
 	public String chessName="";
 	protected int deathNum;//死亡條件值
