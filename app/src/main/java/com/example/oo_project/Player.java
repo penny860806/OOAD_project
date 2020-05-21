@@ -1,6 +1,6 @@
 package com.example.oo_project;
 
-public class player {
+public class Player {
 	boolean myRound=false;
 	boolean surrender=false;
 	String ID="請輸入角色名稱";
