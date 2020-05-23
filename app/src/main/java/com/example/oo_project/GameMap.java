@@ -210,5 +210,37 @@ class Block extends androidx.appcompat.widget.AppCompatImageView{
 
 
 }
+    /**
+     * swap all info with another Block.
+     * @param block
+     */
+    public void swap(Block block){
+        Player tempPlayer =  block.player;
+        Chess tempChess = block.chess;
+        block.player = this.player;
+        block.chess  = this.chess;
+        this.chess = tempChess;
+        this.player = tempPlayer;
+
+    }
+
+    /**
+     * move the chess on this block to another block nearby.
+     * @param direction
+     */
+    public void moveChess(int direction){
+        if(isEmpty(neighbors[direction])){
+            swap(neighbors[direction]);
+        }
+    }
+
+    /**
+     * 這裡我不會做，因為我看不懂block的建構，5/23開會時詢問清楚
+     * @param block
+     */
+    boolean isEmpty(Block block){
+        return true;
+    }
+}
 
 
