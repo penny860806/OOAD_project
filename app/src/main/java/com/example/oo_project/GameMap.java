@@ -209,7 +209,7 @@ class Block extends androidx.appcompat.widget.AppCompatImageView{
 
 
 
-}
+
     /**
      * swap all info with another Block.
      * @param block
