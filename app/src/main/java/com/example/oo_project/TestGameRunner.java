@@ -1,6 +1,7 @@
 package com.example.oo_project;
 
 public class TestGameRunner {
+    /*
        public static void main(String[] args ){
            int step =1;
 
@@ -17,5 +18,7 @@ public class TestGameRunner {
 
 
        }
+
+     */
 }
 

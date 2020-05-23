@@ -6,6 +6,7 @@ import android.os.Build;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import androidx.annotation.RequiresApi;
@@ -50,7 +51,7 @@ public class GameMap {
         /**
          * 新增第二層Layout參數物件
          */
-        LinearLayout.LayoutParams secondlayoutParams = new LinearLayout.LayoutParams(
+        FrameLayout.LayoutParams secondlayoutParams = new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 110);
         /**
@@ -59,23 +60,20 @@ public class GameMap {
         LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
                 100,
                 100);
-        buttonParams.setMargins(10,10,10,10);//設定BLOCKS間的距離
         /**
          * 產生上部分BLOCKS的XML
          * 每次迴圈產生一排Layout容器，加入BLOCKS
          * */
         int count = 0;
         for(int i=0;i<length;i++){
-            LinearLayout secondLayout = new LinearLayout(lowestLayout.getContext());
-            secondLayout.setOrientation(LinearLayout.HORIZONTAL); //水平排列
+            FrameLayout secondLayout = new FrameLayout(lowestLayout.getContext());
             secondLayout.setBackgroundColor(Color.TRANSPARENT); //底色同PARENT
-            secondLayout.setGravity(Gravity.CENTER); //子物件置中
-            secondLayout.setPaddingRelative(10,10,10,10); //padding
             secondLayout.setLayoutParams(secondlayoutParams);
             lowestLayout.addView(secondLayout);
 
             for(int j=0;j<i+length;j++){
                 Block btn = new Block(secondLayout.getContext()); //產生Button
+                buttonParams.leftMargin = 110*j;
                 btn.setId(count);
                 btn.setImageResource(R.drawable.block);
                 btn.setBackgroundColor(Color.TRANSPARENT); //設定顏色
@@ -88,20 +86,19 @@ public class GameMap {
          * 每次迴圈產生一排Layout容器，加入BLOCKS
          * */
         for(int i=length-1;i>0;i--){
-            LinearLayout secondLayout = new LinearLayout(lowestLayout.getContext());
-            secondLayout.setOrientation(LinearLayout.HORIZONTAL); //水平排列
+            FrameLayout secondLayout = new FrameLayout(lowestLayout.getContext());
             secondLayout.setBackgroundColor(Color.TRANSPARENT); //底色同PARENT
-            secondLayout.setGravity(Gravity.CENTER); //子物件置中
-            secondLayout.setPaddingRelative(10,10,10,10); //padding
             secondLayout.setLayoutParams(secondlayoutParams);
             lowestLayout.addView(secondLayout);
 
             for(int j=0;j<i+length-1;j++){
                 Block btn = new Block(secondLayout.getContext()); //產生Block
+                buttonParams.leftMargin = 110*j;
                 btn.setId(count);
                 btn.setBackgroundColor(Color.TRANSPARENT); //設定顏色
                 btn.setImageResource(R.drawable.block);
-                secondLayout.addView(btn, buttonParams);
+                btn.setLayoutParams(buttonParams);
+                secondLayout.addView(btn);
                 count++;
             }
         }
@@ -152,19 +149,27 @@ public class GameMap {
     public void genSampleBoard(Player player1,Player player2){
         Block temp;
         Chess chess;
+        FrameLayout.LayoutParams chessParams;
         int i;
         for(i=0;i<5;i++){
             temp = map[0][i];
             chess = new Chess(temp.getContext(),player1.ID+":chess:"+i,1,player1);
-            chess.setTop(temp.getTop());
-            chess.setLeft(temp.getLeft());
+            chessParams = (FrameLayout.LayoutParams) temp.getLayoutParams();
+            chess.setLayoutParams(chessParams);
             chess.setImageResource(R.drawable.chess_blue);
-            LinearLayout layout = (LinearLayout) temp.getParent();
+            FrameLayout layout = (FrameLayout) temp.getParent();
+            temp.chess = chess;
             layout.addView(chess);
         }
         for(i=4;i<9;i++){
             temp = map[8][i];
-            temp.chess = new Chess(temp.getContext(),player2.ID+":chess:"+i,1,player2);
+            chess = new Chess(temp.getContext(),player2.ID+":chess:"+i,1,player2);
+            chessParams = (FrameLayout.LayoutParams) temp.getLayoutParams();
+            chess.setLayoutParams(chessParams);
+            chess.setImageResource(R.drawable.chess_red);
+            FrameLayout layout = (FrameLayout) temp.getParent();
+            temp.chess = chess;
+            layout.addView(chess);
         }
     }
 }
@@ -184,6 +189,14 @@ class Block extends androidx.appcompat.widget.AppCompatImageView{
 
     public Block(Context context) {
         super(context);
+
+        this.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
     }
 
     /**
