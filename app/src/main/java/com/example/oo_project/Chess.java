@@ -39,7 +39,20 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 		Block targetBlock = null;
 		do{
 			targetBlock = GameController.getClickBlock();
+			/* 判斷能否移動到此 */
+
 		}while (targetBlock == null);
 		positionBlock.moveChess(targetBlock);
+	}
+
+	boolean checkCanMove (Block block){
+		boolean avail = false;
+		for(int i=0 ; i<6 ; i++){
+			if(block == block.getNeighbor(i) && block.getNeighbor(i).isEmpty()){
+				avail= true;
+			}
+		}
+		
+		return avail;
 	}
 }

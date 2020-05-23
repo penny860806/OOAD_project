@@ -25,7 +25,7 @@ public class horse extends Chess {
 		}
 	}
 	public void setPosition (Block block,String setTeam){
-		position=block;
+		positionBlock=block;
 		myTeam=setTeam;
 	}
 	

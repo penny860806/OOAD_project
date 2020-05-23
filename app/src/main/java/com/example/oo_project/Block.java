@@ -95,4 +95,12 @@ class Block extends androidx.appcompat.widget.AppCompatImageView{
             return false;
         }
     }
+    boolean isEmpty(){
+        if(player == null && chess==null){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
