@@ -10,4 +10,5 @@ public class Chess {
 	public boolean Death(int x , int y, String team) {
 		return true;
 	}
+	public
 }
