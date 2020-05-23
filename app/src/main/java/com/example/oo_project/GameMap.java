@@ -10,16 +10,20 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.RequiresApi;
 
+import java.util.concurrent.ScheduledExecutorService;
+
 /**
  * {@link #length} 地圖邊長; {@link #map} save blocks;
  */
 public class GameMap {
     private int length,blocks;
     Block[][] map;
+    Context context;
     //constructor
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     GameMap(int n,Context context,LinearLayout layout){
         this.length = n;
+        this.context = context;
         this.blocks = 3*(length*length)-3*length+1;
         this.map = new Block[2*length-1][2*length-1];
         mapLayout(context,layout);
@@ -143,6 +147,26 @@ public class GameMap {
         }
 
     }
+
+
+    public void genSampleBoard(Player player1,Player player2){
+        Block temp;
+        Chess chess;
+        int i;
+        for(i=0;i<5;i++){
+            temp = map[0][i];
+            chess = new Chess(temp.getContext(),player1.ID+":chess:"+i,1,player1);
+            chess.setTop(temp.getTop());
+            chess.setLeft(temp.getLeft());
+            chess.setImageResource(R.drawable.chess_blue);
+            LinearLayout layout = (LinearLayout) temp.getParent();
+            layout.addView(chess);
+        }
+        for(i=4;i<9;i++){
+            temp = map[8][i];
+            temp.chess = new Chess(temp.getContext(),player2.ID+":chess:"+i,1,player2);
+        }
+    }
 }
 
 /**
@@ -152,7 +176,7 @@ public class GameMap {
  * {@link #neighbors} : {NE,E,SE,SW,W,NW} Neighbors
  */
 class Block extends androidx.appcompat.widget.AppCompatImageView{
-    final int NE=0,E=1,SE=2,SW=3,W=4,NW=5;
+    final static int NE=0,E=1,SE=2,SW=3,W=4,NW=5;
     int x,y; //coordinate
     Player player;
     Chess chess;
@@ -182,6 +206,7 @@ class Block extends androidx.appcompat.widget.AppCompatImageView{
     public Block getNeighbor(int direction){
         return neighbors[direction];
     }
+
 
 
 }
