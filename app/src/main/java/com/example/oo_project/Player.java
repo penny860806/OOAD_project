@@ -1,6 +1,6 @@
 package com.example.oo_project;
 
-public class player {
+public class Player {
 	boolean myRound=false;
 	boolean surrender=false;
 	String ID="請輸入角色名稱";
@@ -14,6 +14,10 @@ public class player {
 	}
 	public void toSurrender() {
 		surrender=true;
-		
+
+	}
+	public Player(boolean myRound, String str){
+		this.ID=str;
+		this.myRound=myRound;
 	}
 }
