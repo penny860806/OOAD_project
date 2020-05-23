@@ -14,6 +14,10 @@ public class Player {
 	}
 	public void toSurrender() {
 		surrender=true;
-		
+
+	}
+	public Player(boolean myRound, String str){
+		this.ID=str;
+		this.myRound=myRound;
 	}
 }
