@@ -29,6 +29,17 @@ public class GameMap {
         this.map = new Block[2*length-1][2*length-1];
         mapLayout(context,layout);
         createBlocksArray(layout,map);
+        //find neighbors and set onClick
+        Block temp;
+        for(int i=0;i<map.length;i++) {
+            for (int j = 0; j < map[i].length; j++) {
+                temp = map[i][j];
+                if(temp!=null){
+                    temp.AutoFindAllNeighbor(map);
+                }
+            }
+        }
+
     }
 
     //Display map

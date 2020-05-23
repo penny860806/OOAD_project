@@ -18,11 +18,12 @@ class Block extends androidx.appcompat.widget.AppCompatImageView{
 
     public Block(Context context) {
         super(context);
-
+        player = null;
+        chess = null;
         this.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                GameController.setClickedBlock((Block)v);
             }
         });
 
@@ -76,11 +77,22 @@ class Block extends androidx.appcompat.widget.AppCompatImageView{
         }
     }
 
+    public void moveChess(Block block){
+        if(isEmpty(block)){
+            swap(block);
+        }
+    }
+
     /**
      * 這裡我不會做，因為我看不懂block的建構，5/23開會時詢問清楚
      * @param block
      */
     boolean isEmpty(Block block){
-        return true;
+        if(block.player == null && block.chess==null){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

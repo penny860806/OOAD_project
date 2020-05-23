@@ -72,25 +72,12 @@ public class NewGame extends AppCompatActivity {
 
         //new map
         GameMap GM = new GameMap(5,this,NewGame_back);
-        //find neighbors and set onClick
-        Block temp;
-        for(int i=0;i<GM.map.length;i++) {
-            for (int j = 0; j < GM.map[i].length; j++) {
-                temp = GM.map[i][j];
-                if(temp!=null){
-                    temp.AutoFindAllNeighbor(GM.map);
-                    temp.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
 
-                        }
-                    });
-                }
-            }
-        }
         Player player1 = new Player(false,"B");
         Player player2 = new Player(true,"A");
         GM.genSampleBoard(player1,player2);
+
+
 
     }
 
