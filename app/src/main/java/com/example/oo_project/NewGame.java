@@ -83,9 +83,7 @@ public class NewGame extends AppCompatActivity {
                 }
             }
         }
-        Player player1,player2;
-        player1 = new Player();
-        player2 = new Player();
+
 
 
 
