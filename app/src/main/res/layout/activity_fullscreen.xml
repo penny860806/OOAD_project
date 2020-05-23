@@ -5,13 +5,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0099cc"
+    android:background="@drawable/startbg"
     tools:context=".FullscreenActivity">
 
 
     <Button
         android:id="@+id/NewGame"
-        android:layout_width="match_parent"
+        android:layout_width="215dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="right"
         android:text="開新遊戲" />
 </LinearLayout>
