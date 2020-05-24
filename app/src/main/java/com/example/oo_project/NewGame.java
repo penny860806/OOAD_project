@@ -72,10 +72,8 @@ public class NewGame extends AppCompatActivity {
 
         //new map
         GameMap GM = new GameMap(5,this,NewGame_back);
-
-        Player player1 = new Player(false,"B");
-        Player player2 = new Player(true,"A");
-        GM.genSampleBoard(player1,player2);
+        Game test = new Game();//測試地圖
+        GM.genSampleBoard(test.player1,test.player2);
 
 
 
