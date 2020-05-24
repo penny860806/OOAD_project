@@ -12,11 +12,12 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 	protected String myTeam;//死亡條件隊伍
 	Block positionBlock;
 	public boolean canBePush;
-	Chess(Context context,String name, int moveRange, Player team){
+	Chess(Context context,String name, int moveRange, Player team, Block positionBlock){
 		super(context);
 		this.chessName = name;
 		this.moveRange = moveRange;
 		this.team = team;
+		this.positionBlock = positionBlock;
 		this.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -37,12 +38,16 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 		/**
 		 * 缺: 地圖亮起來
 		 */
-		Block targetBlock = null;
+		Block targetBlock = positionBlock.getNeighbor(Block.NW);
+
+		/*
 		do{
 			targetBlock = GameController.getClickBlock();
-			/* 判斷能否移動到此 */
+			// 判斷能否移動到此
 
 		}while (targetBlock == null);
+
+		 */
 		positionBlock.moveChess(targetBlock);
 		//更改圖片顯示位置
 		GameView.moveChess_View(positionBlock,targetBlock,this);

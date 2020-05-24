@@ -2,6 +2,7 @@ package com.example.oo_project;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.Toast;
 
 /**
  * 繼承AppCompatImageView,
@@ -16,7 +17,7 @@ class Block extends androidx.appcompat.widget.AppCompatImageView{
     Chess chess;
     private Block neighbors[] = new Block[6]; //{NE,E,SE,SW,W,NW} Neighbors
 
-    public Block(Context context) {
+    public Block(final Context context) {
         super(context);
         player = null;
         chess = null;
