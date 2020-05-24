@@ -78,7 +78,7 @@ public class NewGame extends AppCompatActivity {
         GM.genSampleBoard(test.player1,test.player2);
         System.out.println("before Change round");
         test.ChangeRound();
-        test.ChangeRound();
+        //test.ChangeRound();
 
     }
 

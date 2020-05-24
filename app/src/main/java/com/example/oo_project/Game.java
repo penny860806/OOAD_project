@@ -16,8 +16,8 @@ public class Game {
         player1.myRound = !player1.myRound;
         player2.myRound = !player2.myRound;
         whoseRound().movePoint=1;
-        for (int i=1 ; i<GM.map.length ;i++){
-            for(int j=1 ; j<GM.map.length ; j++){
+        for (int i=0 ; i<GM.map.length ;i++){
+            for(int j=0 ; j<GM.map[i].length ; j++){
 
                 if(GM.map[i][j]!=null && GM.map[i][j].chess!=null) {
                     GM.map[i][j].chess.setClickAvail(GM.map[i][j].chess.team.myRound);
