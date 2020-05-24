@@ -20,7 +20,7 @@ public class Game {
             for(int j=1 ; j<GM.map.length ; j++){
 
                 if(GM.map[i][j]!=null && GM.map[i][j].chess!=null) {
-                    GM.map[i][j].chess.setClickable(GM.map[i][j].chess.team.myRound);
+                    GM.map[i][j].chess.setClickAvail(GM.map[i][j].chess.team.myRound);
                 }
             }
         }

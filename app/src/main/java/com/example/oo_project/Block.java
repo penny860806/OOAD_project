@@ -26,10 +26,14 @@ class Block extends androidx.appcompat.widget.AppCompatImageView{
             @Override
             public void onClick(View v) {
                 Log.i( "my","Block is clicked");
-                GameController.setClickedBlock((Block)v);
-                GameController.commonHandler();
+
+                if(GameController.getState() == GameController.moveState ) {
+                    GameController.setClickedBlock((Block) v);
+                    GameController.commonHandler();
+                }
             }
         });
+
 
     }
 
