@@ -1,6 +1,7 @@
 package com.example.oo_project;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -24,7 +25,9 @@ class Block extends androidx.appcompat.widget.AppCompatImageView{
         this.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.i( "my","Block is clicked");
                 GameController.setClickedBlock((Block)v);
+                GameController.commonHandler();
             }
         });
 

@@ -1,6 +1,7 @@
 package com.example.oo_project;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 
@@ -21,10 +22,13 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 		this.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+					Log.i("my","Chess is clicked");
+					Log.i("my",String.valueOf( GameController.getState()));
 					if(GameController.getState() == GameController.initial) {
+						Log.i("my","inside if");
 						GameController.changeState(GameController.moveState);
-						moveChess();
-						GameController.changeState(GameController.initial);
+						GameController.setClickChess((Chess) v);
+						GameController.commonHandler();
 					}
 				}
 		});
@@ -34,35 +38,41 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 		return true;
 	}
 
-	private void moveChess(){
+	public boolean moveChess(Block targetBlock){
+		System.out.println("moveChess" );
 		/**
 		 * 缺: 地圖亮起來
 		 */
-		Block targetBlock = positionBlock.getNeighbor(Block.NW);
+//		Block targetBlock = positionBlock.getNeighbor(Block.NW);
 
-		/*
-		do{
-			targetBlock = GameController.getClickBlock();
-			// 判斷能否移動到此
 
-		}while (targetBlock == null);
-
+		/**
+		 *  傳signal 給 GameController
 		 */
+		boolean avail = checkCanMove(targetBlock);
+		if(avail == false){
+
+			return false;
+		}
+
+
 		positionBlock.moveChess(targetBlock);
 		//更改圖片顯示位置
 		GameView.moveChess_View(positionBlock,targetBlock,this);
 		//更改Chess當前Block
 		positionBlock = targetBlock;
+		return true;
 	}
 
-	boolean checkCanMove (Block block){
+	boolean checkCanMove (Block targetBlock){ //some subclass have to change this method
+		System.out.println("checkCanMove");
 		boolean avail = false;
 		for(int i=0 ; i<6 ; i++){
-			if(block == block.getNeighbor(i) && block.getNeighbor(i).isEmpty()){
+			if(positionBlock == targetBlock.getNeighbor(i) && targetBlock.isEmpty()){
 				avail= true;
 			}
 		}
-		
+		System.out.println("Can move?"+avail);
 		return avail;
 	}
 }
