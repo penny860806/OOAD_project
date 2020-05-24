@@ -2,6 +2,7 @@ package com.example.oo_project;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.FrameLayout;
 
 public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 	public int  moveRange;
@@ -19,7 +20,7 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 		this.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-					if(GameController.getState() == GameController.initial){
+					if(GameController.getState() == GameController.initial) {
 						GameController.changeState(GameController.moveState);
 						moveChess();
 						GameController.changeState(GameController.initial);
@@ -43,6 +44,10 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 
 		}while (targetBlock == null);
 		positionBlock.moveChess(targetBlock);
+		//更改圖片顯示位置
+		GameView.moveChess_View(positionBlock,targetBlock,this);
+		//更改Chess當前Block
+		positionBlock = targetBlock;
 	}
 
 	boolean checkCanMove (Block block){
