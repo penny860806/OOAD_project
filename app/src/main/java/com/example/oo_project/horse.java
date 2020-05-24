@@ -7,8 +7,8 @@ public class horse extends Chess {
 	public boolean canBePush=true;
 	protected int deathNum=3;
 	String chessName="馬";
-	horse(Context context,String name,int moveRange,Player team){
-		super(context,name,moveRange,team);
+	horse(Context context,String name,int moveRange,Player team,Block positionBlock){
+		super(context,name,moveRange,team,positionBlock);
 	}
 	public boolean Death(int x , int y, String team) {
 		
