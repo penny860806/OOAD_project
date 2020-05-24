@@ -4,8 +4,8 @@ package com.example.oo_project;
 public class Game {
 
      int step = 1;
-     Player player1 = new Player(true, "玩家一");//讓玩家1先手
-     Player player2 = new Player(false, "玩家二");//玩家2後手
+     Player player1 = new Player(true, "玩家 blue");//讓玩家1先手
+     Player player2 = new Player(false, "玩家 red");//玩家2後手
 
     GameMap GM;
     Game(GameMap map){
