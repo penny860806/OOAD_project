@@ -11,6 +11,7 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 	public Player team;
 	protected int deathNum;//死亡條件值
 	protected String myTeam;//死亡條件隊伍
+	private boolean clickable = false;
 	Block positionBlock;
 	public boolean canBePush;
 	Chess(Context context,String name, int moveRange, Player team, Block positionBlock){
@@ -24,9 +25,9 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 			public void onClick(View v) {
 					Log.i("my","Chess is clicked");
 					Log.i("my",String.valueOf( GameController.getState()));
-					if(GameController.getState() == GameController.initial) {
+					if(GameController.getState() == GameController.initial ) {
 						Log.i("my","inside if");
-						GameController.changeState(GameController.moveState);
+
 						GameController.setClickChess((Chess) v);
 						GameController.commonHandler();
 					}
@@ -74,5 +75,9 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 		}
 		System.out.println("Can move?"+avail);
 		return avail;
+	}
+
+	public void setClickable(boolean input){
+		clickable = input;
 	}
 }

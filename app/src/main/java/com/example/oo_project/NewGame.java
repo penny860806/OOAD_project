@@ -72,10 +72,11 @@ public class NewGame extends AppCompatActivity {
 
         //new map
         GameMap GM = new GameMap(5,this,NewGame_back);
-        Game test = new Game();//測試地圖
+        Game test = new Game(GM);//測試地圖
+        GameController controller= new GameController(test);
+
         GM.genSampleBoard(test.player1,test.player2);
-
-
+        test.ChangeRound();
 
     }
 

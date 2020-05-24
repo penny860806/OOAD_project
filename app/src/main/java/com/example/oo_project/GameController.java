@@ -10,10 +10,17 @@ public class GameController {
      *  2: move state(have Chess, require targetBlock, manipulate move by call moveChess, )
      *  3: skill state
      */
+
     public final static int initial = 0 , chessMenu = 1 , moveState = 2 , skillState = 3;
     private static int state = initial;
+    static Game game = null;
     static Block clickBlock = null;
     static Chess clickChess = null;
+
+    GameController(Game game){
+        this.game = game;
+    }
+
     public static void setClickedBlock(Block block){
         clickBlock = block;
     }
@@ -44,12 +51,19 @@ public class GameController {
             clickBlock = null;
             state = initial;
             /** 換回合 **/
+            if(game.whoseRound().getMovePoint() == 0) {
+                game.ChangeRound();
+            }
         }
     }
     private static boolean moveHandler(){
         System.out.println("moveHandler");
 
-        return clickChess.moveChess(clickBlock);
+        boolean ret = clickChess.moveChess(clickBlock);
+        if(ret){
+            game.whoseRound().movePointDec();
+        }
+        return ret;
     }
 
 }

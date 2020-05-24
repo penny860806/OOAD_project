@@ -6,6 +6,7 @@ public class Player {
 	String ID="請輸入角色名稱";
 	short movePoint=1;
 	short skillPoint=3;
+
 	public void countMove(short move) {
 		this.movePoint = move ;
 	}
@@ -20,4 +21,13 @@ public class Player {
 		this.ID=str;
 		this.myRound=myRound;
 	}
+
+	public void movePointDec(){
+		movePoint--;
+	}
+	public int getMovePoint(){
+		return movePoint;
+	}
+
+
 }
