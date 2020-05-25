@@ -17,24 +17,25 @@ import java.util.concurrent.ScheduledExecutorService;
  * {@link #length} 地圖邊長; {@link #map} save blocks;
  */
 public class GameMap {
-    private int length,blocks;
+    private int length, blocks;
     Block[][] map;
     Context context;
+
     //constructor
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    GameMap(int n,Context context,LinearLayout layout){
+    GameMap(int n, Context context, LinearLayout layout) {
         this.length = n;
         this.context = context;
-        this.blocks = 3*(length*length)-3*length+1;
-        this.map = new Block[2*length-1][2*length-1];
-        mapLayout(context,layout);
-        createBlocksArray(layout,map);
+        this.blocks = 3 * (length * length) - 3 * length + 1;
+        this.map = new Block[2 * length - 1][2 * length - 1];
+        mapLayout(context, layout);
+        createBlocksArray(layout, map);
         //find neighbors and set onClick
         Block temp;
-        for(int i=0;i<map.length;i++) {
+        for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[i].length; j++) {
                 temp = map[i][j];
-                if(temp!=null){
+                if (temp != null) {
                     temp.AutoFindAllNeighbor(map);
                 }
             }
@@ -44,7 +45,7 @@ public class GameMap {
 
     //Display map
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    private void mapLayout(Context context,LinearLayout layout){
+    private void mapLayout(Context context, LinearLayout layout) {
         /**新增第一層的Layout當容器，設定他的參數
          * 長寬與PARENT相同
          * 排列方式:垂直
@@ -76,15 +77,15 @@ public class GameMap {
          * 每次迴圈產生一排Layout容器，加入BLOCKS
          * */
         int count = 0;
-        for(int i=0;i<length;i++){
+        for (int i = 0; i < length; i++) {
             FrameLayout secondLayout = new FrameLayout(lowestLayout.getContext());
             secondLayout.setBackgroundColor(Color.TRANSPARENT); //底色同PARENT
             secondLayout.setLayoutParams(secondlayoutParams);
             lowestLayout.addView(secondLayout);
 
-            for(int j=0;j<i+length;j++){
+            for (int j = 0; j < i + length; j++) {
                 Block btn = new Block(secondLayout.getContext()); //產生Button
-                buttonParams.leftMargin = 110*j;
+                buttonParams.leftMargin = 110 * j;
                 btn.setId(count);
                 btn.setImageResource(R.drawable.block);
                 btn.setBackgroundColor(Color.TRANSPARENT); //設定顏色
@@ -96,15 +97,15 @@ public class GameMap {
          * 產生下半部BLOCKS的XML
          * 每次迴圈產生一排Layout容器，加入BLOCKS
          * */
-        for(int i=length-1;i>0;i--){
+        for (int i = length - 1; i > 0; i--) {
             FrameLayout secondLayout = new FrameLayout(lowestLayout.getContext());
             secondLayout.setBackgroundColor(Color.TRANSPARENT); //底色同PARENT
             secondLayout.setLayoutParams(secondlayoutParams);
             lowestLayout.addView(secondLayout);
 
-            for(int j=0;j<i+length-1;j++){
+            for (int j = 0; j < i + length - 1; j++) {
                 Block btn = new Block(secondLayout.getContext()); //產生Block
-                buttonParams.leftMargin = 110*j;
+                buttonParams.leftMargin = 110 * j;
                 btn.setId(count);
                 btn.setBackgroundColor(Color.TRANSPARENT); //設定顏色
                 btn.setImageResource(R.drawable.block);
@@ -115,19 +116,20 @@ public class GameMap {
         }
 
     }
+
     //put all blocks into array
-    private void createBlocksArray(View view,Block[][] finalmap){
+    private void createBlocksArray(View view, Block[][] finalmap) {
         Block[] tempMap = new Block[blocks];
         //透過ID找Layout上的BLOCK放進map
-        for(int i=0;i<blocks;i++){
-            tempMap[i] = (Block)view.findViewById(i);
+        for (int i = 0; i < blocks; i++) {
+            tempMap[i] = (Block) view.findViewById(i);
         }
 
-        int middle = (3*(length*length)-5*length+2)/2;
-        int temp = length,l = temp,count = 0,level = 0;
+        int middle = (3 * (length * length) - 5 * length + 2) / 2;
+        int temp = length, l = temp, count = 0, level = 0;
         //generate coordination of upper map nodes
-        for(int i=0;i<middle+2*length-1;i++){
-            if(i>temp-1){
+        for (int i = 0; i < middle + 2 * length - 1; i++) {
+            if (i > temp - 1) {
                 l++;
                 temp = l + temp;
                 count = 0;
@@ -140,8 +142,8 @@ public class GameMap {
         }
         //generate coordination of bottom map nodes
         int count2 = 1;
-        for(int i=middle+2*length-1;i<blocks;i++){
-            if(i>temp-1){
+        for (int i = middle + 2 * length - 1; i < blocks; i++) {
+            if (i > temp - 1) {
                 l--;
                 temp = l + temp;
                 count = count2;
@@ -157,14 +159,14 @@ public class GameMap {
     }
 
 
-    public void genSampleBoard(Player player1,Player player2){
+    public void genSampleBoard(Player player1, Player player2) {
         Block temp;
         Chess chess;
         FrameLayout.LayoutParams chessParams;
         int i;
-        for(i=0;i<5;i++){
+        for (i = 0; i < 5; i++) {
             temp = map[0][i];
-            chess = new Chess(temp.getContext(),player1.ID+":chess:"+i,1,player1,temp);
+            chess = new Chess(temp.getContext(), player1.ID + ":chess:" + i, 1, player1, temp);
             chessParams = (FrameLayout.LayoutParams) temp.getLayoutParams();
             chess.setLayoutParams(chessParams);
             chess.setImageResource(R.drawable.chess_blue);
@@ -172,9 +174,9 @@ public class GameMap {
             temp.chess = chess;
             layout.addView(chess);
         }
-        for(i=4;i<9;i++){
+        for (i = 4; i < 9; i++) {
             temp = map[8][i];
-            chess = new Chess(temp.getContext(),player2.ID+":chess:"+i,1,player2,temp);
+            chess = new Chess(temp.getContext(), player2.ID + ":chess:" + i, 1, player2, temp);
             chessParams = (FrameLayout.LayoutParams) temp.getLayoutParams();
             chess.setLayoutParams(chessParams);
             chess.setImageResource(R.drawable.chess_red);
