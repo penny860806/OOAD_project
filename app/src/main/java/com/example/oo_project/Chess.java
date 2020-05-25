@@ -79,4 +79,10 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 	public void setClickAvail(boolean input){
         clickAvail = input;
 	}
+	public boolean skill(Block targetBlock){
+		return false;
+	}
+	public boolean skill(Chess targetChess){
+		return false;
+	}
 }
