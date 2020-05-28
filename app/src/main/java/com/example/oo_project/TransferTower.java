@@ -10,11 +10,14 @@ public class TransferTower extends Chess {
 
     @Override
     public boolean skill(Chess targetChess) {
-        if (targetChess.team != this.team) {
+        if (targetChess.team != this.team || targetChess == this) {
             return false;
         } else {
             positionBlock.swap(targetChess.positionBlock);
             GameView.changeChess_View(this, targetChess);
+            Block temp = targetChess.positionBlock;
+            targetChess.positionBlock = positionBlock;
+            positionBlock = temp;
             return true;
         }
     }

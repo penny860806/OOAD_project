@@ -23,4 +23,20 @@ public class GameView {
         FM1.addView(chess_2);
         FM2.addView(chess_1);
     }
+    public static void chessView_Red(Chess chess){
+        FrameLayout.LayoutParams chessParams = (FrameLayout.LayoutParams) chess.positionBlock.getLayoutParams();
+        chess.setLayoutParams(chessParams);
+        chess.setImageResource(R.drawable.chess_red);
+        FrameLayout layout = (FrameLayout) chess.positionBlock.getParent();
+        chess.positionBlock.chess = chess;
+        layout.addView(chess);
+    }
+    public static void chessView_Blue(Chess chess){
+        FrameLayout.LayoutParams chessParams = (FrameLayout.LayoutParams) chess.positionBlock.getLayoutParams();
+        chess.setLayoutParams(chessParams);
+        chess.setImageResource(R.drawable.chess_blue);
+        FrameLayout layout = (FrameLayout) chess.positionBlock.getParent();
+        chess.positionBlock.chess = chess;
+        layout.addView(chess);
+    }
 }

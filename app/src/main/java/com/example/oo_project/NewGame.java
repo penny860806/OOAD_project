@@ -75,10 +75,10 @@ public class NewGame extends AppCompatActivity {
         Game test = new Game(GM);//測試地圖
         GameController controller= new GameController(test);
 
-        GM.genSampleBoard(test.player1,test.player2);
-        System.out.println("before Change round");
-        test.ChangeRound();
-        //test.ChangeRound();
+        Chess horse = new Horse(this,"r",1,test.player1,GM.map[2][2]);
+        GameView.chessView_Red(horse);
+        Chess chess = new Chess(this,"b",1,test.player1,GM.map[2][3]);
+        GameView.chessView_Blue(chess);
 
     }
 

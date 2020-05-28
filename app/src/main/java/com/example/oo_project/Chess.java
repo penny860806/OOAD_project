@@ -27,7 +27,10 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 					Log.i("my",String.valueOf( GameController.getState()));
 					if(GameController.getState() == GameController.initial && clickAvail) {
 						Log.i("my","inside if");
-                        GameController.changeState(GameController.moveState);
+                        GameController.changeState(GameController.skillState);
+						GameController.setClickChess((Chess) v);
+						GameController.commonHandler();
+					}else if(GameController.getState() == GameController.skillState){
 						GameController.setClickChess((Chess) v);
 						GameController.commonHandler();
 					}
@@ -84,5 +87,8 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 	}
 	public boolean skill(Chess targetChess){
 		return false;
+	}
+	public void swap(Chess targetChess){
+
 	}
 }
