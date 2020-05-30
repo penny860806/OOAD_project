@@ -169,7 +169,7 @@ public class GameMap {
             chess = new Chess(temp.getContext(), player1.ID + ":chess:" + i, 1, player1, temp);
             chessParams = (FrameLayout.LayoutParams) temp.getLayoutParams();
             chess.setLayoutParams(chessParams);
-            chess.setImageResource(R.drawable.chess_blue);
+            chess.setImageResource(R.drawable.clip_blue);
             FrameLayout layout = (FrameLayout) temp.getParent();
             temp.chess = chess;
             layout.addView(chess);
@@ -179,7 +179,7 @@ public class GameMap {
             chess = new Chess(temp.getContext(), player2.ID + ":chess:" + i, 1, player2, temp);
             chessParams = (FrameLayout.LayoutParams) temp.getLayoutParams();
             chess.setLayoutParams(chessParams);
-            chess.setImageResource(R.drawable.chess_red);
+            chess.setImageResource(R.drawable.rock_red);
             FrameLayout layout = (FrameLayout) temp.getParent();
             temp.chess = chess;
             layout.addView(chess);
