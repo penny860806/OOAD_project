@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -93,7 +94,7 @@ public class FullscreenActivity extends AppCompatActivity {
 
         mVisible = true;
         mContentView = (LinearLayout)findViewById(R.id.fullscreen_content);
-
+        //按鈕做事->開新遊戲
         Button NewGame = (Button) findViewById(R.id.NewGame);
 
         NewGame.setOnClickListener(new View.OnClickListener() {
@@ -104,7 +105,15 @@ public class FullscreenActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        //按鈕做事->離開遊戲
+        Button Leave = (Button) findViewById(R.id.Leave);
 
+        Leave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                android.os.Process.killProcess(android.os.Process.myPid());
+            }
+        });
         // Set up the user interaction to manually show or hide the system UI.
         /**
          * 長按顯示HOME鍵，{@link #AUTO_HIDE_DELAY_MILLIS}毫秒後隱藏
