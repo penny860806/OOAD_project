@@ -58,7 +58,7 @@ public class NewGame extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_game);
 
-        NewGame_back = (LinearLayout)findViewById(R.id.NewGame_content);
+        NewGame_back = (LinearLayout)findViewById(R.id.Map);
         NewGame_back.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {

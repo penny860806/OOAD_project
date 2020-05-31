@@ -5,8 +5,24 @@
     android:id="@+id/NewGame_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     tools:context=".NewGame">
+
+    <LinearLayout
+        android:id="@+id/Map"
+        android:orientation="vertical"
+        android:layout_width="459dp"
+        android:layout_height="match_parent">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/right"
+        android:orientation="vertical"
+        android:layout_width="273dp"
+        android:layout_height="match_parent">
+
+    </LinearLayout>
 
 
 </LinearLayout>
