@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -70,15 +71,53 @@ public class NewGame extends AppCompatActivity {
             }
         });
 
+
         //new map
         GameMap GM = new GameMap(5,this,NewGame_back);
         Game test = new Game(GM);//測試地圖
-        GameController controller= new GameController(test);
+        final GameController gameController= new GameController(test);
 
-        Chess horse = new Horse(this,"r",1,test.player1,GM.map[2][2]);
-        GameView.chessView_Red(horse);
-        Chess chess = new Chess(this,"b",1,test.player1,GM.map[2][3]);
-        GameView.chessView_Blue(chess);
+        Button skillButton = (Button) findViewById(R.id.use_Skill) ;
+        skillButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("skillButton clicked");
+
+                GameController.setClickButton(GameController.skillButton);
+            }
+        });
+
+        Button moveButton = (Button) findViewById(R.id.move_chess) ;
+        moveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("moveButton clicked");
+
+                GameController.setClickButton(GameController.moveButton);
+            }
+        });;
+        Button cancelButton = (Button) findViewById(R.id.Cancel_click) ;
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("cancelButton clicked");
+
+                GameController.setClickButton(GameController.cancelButton);
+
+            }
+        });
+
+
+
+
+        Chess redChess = new Rhino(this,"r",test.player1,GM.map[4][1]);
+        GameView.chessView_Red(redChess);
+        Chess blueChess = new Chess((Context) this,"b",test.player2,GM.map[5][2]);
+        GameView.chessView_Blue(blueChess);
+//        Chess blueChess2 = new Chess((Context) this,"b2",test.player1,GM.map[6][3]);
+//        GameView.chessView_Blue(blueChess2);
+        Chess blueChess3= new Rock((Context) this,"b3",test.player1,GM.map[7][4]);
+        GameView.chessView_Blue(blueChess3);
 
     }
 

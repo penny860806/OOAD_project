@@ -7,10 +7,11 @@ import android.os.SystemClock;
 public class Horse extends Chess {
     public boolean canBePush = true;
     protected int deathNum = 3;
+
     String chessName = "馬";
 
-    Horse(Context context, String name, int moveRange, Player team, Block positionBlock) {
-        super(context, name, moveRange, team, positionBlock);
+    Horse(Context context, String name, Player team, Block positionBlock) {
+        super(context, name, 1, team, positionBlock,true);
     }
 
     public boolean Death(int x, int y, String team) {
@@ -31,17 +32,19 @@ public class Horse extends Chess {
         myTeam = setTeam;
     }
 
-    public boolean skill(Chess targetChess) {
+    public int skill(Chess targetChess) {
         if (targetChess == this) {
-            return false;
-        } else if (targetChess.team != this.team) {
+            return 0;
+        }
+        else if (targetChess.team != this.team) {
             positionBlock.swap(targetChess.positionBlock);
             GameView.changeChess_View(this, targetChess);
             Block temp = targetChess.positionBlock;
             targetChess.positionBlock = positionBlock;
             positionBlock = temp;
-            return true;
-        } else {
+            return 3;
+        }
+        else {
             Block[] dest = new Block[2];
             Block temp;
             int dir = isNeighbor(targetChess.positionBlock);
@@ -56,8 +59,8 @@ public class Horse extends Chess {
                                 dest[1] = temp;
                             }
                         }
-                    } else return false;
-                } else return false;
+                    } else return 0;
+                } else return 0;
                 for (int i = 0; i < 2; i++) {
                     if (dest[i] != null) {
                         targetChess.positionBlock.swap(dest[i]);
@@ -65,12 +68,15 @@ public class Horse extends Chess {
                         targetChess.positionBlock = dest[i];
                     }
                 }
-                return true;
-            } else return false;
+                return 3;
+            } else return 0;
 
         }
     }
 
+    public int skill(){
+        return 1;
+    }
     public int isNeighbor(Block block) {
         for (int i = 0; i < 6; i++) {
             Block t = this.positionBlock.getNeighbor(i);

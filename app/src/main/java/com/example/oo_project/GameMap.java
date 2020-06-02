@@ -166,7 +166,7 @@ public class GameMap {
         int i;
         for (i = 0; i < 5; i++) {
             temp = map[0][i];
-            chess = new Chess(temp.getContext(), player1.ID + ":chess:" + i, 1, player1, temp);
+            chess = new Chess(temp.getContext(), player1.ID + ":chess:" + i, player1, temp);
             chessParams = (FrameLayout.LayoutParams) temp.getLayoutParams();
             chess.setLayoutParams(chessParams);
             chess.setImageResource(R.drawable.clip_blue);
@@ -176,7 +176,7 @@ public class GameMap {
         }
         for (i = 4; i < 9; i++) {
             temp = map[8][i];
-            chess = new Chess(temp.getContext(), player2.ID + ":chess:" + i, 1, player2, temp);
+            chess = new Chess(temp.getContext(), player2.ID + ":chess:" + i, player2, temp);
             chessParams = (FrameLayout.LayoutParams) temp.getLayoutParams();
             chess.setLayoutParams(chessParams);
             chess.setImageResource(R.drawable.rock_red);

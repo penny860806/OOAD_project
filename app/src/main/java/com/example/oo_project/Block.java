@@ -25,12 +25,8 @@ class Block extends androidx.appcompat.widget.AppCompatImageView {
         this.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("my", "Block is clicked");
-
-                if (GameController.getState() == GameController.moveState) {
-                    GameController.setClickedBlock((Block) v);
-                    GameController.commonHandler();
-                }
+                System.out.println("block clicked");
+                GameController.setClickedBlock((Block) v);
             }
         });
 
@@ -73,6 +69,10 @@ class Block extends androidx.appcompat.widget.AppCompatImageView {
         block.chess = this.chess;
         this.chess = tempChess;
         this.player = tempPlayer;
+//        if(this.chess != null)
+//            this.chess.positionBlock = this;
+//        if(block.chess != null)
+//            block.chess.positionBlock = block;
 
     }
 

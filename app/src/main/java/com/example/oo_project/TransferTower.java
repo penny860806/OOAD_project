@@ -4,21 +4,24 @@ import android.content.Context;
 
 public class TransferTower extends Chess {
 
-    TransferTower(Context context, String name, int moveRange, Player team, Block positionBlock) {
-        super(context, name, moveRange, team, positionBlock);
+    TransferTower(Context context, String name, Player team, Block positionBlock) {
+        super(context, name,1, team, positionBlock,true);
     }
 
     @Override
-    public boolean skill(Chess targetChess) {
+    public int skill(Chess targetChess) {
         if (targetChess.team != this.team || targetChess == this) {
-            return false;
+            return reError;
         } else {
             positionBlock.swap(targetChess.positionBlock);
             GameView.changeChess_View(this, targetChess);
             Block temp = targetChess.positionBlock;
             targetChess.positionBlock = positionBlock;
             positionBlock = temp;
-            return true;
+            return reInitial;
         }
+    }
+    public int skill(){
+        return reChessClick;
     }
 }

@@ -14,7 +14,11 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 	private boolean clickAvail = true;
 	Block positionBlock;
 	public boolean canBePush;
-	Chess(Context context,String name, int moveRange, Player team, Block positionBlock){
+	final static int reError = 0 , reChessClick = 1 , reBlockClick = 2 , reInitial = 3/*with skill undone*/ , reSucess = 4/*also back to initial*/;
+// for controller to know about the type of skill target, chess is "c", block is "b", no is "n"
+
+
+	public Chess(Context context,String name, int moveRange, Player team, Block positionBlock  ,boolean canBePush){
 		super(context);
 		this.chessName = name;
 		this.moveRange = moveRange;
@@ -23,21 +27,23 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 		this.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-					Log.i("my","Chess is clicked");
-					Log.i("my",String.valueOf( GameController.getState()));
-					if(GameController.getState() == GameController.initial && clickAvail) {
-						Log.i("my","inside if");
-                        GameController.changeState(GameController.skillState);
-						GameController.setClickChess((Chess) v);
-						GameController.commonHandler();
-					}else if(GameController.getState() == GameController.skillState){
-						GameController.setClickChess((Chess) v);
-						GameController.commonHandler();
-					}
-				}
+				System.out.println("Chess clicked");
+//				if(clickAvail)
+					GameController.setClickChess((Chess) v);
+			}
 		});
+		this.canBePush = canBePush;
 
 	}
+	public Chess(Context context,String name, int moveRange, Player team, Block positionBlock  ){
+		this( context, name,  moveRange,  team,  positionBlock  , true);
+	}
+	public Chess(Context context,String name, Player team, Block positionBlock) {
+		this( context, name, 1,  team,  positionBlock );
+	}
+
+
+
 	public boolean Death(int x , int y, String team) {
 		return true;
 	}
@@ -58,7 +64,6 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 			return false;
 		}
 
-
 		positionBlock.moveChess(targetBlock);
 		//更改圖片顯示位置
 		GameView.moveChess_View(positionBlock,targetBlock,this);
@@ -66,12 +71,21 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 		positionBlock = targetBlock;
 		return true;
 	}
+	public boolean moveChess(int dir){
+		return moveChess(this.positionBlock.getNeighbor(dir));
+	}
 
 	boolean checkCanMove (Block targetBlock){ //some subclass have to change this method
 		System.out.println("checkCanMove");
 		boolean avail = false;
-		for(int i=0 ; i<6 ; i++){
+		if(targetBlock == null){
+			System.out.println("null target block in checkCanMove");
+			return false;
+		}
+		int i;
+		for( i=0 ; i<6 ; i++){
 			if(positionBlock == targetBlock.getNeighbor(i) && targetBlock.isEmpty()){
+
 				avail= true;
 			}
 		}
@@ -82,13 +96,16 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 	public void setClickAvail(boolean input){
         clickAvail = input;
 	}
-	public boolean skill(Block targetBlock){
-		return false;
+	public int skill(Block targetBlock){
+		return 0;
 	}
-	public boolean skill(Chess targetChess){
-		return false;
+	public int skill(Chess targetChess){
+		return 0;
 	}
-	public void swap(Chess targetChess){
-
+	public int skill(){
+		return 0;
 	}
+//	public void swap(Chess targetChess){
+//
+//	}
 }
