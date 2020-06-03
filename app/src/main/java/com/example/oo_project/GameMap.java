@@ -40,6 +40,7 @@ public class GameMap {
                 }
             }
         }
+        setMapEdge();
 
     }
 
@@ -156,6 +157,25 @@ public class GameMap {
             count++;
         }
 
+    }
+
+    private void setMapEdge() {
+        Block begin = map[0][0];
+        Block now = begin;
+        int dir = Block.E;
+        do {
+            genEdgeRock(now);
+            if (now.getNeighbor(dir) == null) {
+                dir++;
+                if (dir > 5) dir = 0;
+            }
+            now = now.getNeighbor(dir);
+        } while (now != begin);
+    }
+
+    private void genEdgeRock(Block block) {
+        block.setVisibility(View.INVISIBLE);
+        block.chess = new Rock(block.getContext(), "rock", null, block);
     }
 
 

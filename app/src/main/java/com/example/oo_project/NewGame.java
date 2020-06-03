@@ -73,7 +73,7 @@ public class NewGame extends AppCompatActivity {
 
 
         //new map
-        GameMap GM = new GameMap(5,this,NewGame_back);
+        GameMap GM = new GameMap(6,this,NewGame_back);
         Game test = new Game(GM);//測試地圖
         final GameController gameController= new GameController(test);
 
