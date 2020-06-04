@@ -11,12 +11,14 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class NewGame extends AppCompatActivity {
@@ -118,6 +120,10 @@ public class NewGame extends AppCompatActivity {
 //        GameView.chessView_Blue(blueChess2);
         Chess blueChess3= new Rock((Context) this,"b3",test.player1,GM.map[7][4]);
         GameView.chessView_Blue(blueChess3);
+
+        //角色說明文字部分可以上下滾動
+        TextView chess_info = (TextView) findViewById(R.id.chess_info);
+        chess_info.setMovementMethod(ScrollingMovementMethod.getInstance());
 
     }
 
