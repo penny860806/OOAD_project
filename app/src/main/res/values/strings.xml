@@ -17,5 +17,9 @@
     <string name="red_player">紅方</string>
     <string name="blue_player">藍方</string>
     <string name="chess">角色</string>
+    <string name="left_number">剩餘</string>
+    <string name="skillRange">技能\n範圍</string>
+    <string name="skillCost">技能\n耗點</string>
+    <string name="moveRange">移動\n範圍</string>
     //還有個個角色與他們的文字說明要加進來這邊
 </resources>

@@ -1,0 +1,356 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/putChess"
+    android:layout_width="273dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    //choose chess menu
+
+    <LinearLayout
+        android:id="@+id/choose_chess"
+        android:layout_width="273dp"
+        android:layout_height="100dp"
+        android:background="@android:color/darker_gray"
+        android:orientation="horizontal">
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                //auro
+
+                <LinearLayout
+                    android:id="@+id/auro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@android:color/holo_red_light"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:layout_width="58dp"
+                        android:layout_height="59dp"
+                        android:background="@drawable/auro_blue"></Button>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="4"
+                        android:textSize="10sp" />
+                </LinearLayout>
+                //rock
+
+                <LinearLayout
+                    android:id="@+id/rock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@android:color/holo_red_light"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:layout_width="58dp"
+                        android:layout_height="59dp"
+                        android:background="@drawable/rock_blue"></Button>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="4"
+                        android:textSize="10sp" />
+                </LinearLayout>
+                //clip
+
+                <LinearLayout
+                    android:id="@+id/clip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@android:color/holo_red_light"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:layout_width="58dp"
+                        android:layout_height="59dp"
+                        android:background="@drawable/clip_blue"></Button>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="4"
+                        android:textSize="10sp" />
+                </LinearLayout>
+                //horse
+
+                <LinearLayout
+                    android:id="@+id/horse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@android:color/holo_red_light"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:layout_width="58dp"
+                        android:layout_height="59dp"
+                        android:background="@drawable/horse_blue"></Button>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="4"
+                        android:textSize="10sp" />
+                </LinearLayout>
+                //herculus
+
+                <LinearLayout
+                    android:id="@+id/herculus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@android:color/holo_red_light"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:layout_width="58dp"
+                        android:layout_height="59dp"
+                        android:background="@drawable/hercules_blue"></Button>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="4"
+                        android:textSize="10sp" />
+                </LinearLayout>
+                //rhin
+
+                <LinearLayout
+                    android:id="@+id/rhin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@android:color/holo_red_light"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:layout_width="58dp"
+                        android:layout_height="59dp"
+                        android:background="@drawable/rhinoceros_blue"></Button>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="4"
+                        android:textSize="10sp" />
+                </LinearLayout>
+                //spy
+
+                <LinearLayout
+                    android:id="@+id/spy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@android:color/holo_red_light"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:layout_width="58dp"
+                        android:layout_height="59dp"
+                        android:background="@drawable/spy_blue"></Button>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="4"
+                        android:textSize="10sp" />
+                </LinearLayout>
+                //tower
+
+                <LinearLayout
+                    android:id="@+id/tower"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@android:color/holo_red_light"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:layout_width="58dp"
+                        android:layout_height="59dp"
+                        android:background="@drawable/tower_red"></Button>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="4"
+                        android:textSize="10sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+    </LinearLayout>
+    //left number
+
+    <LinearLayout
+        android:id="@+id/left_number"
+        android:layout_width="273dp"
+        android:layout_height="40dp"
+        android:background="@android:color/holo_blue_bright"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/left_number"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="15"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+    //chess information for put chess
+
+    <LinearLayout
+        android:id="@+id/chess_menu"
+        android:layout_width="273dp"
+        android:layout_height="213dp"
+        android:background="@android:color/holo_green_light"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/chess_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/chess"
+            android:textSize="30sp" />
+        //chess information table
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="85dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@android:color/darker_gray"
+                    android:text="@string/skillCost"
+                    android:textColor="@android:color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="85dp"
+                    android:layout_height="21dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@android:color/darker_gray"
+                    android:text="1"
+                    android:textColor="@android:color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="85dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@android:color/darker_gray"
+                    android:text="@string/skillRange"
+                    android:textColor="@android:color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="85dp"
+                    android:layout_height="21dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@android:color/darker_gray"
+                    android:text="1"
+                    android:textColor="@android:color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="85dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@android:color/darker_gray"
+                    android:text="@string/moveRange"
+                    android:textColor="@android:color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="85dp"
+                    android:layout_height="21dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@android:color/darker_gray"
+                    android:text="1"
+                    android:textColor="@android:color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </LinearLayout>
+        //chess information description
+        <TextView
+            android:id="@+id/chess_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:scrollbars="vertical"
+            android:singleLine="false"
+            android:text="我有做一個滾動的效果，只要字夠多滾動效果就會出現。另外我剛剛有試過反斜線N會換行，所以這邊文字可以一堆(?)，\n\n現在這行開始在撐字數"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    //timer for putting chess
+
+    <LinearLayout
+        android:id="@+id/put_timer"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@android:color/holo_orange_light"
+        android:orientation="horizontal"></LinearLayout>
+
+</LinearLayout>

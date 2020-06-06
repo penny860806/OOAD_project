@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -79,35 +80,7 @@ public class NewGame extends AppCompatActivity {
         Game test = new Game(GM);//測試地圖
         final GameController gameController= new GameController(test);
 
-        Button skillButton = (Button) findViewById(R.id.use_Skill) ;
-        skillButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("skillButton clicked");
 
-                GameController.setClickButton(GameController.skillButton);
-            }
-        });
-
-        Button moveButton = (Button) findViewById(R.id.move_chess) ;
-        moveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("moveButton clicked");
-
-                GameController.setClickButton(GameController.moveButton);
-            }
-        });;
-        Button cancelButton = (Button) findViewById(R.id.Cancel_click) ;
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("cancelButton clicked");
-
-                GameController.setClickButton(GameController.cancelButton);
-
-            }
-        });
 
 
 
@@ -121,10 +94,67 @@ public class NewGame extends AppCompatActivity {
         Chess blueChess3= new Rock((Context) this,"b3",test.player1,GM.map[7][4]);
         GameView.chessView_Blue(blueChess3);
 
-        //角色說明文字部分可以上下滾動
-        TextView chess_info = (TextView) findViewById(R.id.chess_info);
-        chess_info.setMovementMethod(ScrollingMovementMethod.getInstance());
 
+
+        //控制切換右側畫面
+        LayoutInflater inflater =  getLayoutInflater();
+        View activity_main = inflater.inflate(R.layout.activity_new_game, null);//展開主視窗
+        LinearLayout masterView = (LinearLayout) findViewById(R.id.Game_Function); //取得主視窗中右方的空白LinearLayout
+        //下棋
+        View main1 = inflater.inflate(R.layout.activity_playchess, null);//展開第1個子畫面視窗
+        LinearLayout View1 = (LinearLayout) main1.findViewById(R.id.playChess);//找出第1個視窗中的內容版面
+        //放棋
+        View main2 = inflater.inflate(R.layout.activity_putchess, null);//展開第2個子畫面視窗
+        LinearLayout View2 = (LinearLayout) main2.findViewById(R.id.putChess);//找出第2個視窗中的內容版面
+
+        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT
+        );
+        masterView.addView(View2);
+        //下面兩行可以控制切換右側畫面
+        //masterView.removeView(Vlew2);
+        //masterView.addView(View1);
+
+        //下棋 角色說明文字部分可以上下滾動
+        TextView chess_info = (TextView) main1.findViewById(R.id.chess_info);
+        chess_info.setMovementMethod(ScrollingMovementMethod.getInstance());
+        //放棋
+        TextView chess_des = (TextView) main2.findViewById(R.id.chess_description);
+        chess_des.setMovementMethod(ScrollingMovementMethod.getInstance());
+
+
+        //所有會用到右側功能面板的，都要寫在這邊，而要呼叫findviewById都要先call他的XML名稱
+        //putchess是main2, playchess是main1
+        Button skillButton = (Button) main1.findViewById(R.id.use_Skill) ;
+        skillButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("skillButton clicked");
+
+                GameController.setClickButton(GameController.skillButton);
+            }
+        });
+
+        Button moveButton = (Button) main1.findViewById(R.id.move_chess) ;
+        moveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("moveButton clicked");
+
+                GameController.setClickButton(GameController.moveButton);
+            }
+        });;
+        Button cancelButton = (Button) main1.findViewById(R.id.Cancel_click) ;
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("cancelButton clicked");
+
+                GameController.setClickButton(GameController.cancelButton);
+
+            }
+        });
     }
 
     @Override
