@@ -11,8 +11,11 @@ public class Spy extends Chess {
     }
     @Override
     public int skill(Block targetBlock){
-        if(moveChess(targetBlock)){return 3;}
-        else{return 0;}
+        if (moveChess(targetBlock)){return 3;}
+        return 0;
         }
+    public int skill(){
+        return reBlockClick;
+    }
     }
 
