@@ -47,16 +47,4 @@ public class Clip extends Chess {
     }
 }
 
-/*
-import android.content.Context;
-import android.os.SystemClock;
 
-public class Rhino extends Chess {
-    public boolean canBePush = true;
-    protected int deathNum = 3;
-    String chessName = "犀牛";
-    Rhino(Context context, String name, Player team, Block positionBlock) {
-        super(context, name, 1, team, positionBlock, true);
-    }
-
- */
