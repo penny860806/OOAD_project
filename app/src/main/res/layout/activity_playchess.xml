@@ -176,10 +176,24 @@
 
         <Button
             android:id="@+id/end_round_button"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@android:color/holo_purple"
             android:text="@string/end_round"
+            android:textSize="25sp" />
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_purple"
+            android:text="save"
+            android:textSize="25sp" />
+        <Button
+            android:id="@+id/load_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_purple"
+            android:text="load"
             android:textSize="25sp" />
     </LinearLayout>
 

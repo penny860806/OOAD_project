@@ -24,6 +24,8 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 		this.moveRange = moveRange;
 		this.team = team;
 		this.positionBlock = positionBlock;
+		positionBlock.chess = this;
+		positionBlock.player = this.team;
 		this.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -41,6 +43,7 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 	public Chess(Context context,String name, Player team, Block positionBlock) {
 		this( context, name, 1,  team,  positionBlock );
 	}
+
 
 
 

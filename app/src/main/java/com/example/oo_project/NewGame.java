@@ -22,6 +22,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+
+import java.io.IOException;
+
 public class NewGame extends AppCompatActivity {
 
     private static final boolean AUTO_HIDE = true;
@@ -74,26 +78,29 @@ public class NewGame extends AppCompatActivity {
             }
         });
 
-
         //new map
         GameMap GM = new GameMap(6,this,NewGame_back);
-        Game test = new Game(GM);//測試地圖
-        final GameController gameController= new GameController(test);
-
-
-
-
-
-
-        Chess redChess = new Rhino(this,"r",test.player1,GM.map[4][1]);
-        GameView.chessView_Red(redChess);
-        Chess blueChess = new Chess((Context) this,"b",test.player2,GM.map[5][2]);
-        GameView.chessView_Blue(blueChess);
-//        Chess blueChess2 = new Chess((Context) this,"b2",test.player1,GM.map[6][3]);
-//        GameView.chessView_Blue(blueChess2);
-        Chess blueChess3= new Rock((Context) this,"b3",test.player1,GM.map[7][4]);
-        GameView.chessView_Blue(blueChess3);
-
+        final Game game = new Game(GM);//測試地圖
+        final GameController gameController= new GameController(game);
+        Bundle bundle = getIntent().getExtras();
+        int begin_state = bundle.getInt("state");
+        if(begin_state == 0){
+            //NewGame
+            
+        }else if(begin_state == 1){
+            //OldGame
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                try {
+                    game.loadGame(getApplicationContext());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }else{
+                System.out.println("begin_state version error");
+            }
+        }else{
+            System.out.println("begin_state error");
+        }
 
 
         //控制切換右側畫面
@@ -111,10 +118,11 @@ public class NewGame extends AppCompatActivity {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT
         );
-        masterView.addView(View2);
+        //masterView.addView(View2);
         //下面兩行可以控制切換右側畫面
-        //masterView.removeView(Vlew2);
-        //masterView.addView(View1);
+        //masterView.removeView(View2);
+        masterView.addView(View1);
+
 
         //下棋 角色說明文字部分可以上下滾動
         TextView chess_info = (TextView) main1.findViewById(R.id.chess_info);
@@ -155,6 +163,40 @@ public class NewGame extends AppCompatActivity {
 
             }
         });
+
+        //-------------------------------------
+        Button saveButton = (Button) main1.findViewById(R.id.save_button) ;
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onClick(View v) {
+                System.out.println("saveButton clicked");
+                try {
+                    game.saveGame(getApplicationContext());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        Button loadButton = (Button) main1.findViewById(R.id.load_button) ;
+        loadButton.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onClick(View v) {
+                System.out.println("loadButton clicked");
+                try {
+                    game.loadGame(getApplicationContext());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
+        //-------------------------------------
     }
 
     @Override
