@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
@@ -149,82 +150,85 @@ public class Game {
                 player2.myRound = true;
             }else{
                 System.out.println("load whoseRound error");
-                System.out.println(all_info[1]);
-                System.out.println(player1.ID);
-                System.out.println(player2.ID);
             }
             //load map information
-            temp_info = all_info[2].split(",");
-            for(int i=0;i<temp_info.length;i++){
-                String[] block_info = temp_info[i].split(":");
-                int x = Integer.parseInt(block_info[0]), y = Integer.parseInt(block_info[1]);
-                String name = block_info[2];
-                Chess chess;
-                if(i==temp_info.length-1) block_info[3] = block_info[3].substring(0,block_info[3].length()-1);
-                for(int j=0;j<block_info[3].length();j++) {
-                    System.out.println(""+j+":"+block_info[3].charAt(j));
-                }
-
-                if(block_info[3].contentEquals(player1.ID)){
-                    switch(name){
-                        case "clip":
-                            chess = new Clip(context,name,player1,GM.map[y][x]);
-                            break;
-                        case "horse":
-                            chess = new Horse(context,name,player1,GM.map[y][x]);
-                            break;
-                        case "rhino":
-                            chess = new Rhino(context,name,player1,GM.map[y][x]);
-                            break;
-                        case "rock":
-                            chess = new Rock(context,name,player1,GM.map[y][x]);
-                            break;
-                        case "spy":
-                            chess = new Spy(context,name,player1,GM.map[y][x]);
-                            break;
-                        case "transfertower":
-                            chess = new TransferTower(context,name,player1,GM.map[y][x]);
-                            break;
-                        case "jet":
-                            chess = new Jet(context,name,player1,GM.map[y][x]);
-                            break;
-                        default:
-                            chess = new Chess(context,name,player1,GM.map[y][x]);
+            if(all_info.length<3){
+                Toast toast = Toast.makeText(context,"no saved map",Toast.LENGTH_SHORT);
+                toast.show();
+            }else {
+                temp_info = all_info[2].split(",");
+                for (int i = 0; i < temp_info.length; i++) {
+                    String[] block_info = temp_info[i].split(":");
+                    int x = Integer.parseInt(block_info[0]), y = Integer.parseInt(block_info[1]);
+                    String name = block_info[2];
+                    Chess chess;
+                    if (i == temp_info.length - 1)
+                        block_info[3] = block_info[3].substring(0, block_info[3].length() - 1);
+                    for (int j = 0; j < block_info[3].length(); j++) {
+                        System.out.println("" + j + ":" + block_info[3].charAt(j));
                     }
-                    GameView.chessView_Blue(chess);
-                    System.out.println(chess.team.ID);
-                    System.out.println(chess.chessName);
-                }else{
-                    switch(name){
-                        case "clip":
-                            chess = new Clip(context,name,player2,GM.map[y][x]);
-                            break;
-                        case "horse":
-                            chess = new Horse(context,name,player2,GM.map[y][x]);
-                            break;
-                        case "rhino":
-                            chess = new Rhino(context,name,player2,GM.map[y][x]);
-                            break;
-                        case "rock":
-                            chess = new Rock(context,name,player2,GM.map[y][x]);
-                            break;
-                        case "spy":
-                            chess = new Spy(context,name,player2,GM.map[y][x]);
-                            break;
-                        case "transfertower":
-                            chess = new TransferTower(context,name,player2,GM.map[y][x]);
-                            break;
-                        case "jet":
-                            chess = new Jet(context,name,player2,GM.map[y][x]);
-                            break;
-                        default:
-                            chess = new Chess(context,name,player2,GM.map[y][x]);
-                    }
-                    GameView.chessView_Red(chess);
-                    System.out.println(chess.team.ID);
-                    System.out.println(chess.chessName);
-                }
 
+                    if (block_info[3].contentEquals(player1.ID)) {
+                        switch (name) {
+                            case "clip":
+                                chess = new Clip(context, name, player1, GM.map[y][x]);
+                                break;
+                            case "horse":
+                                chess = new Horse(context, name, player1, GM.map[y][x]);
+                                break;
+                            case "rhino":
+                                chess = new Rhino(context, name, player1, GM.map[y][x]);
+                                break;
+                            case "rock":
+                                chess = new Rock(context, name, player1, GM.map[y][x]);
+                                break;
+                            case "spy":
+                                chess = new Spy(context, name, player1, GM.map[y][x]);
+                                break;
+                            case "transfertower":
+                                chess = new TransferTower(context, name, player1, GM.map[y][x]);
+                                break;
+                            case "jet":
+                                chess = new Jet(context, name, player1, GM.map[y][x]);
+                                break;
+                            default:
+                                chess = new Chess(context, name, player1, GM.map[y][x]);
+                        }
+                        GameView.chessView_Blue(chess);
+                        System.out.println(chess.team.ID);
+                        System.out.println(chess.chessName);
+                    } else {
+                        switch (name) {
+                            case "clip":
+                                chess = new Clip(context, name, player2, GM.map[y][x]);
+                                break;
+                            case "horse":
+                                chess = new Horse(context, name, player2, GM.map[y][x]);
+                                break;
+                            case "rhino":
+                                chess = new Rhino(context, name, player2, GM.map[y][x]);
+                                break;
+                            case "rock":
+                                chess = new Rock(context, name, player2, GM.map[y][x]);
+                                break;
+                            case "spy":
+                                chess = new Spy(context, name, player2, GM.map[y][x]);
+                                break;
+                            case "transfertower":
+                                chess = new TransferTower(context, name, player2, GM.map[y][x]);
+                                break;
+                            case "jet":
+                                chess = new Jet(context, name, player2, GM.map[y][x]);
+                                break;
+                            default:
+                                chess = new Chess(context, name, player2, GM.map[y][x]);
+                        }
+                        GameView.chessView_Red(chess);
+                        System.out.println(chess.team.ID);
+                        System.out.println(chess.chessName);
+                    }
+
+                }
             }
         }else{
             System.out.println("save no contents");
