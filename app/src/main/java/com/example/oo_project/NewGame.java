@@ -86,7 +86,6 @@ public class NewGame extends AppCompatActivity {
         int begin_state = bundle.getInt("state");
         if(begin_state == 0){
             //NewGame
-
         }else if(begin_state == 1){
             //OldGame
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

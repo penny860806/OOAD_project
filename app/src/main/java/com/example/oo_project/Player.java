@@ -6,6 +6,8 @@ public class Player {
     String ID = "請輸入角色名稱";
     short movePoint = 1;
     short skillPoint = 3;
+    short max_movePoint = 1;
+    short max_skillPoint = 3;
 
     public void countMove(short move) {
         this.movePoint = move;
