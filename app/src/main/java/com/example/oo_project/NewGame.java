@@ -163,7 +163,7 @@ public class NewGame extends AppCompatActivity {
             }
         });
 
-        //-------------------------------------
+        /*save/load test
         Button saveButton = (Button) main1.findViewById(R.id.save_button) ;
         saveButton.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -195,7 +195,11 @@ public class NewGame extends AppCompatActivity {
             }
         });
 
-        //-------------------------------------
+        */
+        /*test timer*/
+        TextView timer = (TextView)findViewById(R.id.game_timer);
+        CustomTimer customTimer = new CustomTimer(timer);
+        customTimer.startTimer();
     }
 
     @Override
