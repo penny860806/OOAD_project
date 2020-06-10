@@ -2,6 +2,7 @@ package com.example.oo_project;
 
 import android.util.Log;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 public class GameController {
     /**
@@ -12,20 +13,25 @@ public class GameController {
      * 3: skill state
      */
 
-    private final static int initial = 0, chessMenu = 1, moveState = 2, skillState = 3 ;
+    private final static int initial = 0, chessMenu = 1, moveState = 2, skillState = 3 , putChessState = 4;
     final static int noButton = 0,skillButton = 1, moveButton = 2, cancelButton = 3 ;
     private final static int nothingL=0, buttonL = 1,blockL = 2, chessL = 3 ,chess2L = 4;
-    private static int state = initial;
+    private static int state = putChessState;
     private static int clickButton = noButton;
-    private static int listenFor = chessL;
+    private static int listenFor = blockL;
+    private static LinearLayout masterView;
+    private static LinearLayout View1, View2;
 
     private static Game game = null;
     static Block clickBlock = null;
     static Chess clickChess = null , clickChess2 = null;
 
 
-    GameController(Game game) {
+    GameController(Game game , LinearLayout masterView, LinearLayout View1, LinearLayout View2) {
         this.game = game;
+        this.masterView = masterView;
+        this.View1 = View1;
+        this.View2 = View2;
     }
 
     public static boolean setClickedBlock(Block block) {
@@ -109,11 +115,25 @@ public class GameController {
         }
     }
 
+//    public static void putChessHandler()
+//    {
+//
+//    }
     static int request = 0;
     public static void commonHandler() {
         Log.i("GameController", "commonHandler");
 
-        if(state == initial) {
+        if(state == putChessState){
+            int temp = PutChess.putChess(clickBlock);
+            clickBlock = null;
+            if(temp == 2){
+                changeState(initial);
+                masterView.removeView(View2);
+                masterView.addView(View1);
+
+            }
+        }
+        else if(state == initial) {
             Log.i("commonHandler", "state initial");
             if (clickChess != null) {
                 changeState(chessMenu);
@@ -134,7 +154,7 @@ public class GameController {
             }
         }
 
-
+/*******************************************************/
         else if (state == skillState) {
             System.out.println("state skillState");
             int returnOfSkill = 0;
@@ -199,7 +219,7 @@ public class GameController {
             }
         }
 
-    }
+    }//handle every click on blocks, chess button and chess
 
     private static boolean moveHandler() {
 
@@ -219,6 +239,7 @@ public class GameController {
      * 3: finish successfully and back to initial
      * 4: not available input
      */
+
     /**
      * skill() return value
      * 0: error

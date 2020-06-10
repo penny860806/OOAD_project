@@ -8,7 +8,7 @@ public class Game {
     Player player2 = new Player(false, "玩家 red");//玩家2後手
 
     GameMap GM;
-
+    final public static int TransferTowerId = 0,RhinoId = 1,RockId = 2,ClipId=3,HerculusId = 4,JetId = 5,HorseId = 6,SpyId=7;
     Game(GameMap map) {
         GM = map;
     }

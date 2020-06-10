@@ -78,7 +78,8 @@ public class NewGame extends AppCompatActivity {
         //new map
         GameMap GM = new GameMap(6,this,NewGame_back);
         Game test = new Game(GM);//測試地圖
-        final GameController gameController= new GameController(test);
+        GameView gameView = new GameView(test);
+        PutChess putChess = new PutChess(test, this);
 
 
 
@@ -113,8 +114,10 @@ public class NewGame extends AppCompatActivity {
         );
         masterView.addView(View2);
         //下面兩行可以控制切換右側畫面
-        //masterView.removeView(Vlew2);
+        //masterView.removeView(View2);
         //masterView.addView(View1);
+        final GameController gameController= new GameController(test , masterView , View1 , View2);
+
 
         //下棋 角色說明文字部分可以上下滾動
         TextView chess_info = (TextView) main1.findViewById(R.id.chess_info);
@@ -155,6 +158,75 @@ public class NewGame extends AppCompatActivity {
 
             }
         });
+
+        /**
+         * putChess buttons
+         */
+        Button Jet_button = (Button) findViewById(R.id.Jet_button) ;
+        Jet_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("putChess","Jet_button clicked");
+                PutChess.selectedChessId = Game.JetId;
+            }
+        });;
+        Button TransferTower_button = (Button) findViewById(R.id.TransferTower_button) ;
+        TransferTower_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("putChess","TransferTower_button clicked");
+                PutChess.selectedChessId = Game.TransferTowerId;
+            }
+        });;
+        Button Rhino_button = (Button) findViewById(R.id.Rhino_button) ;
+        Rhino_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("putChess","Rhino_button clicked");
+                PutChess.selectedChessId = Game.RhinoId;
+            }
+        });;
+        Button Rock_button = (Button) findViewById(R.id.Rock_button) ;
+        Rock_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("putChess","Rock_button clicked");
+                PutChess.selectedChessId = Game.RockId;
+            }
+        });;
+        Button Clip_button = (Button) findViewById(R.id.Clip_button) ;
+        Clip_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("putChess","Clip_button clicked");
+                PutChess.selectedChessId = Game.ClipId;
+            }
+        });;
+        Button Herculus_button = (Button) findViewById(R.id.Herculus_button) ;
+        Herculus_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("putChess","Herculus_button clicked");
+                PutChess.selectedChessId = Game.HerculusId;
+            }
+        });;
+        Button Horse_button = (Button) findViewById(R.id.Horse_button) ;
+        Horse_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("putChess","Horse_button clicked");
+                PutChess.selectedChessId = Game.HorseId;
+            }
+        });;
+        Button Spy_button = (Button) findViewById(R.id.Spy_button) ;
+        Spy_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("putChess","Spy_button clicked");
+                PutChess.selectedChessId = Game.SpyId;
+            }
+        });;
+
     }
 
     @Override
