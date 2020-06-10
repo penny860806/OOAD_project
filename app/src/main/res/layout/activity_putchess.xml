@@ -23,7 +23,7 @@
                 //auro
 
                 <LinearLayout
-                    android:id="@+id/auro"
+                    android:id="@+id/Jet_pic"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -31,11 +31,13 @@
                     android:orientation="vertical">
 
                     <Button
+                        android:id="@+id/Jet_button"
                         android:layout_width="58dp"
                         android:layout_height="59dp"
                         android:background="@drawable/auro_blue"></Button>
 
                     <TextView
+                        android:id="@+id/Jet_num"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -45,7 +47,7 @@
                 //rock
 
                 <LinearLayout
-                    android:id="@+id/rock"
+                    android:id="@+id/Rock_pic"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -53,11 +55,13 @@
                     android:orientation="vertical">
 
                     <Button
+                        android:id="@+id/Rock_button"
                         android:layout_width="58dp"
                         android:layout_height="59dp"
                         android:background="@drawable/rock_blue"></Button>
 
                     <TextView
+                        android:id="@+id/Rock_num"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -67,7 +71,7 @@
                 //clip
 
                 <LinearLayout
-                    android:id="@+id/clip"
+                    android:id="@+id/Clip_pic"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -75,11 +79,13 @@
                     android:orientation="vertical">
 
                     <Button
+                        android:id="@+id/Clip_button"
                         android:layout_width="58dp"
                         android:layout_height="59dp"
                         android:background="@drawable/clip_blue"></Button>
 
                     <TextView
+                        android:id="@+id/Clip_num"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -89,7 +95,7 @@
                 //horse
 
                 <LinearLayout
-                    android:id="@+id/horse"
+                    android:id="@+id/Horse_pic"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -97,11 +103,13 @@
                     android:orientation="vertical">
 
                     <Button
+                        android:id="@+id/Horse_button"
                         android:layout_width="58dp"
                         android:layout_height="59dp"
                         android:background="@drawable/horse_blue"></Button>
 
                     <TextView
+                        android:id="@+id/Horse_num"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -111,7 +119,7 @@
                 //herculus
 
                 <LinearLayout
-                    android:id="@+id/herculus"
+                    android:id="@+id/Herculus_pic"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -119,11 +127,13 @@
                     android:orientation="vertical">
 
                     <Button
+                        android:id="@+id/Herculus_button"
                         android:layout_width="58dp"
                         android:layout_height="59dp"
                         android:background="@drawable/hercules_blue"></Button>
 
                     <TextView
+                        android:id="@+id/Herculus_num"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -133,7 +143,7 @@
                 //rhin
 
                 <LinearLayout
-                    android:id="@+id/rhin"
+                    android:id="@+id/Rhino_pic"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -141,11 +151,13 @@
                     android:orientation="vertical">
 
                     <Button
+                        android:id="@+id/Rhino_button"
                         android:layout_width="58dp"
                         android:layout_height="59dp"
                         android:background="@drawable/rhinoceros_blue"></Button>
 
                     <TextView
+                        android:id="@+id/Rhino_num"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -155,7 +167,7 @@
                 //spy
 
                 <LinearLayout
-                    android:id="@+id/spy"
+                    android:id="@+id/Spy_pic"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -163,11 +175,13 @@
                     android:orientation="vertical">
 
                     <Button
+                        android:id="@+id/Spy_button"
                         android:layout_width="58dp"
                         android:layout_height="59dp"
                         android:background="@drawable/spy_blue"></Button>
 
                     <TextView
+                        android:id="@+id/Spy_num"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -177,7 +191,7 @@
                 //tower
 
                 <LinearLayout
-                    android:id="@+id/tower"
+                    android:id="@+id/TransferTower_pic"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -185,11 +199,13 @@
                     android:orientation="vertical">
 
                     <Button
+                        android:id="@+id/TransferTower_button"
                         android:layout_width="58dp"
                         android:layout_height="59dp"
                         android:background="@drawable/tower_red"></Button>
 
                     <TextView
+                        android:id="@+id/TransferTower_num"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"

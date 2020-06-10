@@ -11,7 +11,7 @@ public class Jet extends Chess {
     String chessName = "氣場";
 
     Jet(Context context, String name, Player team, Block positionBlock) {
-        super(context, name, 1, team, positionBlock, true);
+        super(context, "氣場", 1, team, positionBlock, true);
     }
 
     @Override
