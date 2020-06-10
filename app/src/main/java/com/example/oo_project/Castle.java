@@ -18,7 +18,7 @@ public class Castle extends Block {
     public int getOccupiedRound(){
         return occupied_round;
     }
-    public void setOccupied_round(int round){
+    public void setOccupiedRound(int round){
         occupied_round = round;
     }
 }
