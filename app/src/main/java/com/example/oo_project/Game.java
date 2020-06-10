@@ -25,6 +25,7 @@ import java.nio.charset.StandardCharsets;
 public class Game {
 
     int step = 1;
+    int deathChess=0;
     Player player1 = new Player(true, "blue");//讓玩家1先手
     Player player2 = new Player(false, "red");//玩家2後手
 
@@ -39,8 +40,8 @@ public class Game {
         player1.myRound = !player1.myRound;
         player2.myRound = !player2.myRound;
         whoseRound().movePoint = 1;
-        for (int i = 0; i < GM.map.length; i++) {
-            for (int j = 0; j < GM.map[i].length; j++) {
+        for (int i = 0; i < 2*(GM.map.length-1); i++) {
+            for (int j = 0; j < 2*(GM.map[i].length-1); j++) {
 
                 if (GM.map[i][j] != null && GM.map[i][j].chess != null) {
                     GM.map[i][j].chess.setClickAvail(GM.map[i][j].chess.team.myRound);
@@ -51,6 +52,36 @@ public class Game {
 
 
     }
+    public void   judgement(){
+        int count=0;
+        for (int i=0; i<2*(GM.map.length-1);i++){
+            for(int j=0; j<2*(GM.map.length-1);j++){
+                for (int k=0;k<5;k++){
+                if ((GM.map[i][j].getNeighbor(k).player==GM.map[i][j].player)==GM.map[i][j].chess.deathTeam){
+                 count++;
+                }
+                }
+                if(GM.map[i][j].chess.deathNum<=count){
+                    GM.map[i][j].chess.ImDead=true;
+                }
+                count=0;
+                }
+            }
+        }
+        public void death(){
+            for (int i=0; i<2*(GM.map.length-1);i++){
+                for(int j=0; j<2*(GM.map.length-1);j++) {
+                if(GM.map[i][j].chess.ImDead=true){
+                    GM.map[i][j].chess=null;
+                    GM.map[i][j].player=null;
+                }
+                }
+            }
+        }
+
+
+
+
 
     public Player whoseRound() {//找出當回合玩家的方法
         if (this.player1.myRound == true)
