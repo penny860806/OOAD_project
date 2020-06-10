@@ -19,198 +19,191 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@color/yello">
                 //auro
 
                 <LinearLayout
-                    android:id="@+id/Jet_pic"
+                    android:id="@+id/auro"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:background="@android:color/holo_red_light"
                     android:orientation="vertical">
 
                     <Button
-                        android:id="@+id/Jet_button"
                         android:layout_width="58dp"
                         android:layout_height="59dp"
-                        android:background="@drawable/auro_blue"></Button>
+                        android:background="@drawable/auro"></Button>
 
                     <TextView
-                        android:id="@+id/Jet_num"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="4"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@android:color/black"
+                        android:textColor="@android:color/white"/>
                 </LinearLayout>
                 //rock
 
                 <LinearLayout
-                    android:id="@+id/Rock_pic"
+                    android:id="@+id/rock"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:background="@android:color/holo_red_light"
                     android:orientation="vertical">
 
                     <Button
-                        android:id="@+id/Rock_button"
                         android:layout_width="58dp"
                         android:layout_height="59dp"
-                        android:background="@drawable/rock_blue"></Button>
+                        android:background="@drawable/rock"></Button>
 
                     <TextView
-                        android:id="@+id/Rock_num"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="4"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@android:color/black"
+                        android:textColor="@android:color/white"/>
                 </LinearLayout>
                 //clip
 
                 <LinearLayout
-                    android:id="@+id/Clip_pic"
+                    android:id="@+id/clip"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:background="@android:color/holo_red_light"
                     android:orientation="vertical">
 
                     <Button
-                        android:id="@+id/Clip_button"
                         android:layout_width="58dp"
                         android:layout_height="59dp"
-                        android:background="@drawable/clip_blue"></Button>
+                        android:background="@drawable/clip"></Button>
 
                     <TextView
-                        android:id="@+id/Clip_num"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="4"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@android:color/black"
+                        android:textColor="@android:color/white"/>
                 </LinearLayout>
                 //horse
 
                 <LinearLayout
-                    android:id="@+id/Horse_pic"
+                    android:id="@+id/horse"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:background="@android:color/holo_red_light"
                     android:orientation="vertical">
 
                     <Button
-                        android:id="@+id/Horse_button"
                         android:layout_width="58dp"
                         android:layout_height="59dp"
-                        android:background="@drawable/horse_blue"></Button>
+                        android:background="@drawable/horse"></Button>
 
                     <TextView
-                        android:id="@+id/Horse_num"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="4"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@android:color/black"
+                        android:textColor="@android:color/white"/>
                 </LinearLayout>
                 //herculus
 
                 <LinearLayout
-                    android:id="@+id/Herculus_pic"
+                    android:id="@+id/herculus"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:background="@android:color/holo_red_light"
                     android:orientation="vertical">
 
                     <Button
-                        android:id="@+id/Herculus_button"
                         android:layout_width="58dp"
                         android:layout_height="59dp"
-                        android:background="@drawable/hercules_blue"></Button>
+                        android:background="@drawable/hercules"></Button>
 
                     <TextView
-                        android:id="@+id/Herculus_num"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="4"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@android:color/black"
+                        android:textColor="@android:color/white"/>
                 </LinearLayout>
                 //rhin
 
                 <LinearLayout
-                    android:id="@+id/Rhino_pic"
+                    android:id="@+id/rhin"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:background="@android:color/holo_red_light"
                     android:orientation="vertical">
 
                     <Button
-                        android:id="@+id/Rhino_button"
                         android:layout_width="58dp"
                         android:layout_height="59dp"
-                        android:background="@drawable/rhinoceros_blue"></Button>
+                        android:background="@drawable/rhinoceros"></Button>
 
                     <TextView
-                        android:id="@+id/Rhino_num"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="4"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@android:color/black"
+                        android:textColor="@android:color/white"/>
                 </LinearLayout>
                 //spy
 
                 <LinearLayout
-                    android:id="@+id/Spy_pic"
+                    android:id="@+id/spy"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:background="@android:color/holo_red_light"
                     android:orientation="vertical">
 
                     <Button
-                        android:id="@+id/Spy_button"
                         android:layout_width="58dp"
                         android:layout_height="59dp"
-                        android:background="@drawable/spy_blue"></Button>
+                        android:background="@drawable/spy"></Button>
 
                     <TextView
-                        android:id="@+id/Spy_num"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="4"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@android:color/black"
+                        android:textColor="@android:color/white"/>
                 </LinearLayout>
                 //tower
 
                 <LinearLayout
-                    android:id="@+id/TransferTower_pic"
+                    android:id="@+id/tower"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:background="@android:color/holo_red_light"
                     android:orientation="vertical">
 
                     <Button
-                        android:id="@+id/TransferTower_button"
                         android:layout_width="58dp"
                         android:layout_height="59dp"
-                        android:background="@drawable/tower_red"></Button>
+                        android:background="@drawable/tower"></Button>
 
                     <TextView
-                        android:id="@+id/TransferTower_num"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="4"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        android:background="@android:color/black"
+                        android:textColor="@android:color/white"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -223,7 +216,7 @@
         android:id="@+id/left_number"
         android:layout_width="273dp"
         android:layout_height="40dp"
-        android:background="@android:color/holo_blue_bright"
+        android:background="@android:color/holo_orange_light"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -248,7 +241,7 @@
         android:id="@+id/chess_menu"
         android:layout_width="273dp"
         android:layout_height="213dp"
-        android:background="@android:color/holo_green_light"
+        android:background="@color/light_green"
         android:orientation="vertical">
 
         <TextView
@@ -275,9 +268,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginLeft="5dp"
-                    android:background="@android:color/darker_gray"
                     android:text="@string/skillCost"
-                    android:textColor="@android:color/black"
+                    android:background="@android:color/holo_green_dark"
+                    android:textColor="@android:color/white"
                     android:textSize="15sp" />
 
                 <TextView
@@ -286,9 +279,9 @@
                     android:layout_height="21dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginLeft="5dp"
-                    android:background="@android:color/darker_gray"
+                    android:background="@android:color/holo_green_dark"
+                    android:textColor="@android:color/white"
                     android:text="1"
-                    android:textColor="@android:color/black"
                     android:textSize="15sp" />
             </LinearLayout>
 
@@ -303,9 +296,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginLeft="5dp"
-                    android:background="@android:color/darker_gray"
+                    android:background="@android:color/holo_green_dark"
+                    android:textColor="@android:color/white"
                     android:text="@string/skillRange"
-                    android:textColor="@android:color/black"
                     android:textSize="15sp" />
 
                 <TextView
@@ -314,9 +307,9 @@
                     android:layout_height="21dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginLeft="5dp"
-                    android:background="@android:color/darker_gray"
+                    android:background="@android:color/holo_green_dark"
+                    android:textColor="@android:color/white"
                     android:text="1"
-                    android:textColor="@android:color/black"
                     android:textSize="15sp" />
             </LinearLayout>
 
@@ -331,9 +324,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginLeft="5dp"
-                    android:background="@android:color/darker_gray"
+                    android:background="@android:color/holo_green_dark"
+                    android:textColor="@android:color/white"
                     android:text="@string/moveRange"
-                    android:textColor="@android:color/black"
                     android:textSize="15sp" />
 
                 <TextView
@@ -342,9 +335,9 @@
                     android:layout_height="21dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginLeft="5dp"
-                    android:background="@android:color/darker_gray"
+                    android:background="@android:color/holo_green_dark"
+                    android:textColor="@android:color/white"
                     android:text="1"
-                    android:textColor="@android:color/black"
                     android:textSize="15sp" />
             </LinearLayout>
         </LinearLayout>
@@ -366,7 +359,7 @@
         android:id="@+id/put_timer"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@android:color/holo_orange_light"
+        android:background="@android:color/holo_purple"
         android:orientation="horizontal"></LinearLayout>
 
 </LinearLayout>

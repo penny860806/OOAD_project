@@ -1,4 +1,5 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/playChess"
     android:layout_width="273dp"
@@ -53,7 +54,7 @@
         android:id="@+id/player_blue"
         android:layout_width="273dp"
         android:layout_height="50dp"
-        android:background="@android:color/holo_blue_bright"
+        android:background="@android:color/holo_blue_light"
         android:orientation="horizontal">
 
         <TextView
@@ -98,7 +99,7 @@
         android:id="@+id/chess_menu"
         android:layout_width="273dp"
         android:layout_height="213dp"
-        android:background="@android:color/holo_green_light"
+        android:background="@color/light_green"
         android:orientation="vertical">
 
         <TextView
@@ -167,7 +168,8 @@
         android:gravity="center"
         android:layout_width="273dp"
         android:layout_height="40dp"
-        android:background="@android:color/holo_orange_light"
+        android:background="@android:color/holo_purple"
+        android:textColor="@android:color/white"
         />
 
     <LinearLayout
@@ -180,7 +182,6 @@
             android:id="@+id/end_round_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/holo_purple"
             android:text="@string/end_round"
             android:textSize="25sp" />
         <!--save/load test button
