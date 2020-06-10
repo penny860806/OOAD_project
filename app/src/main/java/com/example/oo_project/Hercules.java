@@ -13,10 +13,14 @@ public class Hercules extends Chess {
     String chessName = "力士";
 
     Hercules(Context context, String name, Player team, Block positionBlock) {
-        super(context, name, 1,team, positionBlock);
+        super(context, name, 1, team, positionBlock, true);
         targetBlock = null;
         targetChess = null;
 
+    }
+
+    Hercules(Context context, Player team, Block positionBlock) {
+        super(context, "hercules", 1, team, positionBlock, true);
     }
 
     public boolean Death(int x, int y, Player team) {
@@ -30,7 +34,7 @@ public class Hercules extends Chess {
                 return true;
             else return false;
         }*/
-return  true;
+        return true;
     }
 
 
@@ -73,6 +77,7 @@ return  true;
         this.targetChess = null;
         return 3;
     }
+
     public int isNeighbor(Block block) {
         for (int i = 0; i < 6; i++) {
             Block t = this.positionBlock.getNeighbor(i);

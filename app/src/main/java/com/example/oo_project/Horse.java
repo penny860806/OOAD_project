@@ -11,12 +11,16 @@ public class Horse extends Chess {
     String chessName = "馬";
 
     Horse(Context context, String name, Player team, Block positionBlock) {
-        super(context, name, 1, team, positionBlock,true);
+        super(context, name, 1, team, positionBlock, true);
+    }
+
+    Horse(Context context, Player team, Block positionBlock) {
+        super(context, "horse", 1, team, positionBlock, true);
     }
 
     public boolean Death(int x, int y, String team) {
 
-      return false;
+        return false;
     }
 
     public void setPosition(Block block, Player setTeam) {
@@ -27,16 +31,14 @@ public class Horse extends Chess {
     public int skill(Chess targetChess) {
         if (targetChess == this) {
             return 0;
-        }
-        else if (targetChess.team != this.team) {
+        } else if (targetChess.team != this.team) {
             positionBlock.swap(targetChess.positionBlock);
             GameView.changeChess_View(this, targetChess);
             Block temp = targetChess.positionBlock;
             targetChess.positionBlock = positionBlock;
             positionBlock = temp;
             return 3;
-        }
-        else {
+        } else {
             Block[] dest = new Block[2];
             Block temp;
             int dir = isNeighbor(targetChess.positionBlock);
@@ -66,9 +68,10 @@ public class Horse extends Chess {
         }
     }
 
-    public int skill(){
+    public int skill() {
         return 1;
     }
+
     public int isNeighbor(Block block) {
         for (int i = 0; i < 6; i++) {
             Block t = this.positionBlock.getNeighbor(i);

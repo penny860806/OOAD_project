@@ -14,37 +14,42 @@ public class Rhino extends Chess {
         super(context, name, 1, team, positionBlock, true);
     }
 
+    Rhino(Context context, Player team, Block positionBlock) {
+        super(context, "rhino", 1, team, positionBlock, true);
+    }
+
     @Override
     public int skill(Chess targetChess) {
-        int dir=0;
-        if(targetChess.canBePush == false || targetChess.team == this.team){
+        int dir = 0;
+        if (targetChess.canBePush == false || targetChess.team == this.team) {
             return 0;
         }
-        for(dir=0 ; dir<6 ; dir++){
-            if(targetChess == this.positionBlock.getNeighbor(dir).chess ){
+        for (dir = 0; dir < 6; dir++) {
+            if (targetChess == this.positionBlock.getNeighbor(dir).chess) {
                 break;
             }
         }
 
-        bePush(dir,targetChess);
-        while (bePush(dir,targetChess)){
+        bePush(dir, targetChess);
+        while (bePush(dir, targetChess)) {
             moveChess(dir);
         }
         moveChess(dir);
         return 3;
     }
 
-    public int skill(){
+    public int skill() {
         return reChessClick;
     }
-    private boolean bePush(int dir , Chess chess){
+
+    private boolean bePush(int dir, Chess chess) {
         boolean re;
-        if(chess.canBePush == false){
+        if (chess.canBePush == false) {
             return false;
         }
-        if(!chess.positionBlock.getNeighbor(dir).isEmpty()){
-            re = bePush(dir,chess.positionBlock.getNeighbor(dir).chess);
-            if(re == false)
+        if (!chess.positionBlock.getNeighbor(dir).isEmpty()) {
+            re = bePush(dir, chess.positionBlock.getNeighbor(dir).chess);
+            if (re == false)
                 return false;
         }
 

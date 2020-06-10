@@ -14,18 +14,23 @@ public class Jet extends Chess {
         super(context, "氣場", 1, team, positionBlock, true);
     }
 
+    Jet(Context context, Player team, Block positionBlock) {
+        super(context, "jet", 1, team, positionBlock, true);
+    }
+
     @Override
     public int skill(Block targetBlock) {
         boolean temp = moveChess(targetBlock);
-        if(temp == true){
+        if (temp == true) {
             return 3;
         }
         return 0;
 
     }
-    public int skill( ) {
-        for(int dir=0 ; dir<6 ; dir++){
-            if(positionBlock.getNeighbor(dir).chess != null && positionBlock.getNeighbor(dir).chess.canBePush==true){
+
+    public int skill() {
+        for (int dir = 0; dir < 6; dir++) {
+            if (positionBlock.getNeighbor(dir).chess != null && positionBlock.getNeighbor(dir).chess.canBePush == true) {
                 positionBlock.getNeighbor(dir).chess.moveChess(dir);
             }
         }

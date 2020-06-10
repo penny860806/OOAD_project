@@ -86,13 +86,13 @@ public class NewGame extends AppCompatActivity {
 
 
 
-        Chess redChess = new Rhino(this,"r",test.player1,GM.map[4][1]);
+        Chess redChess = new Rhino(this,test.player1,GM.map[4][1]);
         GameView.chessView_Red(redChess);
-        Chess blueChess = new Chess((Context) this,"b",test.player2,GM.map[5][2]);
+        Chess blueChess = new Horse((Context) this,test.player2,GM.map[5][2]);
         GameView.chessView_Blue(blueChess);
-//        Chess blueChess2 = new Chess((Context) this,"b2",test.player1,GM.map[6][3]);
+//        Chess blueChess2 = new Chess((Context) this,,test.player1,GM.map[6][3]);
 //        GameView.chessView_Blue(blueChess2);
-        Chess blueChess3= new Rock((Context) this,"b3",test.player1,GM.map[7][4]);
+        Chess blueChess3= new Rock((Context) this,test.player1,GM.map[7][4]);
         GameView.chessView_Blue(blueChess3);
 
 
