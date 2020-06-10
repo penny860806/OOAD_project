@@ -160,12 +160,15 @@
             android:textSize="18sp" />
     </LinearLayout>
 
-    <LinearLayout
+    <TextView
         android:id="@+id/game_timer"
+        android:text="30"
+        android:textSize="30sp"
+        android:gravity="center"
         android:layout_width="273dp"
         android:layout_height="40dp"
         android:background="@android:color/holo_orange_light"
-        android:orientation="horizontal"></LinearLayout>
+        />
 
     <LinearLayout
         android:id="@+id/end_round"
@@ -180,6 +183,22 @@
             android:background="@android:color/holo_purple"
             android:text="@string/end_round"
             android:textSize="25sp" />
+        <!--save/load test button
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_purple"
+            android:text="save"
+            android:textSize="25sp" />
+        <Button
+            android:id="@+id/load_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_purple"
+            android:text="load"
+            android:textSize="25sp" />
+            -->
     </LinearLayout>
 
 </LinearLayout>

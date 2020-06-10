@@ -85,10 +85,17 @@ public class GameMap {
             lowestLayout.addView(secondLayout);
 
             for (int j = 0; j < i + length; j++) {
-                Block btn = new Block(secondLayout.getContext()); //產生Button
+                Block btn;
+                if((i==1 && (j==1||j==length-1))||(i==5&&(j==1||j==2*(length-1)-1))){
+                    btn = new Fountain(secondLayout.getContext());//產生泉
+                }else if(i==length-1&&j==length-1){
+                    btn = new Castle(secondLayout.getContext());//產生城
+                }else {
+                    btn = new Block(secondLayout.getContext()); //產生normal block
+                    btn.setImageResource(R.drawable.block);
+                }
                 buttonParams.leftMargin = 110 * j;
                 btn.setId(count);
-                btn.setImageResource(R.drawable.block);
                 btn.setBackgroundColor(Color.TRANSPARENT); //設定顏色
                 secondLayout.addView(btn, buttonParams);
                 count++;
@@ -105,11 +112,17 @@ public class GameMap {
             lowestLayout.addView(secondLayout);
 
             for (int j = 0; j < i + length - 1; j++) {
-                Block btn = new Block(secondLayout.getContext()); //產生Block
+                Block btn;
+                if((i==2 && (j==1||j==length-1))){
+                    btn = new Fountain(secondLayout.getContext());//產生泉
+                }else {
+                    btn = new Block(secondLayout.getContext()); //產生normal block
+                    btn.setImageResource(R.drawable.block);
+                }
                 buttonParams.leftMargin = 110 * j;
                 btn.setId(count);
                 btn.setBackgroundColor(Color.TRANSPARENT); //設定顏色
-                btn.setImageResource(R.drawable.block);
+
                 btn.setLayoutParams(buttonParams);
                 secondLayout.addView(btn);
                 count++;

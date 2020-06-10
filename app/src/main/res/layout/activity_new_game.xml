@@ -1,26 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/NewGame_content"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    tools:context=".NewGame">
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/Map"
-        android:layout_width="459dp"
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/NewGame_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        tools:context=".NewGame">
 
+        <LinearLayout
+            android:id="@+id/Map"
+            android:layout_width="459dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Game_Function"
+            android:layout_width="273dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        </LinearLayout>
     </LinearLayout>
-
     <LinearLayout
-        android:id="@+id/Game_Function"
-        android:layout_width="273dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/setting"
+            android:textSize="15sp" />
     </LinearLayout>
-</LinearLayout>
+</FrameLayout>
