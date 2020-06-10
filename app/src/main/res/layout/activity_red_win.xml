@@ -10,7 +10,7 @@
     >
     <View
         android:layout_width="match_parent"
-        android:layout_height="352dp"
+        android:layout_height="352dp"/>
     <Button
         android:id="@+id/red_finish"
         android:layout_width="120dp"
