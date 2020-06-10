@@ -129,6 +129,7 @@ public class FullscreenActivity extends AppCompatActivity {
                 android.os.Process.killProcess(android.os.Process.myPid());
             }
         });
+
         // Set up the user interaction to manually show or hide the system UI.
         /**
          * 長按顯示HOME鍵，{@link #AUTO_HIDE_DELAY_MILLIS}毫秒後隱藏

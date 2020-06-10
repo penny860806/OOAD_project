@@ -9,7 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".playchess"></activity>
+        <activity android:name=".blue_win"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".red_win"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" />
+        <activity android:name=".playchess" />
         <activity android:name=".putchess" />
         <activity
             android:name=".NewGame"
@@ -28,8 +37,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity_new_game" />
-        <activity android:name=".putchess" />
     </application>
 
 </manifest>
