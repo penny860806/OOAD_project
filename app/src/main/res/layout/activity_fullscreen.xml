@@ -17,7 +17,7 @@
         android:layout_marginTop="54dp"
         android:layout_marginRight="40dp"
         android:textSize="25sp"
-        android:text="開新遊戲" />
+        android:text="@string/start" />
 
     <Button
         android:id="@+id/OldGame"
@@ -26,7 +26,7 @@
         android:layout_gravity="right"
         android:layout_marginRight="40dp"
         android:textSize="25sp"
-        android:text="開啟舊檔" />
+        android:text="@string/old" />
 
     <Button
         android:id="@+id/Leave"
@@ -36,5 +36,6 @@
         android:layout_marginTop="1dp"
         android:layout_marginRight="40dp"
         android:textSize="25sp"
-        android:text="離開" />
+        android:text="@string/leave" />
+
 </LinearLayout>

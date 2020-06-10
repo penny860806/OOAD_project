@@ -22,5 +22,6 @@
     <string name="skillCost">技能\n耗點</string>
     <string name="moveRange">移動\n範圍</string>
     <string name="setting">設定</string>
+    <string name="Finish">結束</string>
     //還有個個角色與他們的文字說明要加進來這邊
 </resources>
