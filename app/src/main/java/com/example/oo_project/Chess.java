@@ -6,11 +6,13 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 public class Chess extends androidx.appcompat.widget.AppCompatImageView {
+	final protected boolean enemy=false, teamMate=true;
 	public int  moveRange;
 	public String chessName="";
 	public Player team;
 	protected int deathNum;//死亡條件值
-	protected String myTeam;//死亡條件隊伍
+	protected boolean deathTeam=enemy;//死亡條件隊伍
+	public boolean ImDead=false;
 	private boolean clickAvail = true;
 	Block positionBlock;
 	public boolean canBePush;
@@ -47,8 +49,9 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 
 
 
-	public boolean Death(int x , int y, String team) {
-		return true;
+	public void Death(Block theBlock) {
+		theBlock.chess=null;
+		theBlock.player=null;
 	}
 
 	public boolean moveChess(Block targetBlock){

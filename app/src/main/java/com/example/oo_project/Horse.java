@@ -16,20 +16,12 @@ public class Horse extends Chess {
 
     public boolean Death(int x, int y, String team) {
 
-        if (myTeam == team) {
-            if (deathNum <= x) {
-                return true;
-            } else return false;
-        } else {
-            if (deathNum <= y)
-                return true;
-            else return false;
-        }
+      return false;
     }
 
-    public void setPosition(Block block, String setTeam) {
+    public void setPosition(Block block, Player setTeam) {
         positionBlock = block;
-        myTeam = setTeam;
+        team = setTeam;
     }
 
     public int skill(Chess targetChess) {
