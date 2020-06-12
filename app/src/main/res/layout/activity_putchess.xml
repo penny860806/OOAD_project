@@ -376,6 +376,11 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/holo_purple"
-        android:orientation="horizontal"></TextView>
+        android:orientation="horizontal"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:text="60"
+        ></TextView>
 
 </LinearLayout>
