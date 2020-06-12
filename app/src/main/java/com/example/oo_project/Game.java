@@ -122,7 +122,17 @@ public class Game {
                         for (int k = 0; k < 6; k++) {
                             Chess nei_chess = chess.positionBlock.getNeighbor(k).chess;
                             if (nei_chess != null && nei_chess.team != null) {
-                                if (chess.deathTeam == nei_chess.team) count++;
+                                if (chess.deathTeam){
+                                    if(chess.team==nei_chess.team){
+                                        count++;
+                                        flag = true;
+                                    }
+                                }else{
+                                    if(chess.team!=nei_chess.team){
+                                        count++;
+                                        flag = true;
+                                    }
+                                }
                             }
                         }
                         if (count >= chess.deathNum) {

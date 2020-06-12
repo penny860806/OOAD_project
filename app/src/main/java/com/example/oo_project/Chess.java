@@ -10,7 +10,7 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 	public String chessName="";
 	public Player team;
 	protected int deathNum;//死亡條件值
-	public Player deathTeam;//死亡條件隊伍
+	public boolean deathTeam;//死亡條件隊伍 true:同隊導致死亡 false:敵對導致死亡
 	public boolean ImDead=false;
 	private boolean clickAvail = true;
 	Block positionBlock;
