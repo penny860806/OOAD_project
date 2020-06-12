@@ -153,6 +153,7 @@ public class PutChess extends AppCompatActivity {
                 Log.i("checkChangeRound", "error 213");
                 return -1;
             }
+            System.out.println(game.whoseRound().ID);
             round++;
             chessRemain = 2;
             if (round == lastRound) {

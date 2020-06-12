@@ -100,6 +100,10 @@ public class Game {
                     //blue player backgound (holo_blue_light)
             );
         }
+        //reset timer
+        NewGame.customTimer.stopTimer();
+        NewGame.customTimer.timeLeftMS = 30000;
+        NewGame.customTimer.startTimer();
 
         System.out.println("Change Round complete. whose round:" + whoseRound().ID);
         GameController.movementFinish();

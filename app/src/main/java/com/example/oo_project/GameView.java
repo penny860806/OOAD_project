@@ -188,5 +188,7 @@ public class GameView {
     public static void changePage(){
         masterView.removeView(View2);
         masterView.addView(View1);
+        //start timer
+        NewGame.customTimer.startTimer();
     }
 }

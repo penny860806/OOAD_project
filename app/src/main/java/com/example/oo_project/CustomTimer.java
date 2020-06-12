@@ -29,7 +29,11 @@ public class CustomTimer {
 
             @Override
             public void onFinish() {
-
+                //reset
+                stopTimer();
+                timeLeftMS = 30000;
+                //change round
+                GameController.setClickButton(GameController.endRoundButton);
             }
         }.start();
         timerRunning = true;
