@@ -24,18 +24,20 @@
                 //auro
 
                 <LinearLayout
-                    android:id="@+id/auro"
+                    android:id="@+id/jet"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:orientation="vertical">
 
                     <Button
+                        android:id="@+id/Jet_button"
                         android:layout_width="58dp"
                         android:layout_height="59dp"
                         android:background="@drawable/auro"></Button>
 
                     <TextView
+                        android:id="@+id/Jet_num"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -54,11 +56,13 @@
                     android:orientation="vertical">
 
                     <Button
+                        android:id="@+id/Rock_button"
                         android:layout_width="58dp"
                         android:layout_height="59dp"
                         android:background="@drawable/rock"></Button>
 
                     <TextView
+                        android:id="@+id/Rock_num"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -77,11 +81,13 @@
                     android:orientation="vertical">
 
                     <Button
+                        android:id="@+id/Clip_button"
                         android:layout_width="58dp"
                         android:layout_height="59dp"
                         android:background="@drawable/clip"></Button>
 
                     <TextView
+                        android:id="@+id/Clip_num"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -100,11 +106,13 @@
                     android:orientation="vertical">
 
                     <Button
+                        android:id="@+id/Horse_button"
                         android:layout_width="58dp"
                         android:layout_height="59dp"
                         android:background="@drawable/horse"></Button>
 
                     <TextView
+                        android:id="@+id/Horse_num"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -113,21 +121,23 @@
                         android:background="@android:color/black"
                         android:textColor="@android:color/white"/>
                 </LinearLayout>
-                //herculus
+                //hercules
 
                 <LinearLayout
-                    android:id="@+id/herculus"
+                    android:id="@+id/hercules"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:orientation="vertical">
 
                     <Button
+                        android:id="@+id/Hercules_button"
                         android:layout_width="58dp"
                         android:layout_height="59dp"
                         android:background="@drawable/hercules"></Button>
 
                     <TextView
+                        android:id="@+id/Hercules_num"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -139,18 +149,20 @@
                 //rhin
 
                 <LinearLayout
-                    android:id="@+id/rhin"
+                    android:id="@+id/rhino"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:orientation="vertical">
 
                     <Button
+                        android:id="@+id/Rhino_button"
                         android:layout_width="58dp"
                         android:layout_height="59dp"
                         android:background="@drawable/rhinoceros"></Button>
 
                     <TextView
+                        android:id="@+id/Rhino_num"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -169,11 +181,13 @@
                     android:orientation="vertical">
 
                     <Button
+                        android:id="@+id/Spy_button"
                         android:layout_width="58dp"
                         android:layout_height="59dp"
                         android:background="@drawable/spy"></Button>
 
                     <TextView
+                        android:id="@+id/Spy_num"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -192,11 +206,13 @@
                     android:orientation="vertical">
 
                     <Button
+                        android:id="@+id/TransferTower_button"
                         android:layout_width="58dp"
                         android:layout_height="59dp"
                         android:background="@drawable/tower"></Button>
 
                     <TextView
+                        android:id="@+id/TransferTower_num"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -343,7 +359,7 @@
         </LinearLayout>
         //chess information description
         <TextView
-            android:id="@+id/chess_description"
+            android:id="@+id/message_block"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"

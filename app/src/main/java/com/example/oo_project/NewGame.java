@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.tv.TvContentRating;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,6 +22,9 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.nio.ReadOnlyBufferException;
+import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class NewGame extends AppCompatActivity {
 
@@ -53,8 +57,7 @@ public class NewGame extends AppCompatActivity {
             hide();
         }
     };
-
-    LinearLayout NewGame_back;
+    public LinearLayout NewGame_back;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
@@ -62,13 +65,13 @@ public class NewGame extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_game);
 
-        NewGame_back = (LinearLayout)findViewById(R.id.Map);
+        NewGame_back = (LinearLayout) findViewById(R.id.Map);
         NewGame_back.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 if (!mVisible) {
                     show();
-                    if(AUTO_HIDE) delayedHide(AUTO_HIDE_DELAY_MILLIS);
+                    if (AUTO_HIDE) delayedHide(AUTO_HIDE_DELAY_MILLIS);
                 }
                 return false;
             }
@@ -76,157 +79,225 @@ public class NewGame extends AppCompatActivity {
 
 
         //new map
-        GameMap GM = new GameMap(6,this,NewGame_back);
+        GameMap GM = new GameMap(6, this, NewGame_back);
         Game test = new Game(GM);//測試地圖
         GameView gameView = new GameView(test);
         PutChess putChess = new PutChess(test, this);
-
-
-
-
-
-
-        Chess redChess = new Rhino(this,test.player1,GM.map[4][1]);
-        GameView.chessView_Red(redChess);
-        Chess blueChess = new Horse((Context) this,test.player2,GM.map[5][2]);
-        GameView.chessView_Blue(blueChess);
-//        Chess blueChess2 = new Chess((Context) this,,test.player1,GM.map[6][3]);
-//        GameView.chessView_Blue(blueChess2);
-        Chess blueChess3= new Rock((Context) this,test.player1,GM.map[7][4]);
-        GameView.chessView_Blue(blueChess3);
-
+        GameController gameController = new GameController(test);
+        Chess.setRequirement(test);
 
 
         //控制切換右側畫面
-        LayoutInflater inflater =  getLayoutInflater();
-        View activity_main = inflater.inflate(R.layout.activity_new_game, null);//展開主視窗
-        LinearLayout masterView = (LinearLayout) findViewById(R.id.Game_Function); //取得主視窗中右方的空白LinearLayout
+        LayoutInflater inflater = getLayoutInflater();
+
+        //展開主視窗
+        View activity_main = inflater.inflate(R.layout.activity_new_game, null);
+
+        //取得主視窗中右方的空白 LinearLayout
+        GameView.masterView = (LinearLayout) findViewById(R.id.Game_Function);
+
         //下棋
         View main1 = inflater.inflate(R.layout.activity_playchess, null);//展開第1個子畫面視窗
-        LinearLayout View1 = (LinearLayout) main1.findViewById(R.id.playChess);//找出第1個視窗中的內容版面
+
+        //找出第1個視窗中的內容版面
+        GameView.View1 = (LinearLayout) main1.findViewById(R.id.playChess);
+
         //放棋
-        View main2 = inflater.inflate(R.layout.activity_putchess, null);//展開第2個子畫面視窗
-        LinearLayout View2 = (LinearLayout) main2.findViewById(R.id.putChess);//找出第2個視窗中的內容版面
+        // 展開第2個子畫面視窗
+        View main2 = inflater.inflate(R.layout.activity_putchess, null);
+        GameView.View2 = (LinearLayout) main2.findViewById(R.id.putChess);//找出第2個視窗中的內容版面
 
         LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT
         );
-        masterView.addView(View2);
+        GameView.masterView.addView(GameView.View2);
         //下面兩行可以控制切換右側畫面
         //masterView.removeView(View2);
         //masterView.addView(View1);
-        final GameController gameController= new GameController(test , masterView , View1 , View2);
 
 
         //下棋 角色說明文字部分可以上下滾動
-        TextView chess_info = (TextView) main1.findViewById(R.id.chess_info);
-        chess_info.setMovementMethod(ScrollingMovementMethod.getInstance());
-        //放棋
-        TextView chess_des = (TextView) main2.findViewById(R.id.chess_description);
-        chess_des.setMovementMethod(ScrollingMovementMethod.getInstance());
+        Text.PlayChess.chessNameBlock = (TextView) main1.findViewById(R.id.chess_name);
+        Text.PlayChess.messageBlock = (TextView) main1.findViewById(R.id.chess_info);
+        Text.PlayChess.messageBlock.setMovementMethod(ScrollingMovementMethod.getInstance());
+        Text.PlayChess.movePoint_blue = (TextView) main1.findViewById(R.id.movePoint_blue);
+        Text.PlayChess.movePoint_red = (TextView) main1.findViewById(R.id.movePoint_red);
+        Text.PlayChess.skillPoint_blue = (TextView) main1.findViewById(R.id.player_skillPoint_blue);
+        Text.PlayChess.skillPoint_red = (TextView) main1.findViewById(R.id.skillPoint_red);
+        TextView timer = (TextView) main1.findViewById(R.id.game_timer);
 
+        //放棋
+        Text.PutChess.chessNameBlock = (TextView) main2.findViewById(R.id.chess_name);
+        Text.PutChess.messageBlock = (TextView) main2.findViewById(R.id.message_block);
+        Text.PutChess.messageBlock.setMovementMethod(ScrollingMovementMethod.getInstance());
 
         //所有會用到右側功能面板的，都要寫在這邊，而要呼叫findviewById都要先call他的XML名稱
         //putchess是main2, playchess是main1
-        Button skillButton = (Button) main1.findViewById(R.id.use_Skill) ;
-        skillButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("skillButton clicked");
 
-                GameController.setClickButton(GameController.skillButton);
-            }
-        });
+        /* set button */
+        {
+            Button skillButton = (Button) main1.findViewById(R.id.use_Skill);
+            skillButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    System.out.println("skillButton clicked");
 
-        Button moveButton = (Button) main1.findViewById(R.id.move_chess) ;
-        moveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("moveButton clicked");
+                    GameController.setClickButton(GameController.skillButton);
+                }
+            });
 
-                GameController.setClickButton(GameController.moveButton);
-            }
-        });;
-        Button cancelButton = (Button) main1.findViewById(R.id.Cancel_click) ;
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("cancelButton clicked");
+            Button moveButton = (Button) main1.findViewById(R.id.move_chess);
+            moveButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    System.out.println("moveButton clicked");
 
-                GameController.setClickButton(GameController.cancelButton);
+                    GameController.setClickButton(GameController.moveButton);
+                }
+            });
+            Button cancelButton = (Button) main1.findViewById(R.id.Cancel_click);
+            cancelButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    System.out.println("cancelButton clicked");
 
-            }
-        });
+                    GameController.setClickButton(GameController.cancelButton);
 
-        /**
-         * putChess buttons
-         */
-        Button Jet_button = (Button) findViewById(R.id.Jet_button) ;
-        Jet_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("putChess","Jet_button clicked");
-                PutChess.selectedChessId = Game.JetId;
-            }
-        });;
-        Button TransferTower_button = (Button) findViewById(R.id.TransferTower_button) ;
-        TransferTower_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("putChess","TransferTower_button clicked");
-                PutChess.selectedChessId = Game.TransferTowerId;
-            }
-        });;
-        Button Rhino_button = (Button) findViewById(R.id.Rhino_button) ;
-        Rhino_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("putChess","Rhino_button clicked");
-                PutChess.selectedChessId = Game.RhinoId;
-            }
-        });;
-        Button Rock_button = (Button) findViewById(R.id.Rock_button) ;
-        Rock_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("putChess","Rock_button clicked");
-                PutChess.selectedChessId = Game.RockId;
-            }
-        });;
-        Button Clip_button = (Button) findViewById(R.id.Clip_button) ;
-        Clip_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("putChess","Clip_button clicked");
-                PutChess.selectedChessId = Game.ClipId;
-            }
-        });;
-        Button Herculus_button = (Button) findViewById(R.id.Herculus_button) ;
-        Herculus_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("putChess","Herculus_button clicked");
-                PutChess.selectedChessId = Game.HerculusId;
-            }
-        });;
-        Button Horse_button = (Button) findViewById(R.id.Horse_button) ;
-        Horse_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("putChess","Horse_button clicked");
-                PutChess.selectedChessId = Game.HorseId;
-            }
-        });;
-        Button Spy_button = (Button) findViewById(R.id.Spy_button) ;
-        Spy_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("putChess","Spy_button clicked");
-                PutChess.selectedChessId = Game.SpyId;
-            }
-        });;
+                }
+            });
+            Button endRoundButton = (Button) main1.findViewById(R.id.end_round_button);
+            endRoundButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    System.out.println("endRoundButton clicked");
 
+                    GameController.setClickButton(GameController.endRoundButton);
+
+                }
+            });
+
+
+        }
+        /*putChess*/
+        {
+            /* 綁每個text block */
+
+            final TextView Jet_num = (TextView) main2.findViewById(R.id.Jet_num);
+            Button Jet_button = (Button) main2.findViewById(R.id.Jet_button);
+            PutChess.chessText[Game.JetId] = Jet_num;
+
+            Jet_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i("putChess", "Jet_button clicked");
+                    PutChess.selectedChessId = Game.JetId;
+                    Text.PutChess.chessNameBlock.setText("氣場");
+                    Text.PutChess.messageBlock.setText(Text.PutChess.Jet);
+                }
+            });
+
+            Button TransferTower_button = (Button) main2.findViewById(R.id.TransferTower_button);
+            final TextView TransferTower_num = (TextView) main2.findViewById(R.id.TransferTower_num);
+            PutChess.chessText[Game.TransferTowerId] = TransferTower_num;
+            TransferTower_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i("putChess", "TransferTower_button clicked");
+                    PutChess.selectedChessId = Game.TransferTowerId;
+                    Text.PutChess.chessNameBlock.setText("傳送塔");
+                    Text.PutChess.messageBlock.setText(Text.PutChess.TransferTower);
+                }
+            });
+
+            Button Rhino_button = (Button) main2.findViewById(R.id.Rhino_button);
+            final TextView Rhino_num = (TextView) main2.findViewById(R.id.Rhino_num);
+            PutChess.chessText[Game.RhinoId] = Rhino_num;
+            Rhino_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i("putChess", "Rhino_button clicked");
+                    PutChess.selectedChessId = Game.RhinoId;
+                    Text.PutChess.chessNameBlock.setText("犀牛");
+                    Text.PutChess.messageBlock.setText(Text.PutChess.Rhino);
+
+                }
+            });
+
+            Button Rock_button = (Button) main2.findViewById(R.id.Rock_button);
+            final TextView Rock_num = (TextView) main2.findViewById(R.id.Rock_num);
+            PutChess.chessText[Game.RockId] = Rock_num;
+
+            Rock_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i("putChess", "Rock_button clicked");
+                    PutChess.selectedChessId = Game.RockId;
+                    Text.PutChess.chessNameBlock.setText("巨石");
+                    Text.PutChess.messageBlock.setText(Text.PutChess.Rock);
+
+                }
+            });
+
+            Button Clip_button = (Button) main2.findViewById(R.id.Clip_button);
+            final TextView Clip_num = (TextView) main2.findViewById(R.id.Clip_num);
+            PutChess.chessText[Game.ClipId] = Clip_num;
+            Clip_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i("putChess", "Clip_button clicked");
+                    PutChess.selectedChessId = Game.ClipId;
+                    Text.PutChess.chessNameBlock.setText("夾子");
+                    Text.PutChess.messageBlock.setText(Text.PutChess.Clip);
+
+                }
+            });
+
+            Button Hercules_button = (Button) main2.findViewById(R.id.Hercules_button);
+            final TextView Hercules_num = (TextView) main2.findViewById(R.id.Hercules_num);
+            PutChess.chessText[Game.HerculesId] = Hercules_num;
+            Hercules_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i("putChess", "Herculus_button clicked");
+                    PutChess.selectedChessId = Game.HerculesId;
+                    Text.PutChess.chessNameBlock.setText("力士");
+                    Text.PutChess.messageBlock.setText(Text.PutChess.Hercules);
+
+
+                }
+            });
+
+            Button Horse_button = (Button) main2.findViewById(R.id.Horse_button);
+            final TextView Horse_num = (TextView) main2.findViewById(R.id.Horse_num);
+            PutChess.chessText[Game.HorseId] = Horse_num;
+            Horse_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i("putChess", "Horse_button clicked");
+                    PutChess.selectedChessId = Game.HorseId;
+                    Text.PutChess.chessNameBlock.setText("馬");
+                    Text.PutChess.messageBlock.setText(Text.PutChess.Horse);
+
+                }
+            });
+
+            Button Spy_button = (Button) main2.findViewById(R.id.Spy_button);
+            final TextView Spy_num = (TextView) main2.findViewById(R.id.Spy_num);
+            PutChess.chessText[Game.SpyId] = Spy_num;
+
+            Spy_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i("putChess", "Spy_button clicked");
+                    PutChess.selectedChessId = Game.SpyId;
+                    Text.PutChess.chessNameBlock.setText("間諜");
+                    Text.PutChess.messageBlock.setText(Text.PutChess.Spy);
+
+                }
+            });
+
+        }
     }
 
     @Override
@@ -261,6 +332,7 @@ public class NewGame extends AppCompatActivity {
         // Schedule a runnable to display UI elements after a delay
         mHideHandler.removeCallbacks(mHidePart2Runnable);
     }
+
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);

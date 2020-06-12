@@ -12,6 +12,7 @@ public class TransferTower extends Chess {
         super(context, "transfertower", 1, team, positionBlock, true);
     }
 
+
     @Override
     public int skill(Chess targetChess) {
         if (targetChess.team != this.team || targetChess == this) {
@@ -22,6 +23,9 @@ public class TransferTower extends Chess {
             Block temp = targetChess.positionBlock;
             targetChess.positionBlock = positionBlock;
             positionBlock = temp;
+
+            game.checkAllDeath();
+
             return reInitial;
         }
     }

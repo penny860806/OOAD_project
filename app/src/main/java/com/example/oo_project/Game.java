@@ -3,6 +3,7 @@ package com.example.oo_project;
 
 import android.content.Context;
 import android.os.Build;
+import android.util.Log;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -26,20 +27,21 @@ public class Game {
 
     int step = 1;
     int deathChess=0;
-    Player player1 = new Player(true, "blue");//讓玩家1先手
-    Player player2 = new Player(false, "red");//玩家2後手
+    Player player1 ,player2;
 
     GameMap GM;
-    final public static int TransferTowerId = 0,RhinoId = 1,RockId = 2,ClipId=3,HerculusId = 4,JetId = 5,HorseId = 6,SpyId=7;
+    final public static int TransferTowerId = 0,RhinoId = 1,RockId = 2,ClipId=3,HerculesId = 4,JetId = 5,HorseId = 6,SpyId=7;
     Game(GameMap map) {
         GM = map;
+        player1= new Player(true, "blue");//讓玩家1先手
+        player2 = new Player(false, "red");//玩家2後手
     }
 
     public void ChangeRound() {//交換回合，待新增泉與城後做修正
         System.out.println("ChangeRound");
         player1.myRound = !player1.myRound;
         player2.myRound = !player2.myRound;
-        whoseRound().movePoint = 1;
+
         for (int i = 0; i < 2*(GM.map.length-1); i++) {
             for (int j = 0; j < 2*(GM.map[i].length-1); j++) {
 
@@ -48,47 +50,87 @@ public class Game {
                 }
             }
         }
-        System.out.println("Change Round complete. whose round:" + whoseRound().ID);
+        /* skill point & move point initialize*/
+        {
+            player1.movePoint = Player.baseMovePoint;
+            player1.skillPoint = Player.baseSkillPoint;
+            player2.movePoint = Player.baseMovePoint;
+            player2.skillPoint = Player.baseSkillPoint;
+        }
 
+        /* fountain 提供雙方額外技能點和移動步數 */
+        {
+            int fountainOccupy_player1=0 , fountainOccupy_player2=0;
+            for (int i = 0; i < Fountain.list.length; i++) {
+                if (Fountain.list[i].player == player1) {
+                    fountainOccupy_player1++;
+                }
+                if (Fountain.list[i].player == player2) {
+                    fountainOccupy_player2++;
+                }
+            }
+            player1.skillPoint += fountainOccupy_player1;
+            player2.skillPoint += fountainOccupy_player2;
+            if(fountainOccupy_player1 >= 4){
+                player1.movePoint ++;
+            }
+            if(fountainOccupy_player2 >= 4){
+                player2.movePoint ++;
+            }
+        }
+        /* 缺換底色 */
+
+        System.out.println("Change Round complete. whose round:" + whoseRound().ID);
+        GameController.movementFinish();
 
     }
-    public void   judgement(){
-        int count=0;
-        for (int i=0; i<2*(GM.map.length-1);i++){
-            for(int j=0; j<2*(GM.map.length-1);j++){
-                for (int k=0;k<5;k++){
-                if ((GM.map[i][j].getNeighbor(k).player==GM.map[i][j].player)==GM.map[i][j].chess.deathTeam){
-                 count++;
-                }
-                }
-                if(GM.map[i][j].chess.deathNum<=count){
-                    GM.map[i][j].chess.ImDead=true;
-                }
-                count=0;
-                }
-            }
-        }
-        public void death(){
-            for (int i=0; i<2*(GM.map.length-1);i++){
-                for(int j=0; j<2*(GM.map.length-1);j++) {
-                if(GM.map[i][j].chess.ImDead=true){
-                    GM.map[i][j].chess=null;
-                    GM.map[i][j].player=null;
-                }
-                }
-            }
-        }
+
+    /**
+     * return true if any chess die
+     * @return
+     */
+    public boolean checkAllDeath(){
+//        int count=0;
+//        for (int i=0; i<2*(GM.map.length-1);i++){
+//            for(int j=0; j<2*(GM.map.length-1);j++){
+//                for (int k=0;k<5;k++){
+//                    if ((GM.map[i][j].getNeighbor(k).player==GM.map[i][j].player)==GM.map[i][j].chess.deathTeam){
+//                     count++;
+//                    }
+//                }
+//                if(GM.map[i][j].chess.deathNum<=count){
+//                    GM.map[i][j].chess.ImDead=true;
+//                }
+//                count=0;
+//            }
+//        }
+//
+//        for (int i=0; i<2*(GM.map.length-1);i++){
+//            for(int j=0; j<2*(GM.map.length-1);j++) {
+//                if(GM.map[i][j].chess.ImDead == true){
+//                    GM.map[i][j].chess=null;
+//                    GM.map[i][j].player=null;
+//                }
+//            }
+//        }
+        return false;
+    }
 
 
 
 
 
     public Player whoseRound() {//找出當回合玩家的方法
+        Player playerNow;
         if (this.player1.myRound == true)
-            return this.player1;
+            playerNow = player1;
         else
-            return this.player2;
+            playerNow = player2;
 
+        if(playerNow == null){
+            Log.i("Game.whoseRound","null return 117");
+        }
+        return playerNow;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -208,7 +250,7 @@ public class Game {
                                 chess = new Horse(context, name, player1, GM.map[y][x]);
                                 break;
                             case "rhino":
-                                chess = new Rhino(context, name, player1, GM.map[y][x]);
+                                chess = new Rhrino(context, name, player1, GM.map[y][x]);
                                 break;
                             case "rock":
                                 chess = new Rock(context, name, player1, GM.map[y][x]);
@@ -237,7 +279,7 @@ public class Game {
                                 chess = new Horse(context, name, player2, GM.map[y][x]);
                                 break;
                             case "rhino":
-                                chess = new Rhino(context, name, player2, GM.map[y][x]);
+                                chess = new Rhrino(context, name, player2, GM.map[y][x]);
                                 break;
                             case "rock":
                                 chess = new Rock(context, name, player2, GM.map[y][x]);

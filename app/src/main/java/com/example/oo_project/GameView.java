@@ -2,9 +2,12 @@ package com.example.oo_project;
 
 import android.util.Log;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 public class GameView {
     static Game game;
+    public static LinearLayout View1, View2 ;
+    public static LinearLayout masterView;
 
     public GameView(Game game) {
         this.game = game;
@@ -113,7 +116,7 @@ public class GameView {
         layout.addView(chess);
     }
 
-    public static void chessView_Herculus(Chess chess) {
+    public static void chessView_Hercules(Chess chess) {
         FrameLayout.LayoutParams chessParams = (FrameLayout.LayoutParams) chess.positionBlock.getLayoutParams();
         chess.setLayoutParams(chessParams);
         if (chess.team == game.player1) {//check player
@@ -121,7 +124,7 @@ public class GameView {
         } else if (chess.team == game.player2) {
             chess.setImageResource(R.drawable.hercules_red);
         } else {
-            Log.i("chessView_Herculus", "illegal player input.");
+            Log.i("chessView_Hercules", "illegal player input.");
         }
 
         FrameLayout layout = (FrameLayout) chess.positionBlock.getParent();
@@ -175,5 +178,11 @@ public class GameView {
         FrameLayout layout = (FrameLayout) chess.positionBlock.getParent();
         chess.positionBlock.chess = chess;
         layout.addView(chess);
+    }
+
+
+    public static void changePage(){
+        masterView.removeView(View2);
+        masterView.addView(View1);
     }
 }

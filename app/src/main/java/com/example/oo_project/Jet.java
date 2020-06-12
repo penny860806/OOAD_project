@@ -22,9 +22,14 @@ public class Jet extends Chess {
     public int skill(Block targetBlock) {
         boolean temp = moveChess(targetBlock);
         if (temp == true) {
-            return 3;
+
+            game.checkAllDeath();
+
+            return Chess.reInitial;
         }
-        return 0;
+        Text.PlayChess.messageBlock.setText(Text.PlayChess.notClickBlockOuter);
+
+        return Chess.reBlockClick;
 
     }
 
@@ -33,8 +38,10 @@ public class Jet extends Chess {
             if (positionBlock.getNeighbor(dir).chess != null && positionBlock.getNeighbor(dir).chess.canBePush == true) {
                 positionBlock.getNeighbor(dir).chess.moveChess(dir);
             }
+            game.checkAllDeath();
         }
-        return 2;
+        Text.PlayChess.messageBlock.setText(Text.PlayChess.clickBlockAround);
+        return Chess.reBlockClick;
     }
 
 }

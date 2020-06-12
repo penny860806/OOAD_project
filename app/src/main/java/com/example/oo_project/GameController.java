@@ -3,6 +3,7 @@ package com.example.oo_project;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class GameController {
     /**
@@ -14,24 +15,21 @@ public class GameController {
      */
 
     private final static int initial = 0, chessMenu = 1, moveState = 2, skillState = 3 , putChessState = 4;
-    final static int noButton = 0,skillButton = 1, moveButton = 2, cancelButton = 3 ;
+    final static int noButton = 0,skillButton = 1, moveButton = 2, cancelButton = 3, endRoundButton = 4;
     private final static int nothingL=0, buttonL = 1,blockL = 2, chessL = 3 ,chess2L = 4;
     private static int state = putChessState;
     private static int clickButton = noButton;
     private static int listenFor = blockL;
-    private static LinearLayout masterView;
-    private static LinearLayout View1, View2;
+//    private static LinearLayout masterView;
+//    private static LinearLayout View1, View2;
 
     private static Game game = null;
     static Block clickBlock = null;
     static Chess clickChess = null , clickChess2 = null;
+//    static TextView chessName ,
 
-
-    GameController(Game game , LinearLayout masterView, LinearLayout View1, LinearLayout View2) {
+    GameController(Game game) {
         this.game = game;
-        this.masterView = masterView;
-        this.View1 = View1;
-        this.View2 = View2;
     }
 
     public static boolean setClickedBlock(Block block) {
@@ -50,12 +48,13 @@ public class GameController {
     public static Block getClickBlock() {
         Block temp = clickBlock;
         clickBlock = null;
-
         return temp;
     }
 
     public static boolean setClickChess(Chess chess) {
+
         if(listenFor == chessL){
+            Text.PlayChess.chessInfo(chess);
             clickChess = chess;
             System.out.println("set chess");
             commonHandler();
@@ -74,19 +73,28 @@ public class GameController {
 
     }
     public static boolean setClickButton(int b){
-        if(listenFor == buttonL){
+        if(b == endRoundButton){
+            
+            Log.i("setButton","endRound");
+            game.ChangeRound();
+        }
+
+        else if(b == cancelButton){
+            changeState(initial);
+        }
+        else if(listenFor == buttonL){
             clickButton = b;
             System.out.println("click button set");
 
             commonHandler();
-            return true;
+
         }
         else {
             System.out.println("not listen to button"+ "listen to " + listenFor);
 
             return false;
         }
-
+        return true;
     }
     public static int getState() {
         return state;
@@ -105,6 +113,7 @@ public class GameController {
             clickChess2 = null;
             clickBlock = null;
             System.out.println("change to initial");
+            Text.PlayChess.messageBlock.setText(Text.PlayChess.clickChess);
         }
         else if(state == skillState){
             System.out.println("change to skillState");
@@ -115,10 +124,6 @@ public class GameController {
         }
     }
 
-//    public static void putChessHandler()
-//    {
-//
-//    }
     static int request = 0;
     public static void commonHandler() {
         Log.i("GameController", "commonHandler");
@@ -128,9 +133,10 @@ public class GameController {
             clickBlock = null;
             if(temp == 2){
                 changeState(initial);
-                masterView.removeView(View2);
-                masterView.addView(View1);
-
+                GameView.changePage();
+            }
+            else if(temp != 0) {
+                Log.i("commonHandler","putChessState error 136");
             }
         }
         else if(state == initial) {
@@ -149,12 +155,10 @@ public class GameController {
                 commonHandler();
             } else if (clickButton == moveButton) {
                 changeState(moveState);
-            } else if (clickButton == cancelButton) {
-                changeState(initial);
             }
         }
 
-/*******************************************************/
+/** *****************************************************/
         else if (state == skillState) {
             System.out.println("state skillState");
             int returnOfSkill = 0;
@@ -194,7 +198,7 @@ public class GameController {
             else if(returnOfSkill == 3){// finish and go to initial
                 Log.i("skillHandler ", "skill properly");
                 request = 0;
-                checkIfChangeRound();
+
                 changeState(initial);
             }
 
@@ -205,19 +209,16 @@ public class GameController {
 
             if (clickChess != null && clickBlock != null) {
                 moveHandler();
-                clickChess = null;
-                clickBlock = null;
-                changeState(initial);
-                /** 換回合 **/
-                checkIfChangeRound();
             } else {
                 System.out.println("Error in moveState");
-                clickChess = null;
-                clickBlock = null;
-                changeState(initial);
 
             }
+            clickChess = null;
+            clickBlock = null;
+            changeState(initial);
         }
+
+        movementFinish();
 
     }//handle every click on blocks, chess button and chess
 
@@ -226,111 +227,29 @@ public class GameController {
        Log.i("moveHandler","moveHandler");
 
         boolean ret = clickChess.moveChess(clickBlock);
+        game.checkAllDeath();
         if (ret) {
             game.whoseRound().movePointDec();
         }
         return ret;
     }
 
-    /** skillHandler() return value
-     * 0: error
-     * 1: waiting for second chessClick
-     * 2: waiting for blockClick
-     * 3: finish successfully and back to initial
-     * 4: not available input
-     */
+
+
+//    private static void checkIfChangeRound (){
+//        if (game.whoseRound().getMovePoint() == 0 && game.whoseRound().skillPoint == 0) {
+//            game.ChangeRound();
+//        }
+//    }
 
     /**
-     * skill() return value
-     * 0: error
-     * 1: request a chess click
-     * 2: request a block click
-     * 3: back to initial
+     * check textView of skillPoint and movePoint
+     * check every chess death
      */
-
-    private static int skillHandler(){
-        int returnOfSkill = 0;
-        System.out.println("in skillHandler");
-        if(clickChess == null){
-            System.out.println("204 error in skillHandler (no skill chess)");
-            return 0;
-        }
-        else if(request == 0){
-            Log.i("skillHandler","Log in request");
-            returnOfSkill = clickChess.skill();
-
-        }
-        else if(request == 1){
-            returnOfSkill = clickChess.skill(clickChess2);
-        }
-        else if(request == 2){
-            returnOfSkill = clickChess.skill(clickBlock);
-        }
-        else{
-            System.out.println("222 error in skillHandler (invalid  value of request)");
-            return 0;
-        }
-
-        clickChess2 = null;
-        clickBlock = null;
-
-        if(returnOfSkill == 0){
-            Log.i("skillHandler ","228 error in skillHandler (skill() error)");
-            return  0;
-        }
-
-        else if(returnOfSkill == 1){
-            Log.i("skillHandler ", "waiting for blockClick");
-            request = 2;
-            listenFor = chess2L;
-            return 1;
-        }
-
-        else if(returnOfSkill == 2){
-            Log.i("skillHandler ", "waiting for blockClick");
-            request = 2;
-            listenFor = blockL;
-
-            return 2;
-        }
-
-        else if(returnOfSkill == 3){
-            Log.i("skillHandler ", "skill properly");
-            request = 0;
-
-            return 3;
-        }
-        return 0;
-    }
-
-    private static void checkIfChangeRound (){
-        if (game.whoseRound().getMovePoint() == 0 && game.whoseRound().skillPoint == 0) {
-            game.ChangeRound();
-        }
-    }
-
-    public static boolean onListening(Chess chess){
-        if(listenFor == chessL){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-    public static boolean onListening(Block block){
-        if(listenFor == blockL){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-    public static boolean onListening(Button button){
-        if(listenFor == blockL){
-            return true;
-        }
-        else {
-            return false;
-        }
+    static void movementFinish(){
+        Text.PlayChess.skillPoint_blue.setText(Integer.toString(game.player1.skillPoint));
+        Text.PlayChess.movePoint_blue.setText(Integer.toString(game.player1.movePoint));
+        Text.PlayChess.skillPoint_red.setText(Integer.toString(game.player2.skillPoint));
+        Text.PlayChess.movePoint_red.setText(Integer.toString(game.player2.movePoint));
     }
 }

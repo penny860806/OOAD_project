@@ -78,6 +78,7 @@ public class GameMap {
          * 每次迴圈產生一排Layout容器，加入BLOCKS
          * */
         int count = 0;
+        int temp=0;
         for (int i = 0; i < length; i++) {
             FrameLayout secondLayout = new FrameLayout(lowestLayout.getContext());
             secondLayout.setBackgroundColor(Color.TRANSPARENT); //底色同PARENT
@@ -88,8 +89,10 @@ public class GameMap {
                 Block btn;
                 if((i==1 && (j==1||j==length-1))||(i==5&&(j==1||j==2*(length-1)-1))){
                     btn = new Fountain(secondLayout.getContext());//產生泉
+                    Fountain.list[temp] = (Fountain) btn;
                 }else if(i==length-1&&j==length-1){
                     btn = new Castle(secondLayout.getContext());//產生城
+                    Castle.theCastle = (Castle) btn;
                 }else {
                     btn = new Block(secondLayout.getContext()); //產生normal block
                     btn.setImageResource(R.drawable.block);

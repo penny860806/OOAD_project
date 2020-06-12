@@ -25,7 +25,7 @@ class Block extends androidx.appcompat.widget.AppCompatImageView {
         this.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("block clicked");
+                System.out.println("block clicked id:("+x+","+y+")");
                 GameController.setClickedBlock((Block) v);
             }
         });
@@ -113,4 +113,5 @@ class Block extends androidx.appcompat.widget.AppCompatImageView {
             return false;
         }
     }
+
 }

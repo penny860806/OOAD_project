@@ -4,6 +4,9 @@ import android.content.Context;
 
 public class Castle extends Block {
     private int occupied_round = 0;
+    static Castle theCastle ;
+    Chess chessLast;
+
     public Castle(Context context) {
         super(context);
         this.setImageResource(R.drawable.castle);
@@ -21,4 +24,5 @@ public class Castle extends Block {
     public void setOccupiedRound(int round){
         occupied_round = round;
     }
+
 }

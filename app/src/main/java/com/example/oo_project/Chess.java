@@ -16,10 +16,13 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 	private boolean clickAvail = true;
 	Block positionBlock;
 	public boolean canBePush;
+	static Game game;
 	final static int reError = 0 , reChessClick = 1 , reBlockClick = 2 , reInitial = 3/*with skill undone*/ , reSuccess = 4/*also back to initial*/;
-	static public int chessRemainP1=4 , chessRemainP2=4;
 
 
+	public static void setRequirement(Game game){
+		Chess.game = game;
+	}
 	public Chess(Context context,String name, int moveRange, Player team, Block positionBlock  ,boolean canBePush){
 		super(context);
 		this.chessName = name;
