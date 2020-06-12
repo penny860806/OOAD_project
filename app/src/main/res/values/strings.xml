@@ -23,5 +23,8 @@
     <string name="moveRange">移動\n範圍</string>
     <string name="setting">設定</string>
     <string name="Finish">結束</string>
+    <string name="surrender">投降</string>
+    <string name="backtogame">返回遊戲</string>
+    <string name="music">音樂</string>
     //還有個個角色與他們的文字說明要加進來這邊
 </resources>

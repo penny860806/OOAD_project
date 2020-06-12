@@ -118,6 +118,19 @@ public class NewGame extends AppCompatActivity {
         //masterView.removeView(View2);
         //masterView.addView(View1);
 
+        //設定功能
+        Button setting = (Button) findViewById(R.id.setting);
+        setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //暫停計時
+                customTimer.toggleTimer();
+                //切換到設定介面
+                Intent intent = new Intent(NewGame.this, setting.class);
+                startActivity(intent);
+            }
+        });
+
 
         //下棋 角色說明文字部分可以上下滾動
         Text.PlayChess.chessNameBlock = (TextView) main1.findViewById(R.id.chess_name);

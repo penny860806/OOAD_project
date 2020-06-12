@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -84,6 +85,7 @@ public class FullscreenActivity extends AppCompatActivity {
      * system UI. This is to prevent the jarring behavior of controls going away
      * while interacting with activity UI.
      */
+    static MediaPlayer BGMusic;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
@@ -91,6 +93,10 @@ public class FullscreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_fullscreen);
+
+        //放音樂 play background music
+        BGMusic = MediaPlayer.create(FullscreenActivity.this,R.raw.background);
+        BGMusic.start();
 
         mVisible = true;
         mContentView = (LinearLayout)findViewById(R.id.fullscreen_content);
