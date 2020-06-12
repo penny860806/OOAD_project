@@ -109,34 +109,34 @@ public class Game {
      * return true if any chess die
      * @return
      */
-    public boolean checkAllDeath(){//
-//        int count=0;
-//        for (int i=0; i<2*(GM.map.length-1);i++){
-//            for(int j=0; j<2*(GM.map.length-1);j++){
-//                for (int k=0;k<5;k++){
-//                    if ((GM.map[i][j].getNeighbor(k).player==GM.map[i][j].player)==GM.map[i][j].chess.deathTeam){
-//                     count++;
-//                    }
-//                }
-//                if(GM.map[i][j].chess.deathNum<=count){
-//                    GM.map[i][j].chess.ImDead=true;
-//                }
-//                count=0;
-//            }
-//        }
-//
-//        for (int i=0; i<2*(GM.map.length-1);i++){
-//            for(int j=0; j<2*(GM.map.length-1);j++) {
-//                if(GM.map[i][j].chess.ImDead == true){
-//                    GM.map[i][j].chess=null;
-//                    GM.map[i][j].player=null;
-//                }
-//            }
-//        }
-        return false;
+
+    public boolean checkAllDeath() {
+        int count = 0;
+        boolean flag = false;
+        for (int i = 0; i < GM.map.length - 1; i++) {
+            for (int j = 0; j < GM.map[i].length - 1; j++) {
+                if (GM.map[i][j] != null) {
+                    Chess chess = GM.map[i][j].chess;
+                    if (chess != null && chess.team != null) {
+                        for (int k = 0; k < 6; k++) {
+                            Chess nei_chess = chess.positionBlock.getNeighbor(k).chess;
+                            if (nei_chess != null && nei_chess.team != null) {
+                                if (chess.deathTeam == nei_chess.team) count++;
+                            }
+                        }
+                        if (count >= chess.deathNum) {
+                            chess.positionBlock.chess = null;
+                            chess.positionBlock.player = null;
+                            GameView.removeChess_View(chess);
+                            flag = true;
+                        }
+                        count = 0;
+                    }
+                }
+            }
+        }
+        return flag;
     }
-
-
 
 
 
