@@ -38,4 +38,5 @@
         android:textSize="25sp"
         android:text="@string/leave" />
 
+
 </LinearLayout>

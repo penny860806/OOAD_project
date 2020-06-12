@@ -100,11 +100,7 @@ public class FullscreenActivity extends AppCompatActivity {
         NewGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putInt("state",0);
-                Intent intent = new Intent();
-                intent.putExtras(bundle);
-                intent.setClass(FullscreenActivity.this, NewGame.class);
+                Intent intent = new Intent(FullscreenActivity.this, NewGame.class);
                 startActivity(intent);
             }
         });
@@ -112,11 +108,7 @@ public class FullscreenActivity extends AppCompatActivity {
         oldGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putInt("state",1);
-                Intent intent = new Intent();
-                intent.putExtras(bundle);
-                intent.setClass(FullscreenActivity.this, NewGame.class);
+                Intent intent = new Intent(FullscreenActivity.this, NewGame.class);
                 startActivity(intent);
             }
         });
