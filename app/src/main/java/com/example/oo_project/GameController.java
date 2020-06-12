@@ -74,9 +74,10 @@ public class GameController {
     }
     public static boolean setClickButton(int b){
         if(b == endRoundButton){
-            
+
             Log.i("setButton","endRound");
             game.ChangeRound();
+            changeState(initial);
         }
 
         else if(b == cancelButton){
@@ -151,10 +152,18 @@ public class GameController {
         else if(state == chessMenu) {
             System.out.println("state chessMenu");
             if (clickButton == skillButton) {
+                if(game.whoseRound().skillPoint <= 0){
+                    changeState(initial);
+                }
                 changeState(skillState);
                 commonHandler();
             } else if (clickButton == moveButton) {
-                changeState(moveState);
+                if(game.whoseRound().movePoint <= 0){
+                    changeState(initial);
+                }
+                else {
+                    changeState(moveState);
+                }
             }
         }
 
@@ -195,7 +204,7 @@ public class GameController {
                 request = 2;
                 listenFor = blockL;
             }
-            else if(returnOfSkill == 3){// finish and go to initial
+            else if(returnOfSkill == Chess.reInitial){// finish and go to initial
                 Log.i("skillHandler ", "skill properly");
                 request = 0;
 

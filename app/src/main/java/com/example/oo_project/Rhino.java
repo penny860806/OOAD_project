@@ -5,17 +5,17 @@ import android.content.Context;
 import android.os.SystemClock;
 import android.util.Log;
 
-public class Rhrino extends Chess {
+public class Rhino extends Chess {
     public boolean canBePush = true;
     protected int deathNum = 3;
 
     String chessName = "犀牛";
 
-    Rhrino(Context context, String name, Player team, Block positionBlock) {
+    Rhino(Context context, String name, Player team, Block positionBlock) {
         super(context, name, 1, team, positionBlock, true);
     }
 
-    Rhrino(Context context, Player team, Block positionBlock) {
+    Rhino(Context context, Player team, Block positionBlock) {
         super(context, "rhino", 1, team, positionBlock, true);
     }
 

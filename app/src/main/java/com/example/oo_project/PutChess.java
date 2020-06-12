@@ -3,6 +3,7 @@ package com.example.oo_project;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -92,7 +93,7 @@ public class PutChess extends AppCompatActivity {
                 GameView.chessView_TransferTower(chess);
                 chessRemain--;
             } else if (selectedChessId == game.RhinoId) {
-                chess = new Rhrino(newGame, playerNow, block);
+                chess = new Rhino(newGame, playerNow, block);
                 GameView.chessView_Rhino(chess);
                 chessRemain--;
             } else if (selectedChessId == game.RockId) {
@@ -173,6 +174,16 @@ public class PutChess extends AppCompatActivity {
         }
         Text.PutChess.messageBlock.setText("");
         Text.PutChess.chessNameBlock.setText("");
+        if(playerNow == game.player1) {
+            game.GM.lowestLayout.setBackgroundColor(Color.parseColor("#ff33b5e5")); //blue player backgound (holo_blue_light)
+
+        }
+        if(playerNow == game.player2) {
+            game.GM.lowestLayout.setBackgroundColor(Color.parseColor("#ffff4444")
+                    //blue player backgound (holo_blue_light)
+            );
+        }
+
         return 0;
     }
 

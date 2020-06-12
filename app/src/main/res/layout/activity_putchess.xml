@@ -371,11 +371,11 @@
 
     //timer for putting chess
 
-    <LinearLayout
+    <TextView
         android:id="@+id/put_timer"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@android:color/holo_purple"
-        android:orientation="horizontal"></LinearLayout>
+        android:orientation="horizontal"></TextView>
 
 </LinearLayout>

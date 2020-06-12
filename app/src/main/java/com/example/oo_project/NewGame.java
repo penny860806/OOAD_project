@@ -125,12 +125,13 @@ public class NewGame extends AppCompatActivity {
         Text.PlayChess.movePoint_red = (TextView) main1.findViewById(R.id.movePoint_red);
         Text.PlayChess.skillPoint_blue = (TextView) main1.findViewById(R.id.player_skillPoint_blue);
         Text.PlayChess.skillPoint_red = (TextView) main1.findViewById(R.id.skillPoint_red);
-        TextView timer = (TextView) main1.findViewById(R.id.game_timer);
+        Text.PlayChess.timer = (TextView) main1.findViewById(R.id.game_timer);
 
         //放棋
         Text.PutChess.chessNameBlock = (TextView) main2.findViewById(R.id.chess_name);
         Text.PutChess.messageBlock = (TextView) main2.findViewById(R.id.message_block);
         Text.PutChess.messageBlock.setMovementMethod(ScrollingMovementMethod.getInstance());
+        Text.PutChess.timer = (TextView) main2.findViewById(R.id.put_timer);
 
         //所有會用到右側功能面板的，都要寫在這邊，而要呼叫findviewById都要先call他的XML名稱
         //putchess是main2, playchess是main1

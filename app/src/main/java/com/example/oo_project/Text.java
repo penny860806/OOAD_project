@@ -5,7 +5,7 @@ import android.widget.TextView;
 public class Text {
     public static class PutChess {
         static TextView chessNameBlock , messageBlock;
-
+        static TextView timer;
         static final String TransferTower = "PutChess TransferTower";
         static final String Jet = "PutChess Jet";
         static final String Rhino = "PutChess Rhino";
@@ -23,7 +23,7 @@ public class Text {
     public static class PlayChess {
         static TextView messageBlock , chessNameBlock;
         static TextView skillPoint_red , movePoint_red , skillPoint_blue , movePoint_blue;
-
+        static TextView timer;
         static final String TransferTower = "ChessInfo TransferTower";
         static final String Jet = "ChessInfo Jet";
         static final String Rhino = "ChessInfo Rhino";
@@ -50,7 +50,7 @@ public class Text {
                 chessNameBlock.setText("氣場");
                 messageBlock.setText(Jet);
             }
-            else if(chess instanceof Rhrino){
+            else if(chess instanceof Rhino){
                 chessNameBlock.setText("犀牛");
                 messageBlock.setText(Rhino);
             }

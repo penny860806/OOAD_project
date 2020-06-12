@@ -20,6 +20,7 @@ public class GameMap {
     private int length, blocks;
     Block[][] map;
     Context context;
+    LinearLayout lowestLayout;
 
     //constructor
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -53,12 +54,12 @@ public class GameMap {
          * 底色:黑色
          * 子物件置中
          */
-        LinearLayout lowestLayout = new LinearLayout(context);
+        lowestLayout = new LinearLayout(context);
         LinearLayout.LayoutParams lowestparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT);
         lowestLayout.setLayoutParams(lowestparams);
         lowestLayout.setOrientation(LinearLayout.VERTICAL);
-        lowestLayout.setBackgroundColor(Color.GRAY);
+        lowestLayout.setBackgroundColor(Color.parseColor("#ff33b5e5"));// blue
         lowestLayout.setGravity(Gravity.CENTER);
         layout.addView(lowestLayout);
         /**
@@ -78,7 +79,6 @@ public class GameMap {
          * 每次迴圈產生一排Layout容器，加入BLOCKS
          * */
         int count = 0;
-        int temp=0;
         for (int i = 0; i < length; i++) {
             FrameLayout secondLayout = new FrameLayout(lowestLayout.getContext());
             secondLayout.setBackgroundColor(Color.TRANSPARENT); //底色同PARENT
@@ -89,7 +89,6 @@ public class GameMap {
                 Block btn;
                 if((i==1 && (j==1||j==length-1))||(i==5&&(j==1||j==2*(length-1)-1))){
                     btn = new Fountain(secondLayout.getContext());//產生泉
-                    Fountain.list[temp] = (Fountain) btn;
                 }else if(i==length-1&&j==length-1){
                     btn = new Castle(secondLayout.getContext());//產生城
                     Castle.theCastle = (Castle) btn;

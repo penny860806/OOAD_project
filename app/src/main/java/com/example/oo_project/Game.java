@@ -2,8 +2,10 @@ package com.example.oo_project;
 
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 import android.util.Log;
+import android.view.View;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -24,7 +26,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
 public class Game {
-
+    public Fountain[] fountainList=  new Fountain[6];
     int step = 1;
     int deathChess=0;
     Player player1 ,player2;
@@ -35,6 +37,15 @@ public class Game {
         GM = map;
         player1= new Player(true, "blue");//讓玩家1先手
         player2 = new Player(false, "red");//玩家2後手
+
+        int temp=0;
+        for(int i=0 ; i<map.map.length ; i++){
+            for(int j=0 ; j<map.map[i].length ; j++){
+                if (GM.map[i][j] != null && map.map[i][j] instanceof Fountain) {
+                    fountainList[temp++] = (Fountain) map.map[i][j];
+                }
+            }
+        }
     }
 
     public void ChangeRound() {//交換回合，待新增泉與城後做修正
@@ -42,10 +53,10 @@ public class Game {
         player1.myRound = !player1.myRound;
         player2.myRound = !player2.myRound;
 
-        for (int i = 0; i < 2*(GM.map.length-1); i++) {
-            for (int j = 0; j < 2*(GM.map[i].length-1); j++) {
+        for (int i = 0; i < GM.map.length ; i++) {
+            for (int j = 0; j < GM.map[i].length; j++) {
 
-                if (GM.map[i][j] != null && GM.map[i][j].chess != null) {
+                if (GM.map[i][j] != null && GM.map[i][j].chess != null && GM.map[i][j].chess.team !=null) {
                     GM.map[i][j].chess.setClickAvail(GM.map[i][j].chess.team.myRound);
                 }
             }
@@ -61,11 +72,11 @@ public class Game {
         /* fountain 提供雙方額外技能點和移動步數 */
         {
             int fountainOccupy_player1=0 , fountainOccupy_player2=0;
-            for (int i = 0; i < Fountain.list.length; i++) {
-                if (Fountain.list[i].player == player1) {
+            for (int i = 0; i < fountainList.length; i++) {
+                if (fountainList[i].player == player1) {
                     fountainOccupy_player1++;
                 }
-                if (Fountain.list[i].player == player2) {
+                if (fountainList[i].player == player2) {
                     fountainOccupy_player2++;
                 }
             }
@@ -79,6 +90,15 @@ public class Game {
             }
         }
         /* 缺換底色 */
+        if(whoseRound() == player1) {
+            GM.lowestLayout.setBackgroundColor(Color.parseColor("#ff33b5e5")); //blue player backgound (holo_blue_light)
+
+        }
+        if(whoseRound() == player2) {
+            GM.lowestLayout.setBackgroundColor(Color.parseColor("#ffff4444")
+                    //blue player backgound (holo_blue_light)
+            );
+        }
 
         System.out.println("Change Round complete. whose round:" + whoseRound().ID);
         GameController.movementFinish();
@@ -250,7 +270,7 @@ public class Game {
                                 chess = new Horse(context, name, player1, GM.map[y][x]);
                                 break;
                             case "rhino":
-                                chess = new Rhrino(context, name, player1, GM.map[y][x]);
+                                chess = new Rhino(context, name, player1, GM.map[y][x]);
                                 break;
                             case "rock":
                                 chess = new Rock(context, name, player1, GM.map[y][x]);
@@ -279,7 +299,7 @@ public class Game {
                                 chess = new Horse(context, name, player2, GM.map[y][x]);
                                 break;
                             case "rhino":
-                                chess = new Rhrino(context, name, player2, GM.map[y][x]);
+                                chess = new Rhino(context, name, player2, GM.map[y][x]);
                                 break;
                             case "rock":
                                 chess = new Rock(context, name, player2, GM.map[y][x]);
