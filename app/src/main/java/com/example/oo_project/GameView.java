@@ -33,6 +33,10 @@ public class GameView {
         FM1.addView(chess_2);
         FM2.addView(chess_1);
     }
+    public static void removeChess_View(Chess chess){
+        FrameLayout layout = (FrameLayout) chess.positionBlock.getParent();
+        layout.removeView(chess);
+    }
 
     public static void chessView_Red(Chess chess) {
         FrameLayout.LayoutParams chessParams = (FrameLayout.LayoutParams) chess.positionBlock.getLayoutParams();

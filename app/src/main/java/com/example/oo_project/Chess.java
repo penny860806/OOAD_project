@@ -6,12 +6,11 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 public class Chess extends androidx.appcompat.widget.AppCompatImageView {
-	final protected boolean enemy=false, teamMate=true;
 	public int  moveRange;
 	public String chessName="";
 	public Player team;
 	protected int deathNum;//死亡條件值
-	protected boolean deathTeam=enemy;//死亡條件隊伍
+	public Player deathTeam;//死亡條件隊伍
 	public boolean ImDead=false;
 	private boolean clickAvail = true;
 	Block positionBlock;
