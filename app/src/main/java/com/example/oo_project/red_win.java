@@ -17,8 +17,11 @@ public class red_win extends AppCompatActivity {
         R_GoBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(red_win.this, FullscreenActivity.class);
-                startActivity(intent);
+                //restart app
+                Intent restartIntent = getBaseContext().getPackageManager()
+                        .getLaunchIntentForPackage(getBaseContext().getPackageName());
+                restartIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(restartIntent);
             }
         });
     }
