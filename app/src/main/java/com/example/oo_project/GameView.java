@@ -184,5 +184,7 @@ public class GameView {
     public static void changePage(){
         masterView.removeView(View2);
         masterView.addView(View1);
+//        Text.timer.setTimer(Text.PlayChess.timer);
+//        Text.timer.startTimer();
     }
 }

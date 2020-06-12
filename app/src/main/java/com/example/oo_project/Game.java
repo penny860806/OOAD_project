@@ -48,7 +48,7 @@ public class Game {
         }
     }
 
-    public void ChangeRound() {//交換回合，待新增泉與城後做修正
+    public void changeRound() {//交換回合，待新增泉與城後做修正
         System.out.println("ChangeRound");
         player1.myRound = !player1.myRound;
         player2.myRound = !player2.myRound;
@@ -109,7 +109,7 @@ public class Game {
      * return true if any chess die
      * @return
      */
-    public boolean checkAllDeath(){
+    public boolean checkAllDeath(){//
 //        int count=0;
 //        for (int i=0; i<2*(GM.map.length-1);i++){
 //            for(int j=0; j<2*(GM.map.length-1);j++){

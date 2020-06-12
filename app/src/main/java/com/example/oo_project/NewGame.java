@@ -117,6 +117,7 @@ public class NewGame extends AppCompatActivity {
         //masterView.addView(View1);
 
 
+
         //下棋 角色說明文字部分可以上下滾動
         Text.PlayChess.chessNameBlock = (TextView) main1.findViewById(R.id.chess_name);
         Text.PlayChess.messageBlock = (TextView) main1.findViewById(R.id.chess_info);
@@ -132,6 +133,8 @@ public class NewGame extends AppCompatActivity {
         Text.PutChess.messageBlock = (TextView) main2.findViewById(R.id.message_block);
         Text.PutChess.messageBlock.setMovementMethod(ScrollingMovementMethod.getInstance());
         Text.PutChess.timer = (TextView) main2.findViewById(R.id.put_timer);
+        Text.timer = new CustomTimer(Text.PutChess.timer , test ,putChess, CustomTimer.putChessState);
+        Text.timer.startTimer();
 
         //所有會用到右側功能面板的，都要寫在這邊，而要呼叫findviewById都要先call他的XML名稱
         //putchess是main2, playchess是main1

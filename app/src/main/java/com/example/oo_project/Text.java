@@ -3,6 +3,7 @@ package com.example.oo_project;
 import android.widget.TextView;
 
 public class Text {
+    public static CustomTimer timer;
     public static class PutChess {
         static TextView chessNameBlock , messageBlock;
         static TextView timer;
@@ -18,7 +19,8 @@ public class Text {
         static final String noSelectedChess = "請先選取棋子";
         static final String notAvailableBlock_red = "紅方只能放置棋子於上半部(間諜除外)" ,notAvailableBlock_blue = "藍方只能放置棋子於下半部(間諜除外)";
         static final String notAvailableBlockOnFountain = "不可放置棋子於泉上";
-        static final String notAvailableBlockSpy = "間諜不可放置棋子於中間線上";
+        static final String notAvailableBlockSpy = "間諜不可放置棋子於中間線或自己的領域";
+
     }
     public static class PlayChess {
         static TextView messageBlock , chessNameBlock;

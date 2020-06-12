@@ -14,7 +14,7 @@ public class GameController {
      * 3: skill state
      */
 
-    private final static int initial = 0, chessMenu = 1, moveState = 2, skillState = 3 , putChessState = 4;
+    final static int initial = 0, chessMenu = 1, moveState = 2, skillState = 3 , putChessState = 4;
     final static int noButton = 0,skillButton = 1, moveButton = 2, cancelButton = 3, endRoundButton = 4;
     private final static int nothingL=0, buttonL = 1,blockL = 2, chessL = 3 ,chess2L = 4;
     private static int state = putChessState;
@@ -76,7 +76,7 @@ public class GameController {
         if(b == endRoundButton){
 
             Log.i("setButton","endRound");
-            game.ChangeRound();
+            game.changeRound();
             changeState(initial);
         }
 
@@ -101,7 +101,7 @@ public class GameController {
         return state;
     }
 
-    private static void changeState(int choice) {
+    public static void changeState(int choice) {
         state = choice;
         if(state == moveState){
             listenFor= blockL;
