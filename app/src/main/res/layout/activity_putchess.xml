@@ -10,7 +10,7 @@
         android:id="@+id/choose_chess"
         android:layout_width="273dp"
         android:layout_height="100dp"
-        android:background="@android:color/darker_gray"
+        android:background="@color/darker_gray"
         android:orientation="horizontal">
 
         <HorizontalScrollView
@@ -43,8 +43,8 @@
                         android:gravity="center"
                         android:text="4"
                         android:textSize="10sp"
-                        android:background="@android:color/black"
-                        android:textColor="@android:color/white"/>
+                        android:background="@color/black"
+                        android:textColor="@color/white"/>
                 </LinearLayout>
                 //rock
 
@@ -68,8 +68,8 @@
                         android:gravity="center"
                         android:text="4"
                         android:textSize="10sp"
-                        android:background="@android:color/black"
-                        android:textColor="@android:color/white"/>
+                        android:background="@color/black"
+                        android:textColor="@color/white"/>
                 </LinearLayout>
                 //clip
 
@@ -93,8 +93,8 @@
                         android:gravity="center"
                         android:text="4"
                         android:textSize="10sp"
-                        android:background="@android:color/black"
-                        android:textColor="@android:color/white"/>
+                        android:background="@color/black"
+                        android:textColor="@color/white"/>
                 </LinearLayout>
                 //horse
 
@@ -118,8 +118,8 @@
                         android:gravity="center"
                         android:text="4"
                         android:textSize="10sp"
-                        android:background="@android:color/black"
-                        android:textColor="@android:color/white"/>
+                        android:background="@color/black"
+                        android:textColor="@color/white"/>
                 </LinearLayout>
                 //hercules
 
@@ -143,8 +143,8 @@
                         android:gravity="center"
                         android:text="4"
                         android:textSize="10sp"
-                        android:background="@android:color/black"
-                        android:textColor="@android:color/white"/>
+                        android:background="@color/black"
+                        android:textColor="@color/white"/>
                 </LinearLayout>
                 //rhin
 
@@ -168,8 +168,8 @@
                         android:gravity="center"
                         android:text="4"
                         android:textSize="10sp"
-                        android:background="@android:color/black"
-                        android:textColor="@android:color/white"/>
+                        android:background="@color/black"
+                        android:textColor="@color/white"/>
                 </LinearLayout>
                 //spy
 
@@ -193,8 +193,8 @@
                         android:gravity="center"
                         android:text="4"
                         android:textSize="10sp"
-                        android:background="@android:color/black"
-                        android:textColor="@android:color/white"/>
+                        android:background="@color/black"
+                        android:textColor="@color/white"/>
                 </LinearLayout>
                 //tower
 
@@ -218,8 +218,8 @@
                         android:gravity="center"
                         android:text="4"
                         android:textSize="10sp"
-                        android:background="@android:color/black"
-                        android:textColor="@android:color/white"/>
+                        android:background="@color/black"
+                        android:textColor="@color/white"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -232,7 +232,7 @@
         android:id="@+id/left_number"
         android:layout_width="273dp"
         android:layout_height="40dp"
-        android:background="@android:color/holo_orange_light"
+        android:background="@color/holo_orange_light"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -285,7 +285,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginLeft="5dp"
                     android:text="@string/skillCost"
-                    android:background="@android:color/holo_green_dark"
+                    android:background="@color/holo_green_dark"
                     android:textColor="@android:color/white"
                     android:textSize="15sp" />
 
@@ -295,7 +295,7 @@
                     android:layout_height="21dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginLeft="5dp"
-                    android:background="@android:color/holo_green_dark"
+                    android:background="@color/holo_green_dark"
                     android:textColor="@android:color/white"
                     android:text="1"
                     android:textSize="15sp" />
@@ -312,7 +312,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginLeft="5dp"
-                    android:background="@android:color/holo_green_dark"
+                    android:background="@color/holo_green_dark"
                     android:textColor="@android:color/white"
                     android:text="@string/skillRange"
                     android:textSize="15sp" />
@@ -375,7 +375,7 @@
         android:id="@+id/put_timer"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@android:color/holo_purple"
+        android:background="@color/holo_purple"
         android:orientation="horizontal"></TextView>
 
 </LinearLayout>
