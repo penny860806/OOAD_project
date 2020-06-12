@@ -96,9 +96,8 @@ public class Game {
 
         }
         if (whoseRound() == player2) {
-            GM.lowestLayout.setBackgroundColor(Color.parseColor("#ffff4444")
-                    //blue player backgound (holo_blue_light)
-            );
+            GM.lowestLayout.setBackgroundColor(Color.parseColor("#ffff4444"));  //red player backgound (holo_red_light)
+            
         }
 
         System.out.println("Change Round complete. whose round:" + whoseRound().ID);
