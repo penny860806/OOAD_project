@@ -39,6 +39,8 @@ public class Hercules extends Chess {
      */
     public int skillrunner(Chess targetChess, Block targetBlock) {
         targetChess.positionBlock.swap(targetBlock);
+        GameView.moveChess_View(targetChess.positionBlock,targetBlock,targetChess);
+        targetChess.positionBlock = targetBlock;
         return 3;
     }
 
@@ -65,7 +67,7 @@ public class Hercules extends Chess {
     }
 
     public int skill(Block targetBlock) {
-        if (isNeighbor(targetBlock) >= 0 && targetBlock.player == null) {
+        if (isNeighbor(targetBlock) >= 0 && targetBlock.chess == null) {
             skillrunner(targetChess, targetBlock);
             team.skillPoint--;
             targetChess = null;
