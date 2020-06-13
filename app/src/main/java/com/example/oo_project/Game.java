@@ -38,7 +38,7 @@ public class Game {
         GM = map;
         player1 = new Player(true, "blue");//讓玩家1先手
         player2 = new Player(false, "red");//玩家2後手
-
+        CustomTimer.game = this;
         int temp = 0;
         for (int i = 0; i < map.map.length; i++) {
             for (int j = 0; j < map.map[i].length; j++) {
@@ -49,7 +49,7 @@ public class Game {
         }
     }
 
-    public void ChangeRound() {//交換回合，待新增泉與城後做修正
+    public void changeRound() {//交換回合，待新增泉與城後做修正
         System.out.println("ChangeRound");
         player1.myRound = !player1.myRound;
         player2.myRound = !player2.myRound;
@@ -99,10 +99,6 @@ public class Game {
             GM.lowestLayout.setBackgroundColor(Color.parseColor("#ffff4444"));  //red player backgound (holo_red_light)
             
         }
-        //reset timer
-        NewGame.customTimer.stopTimer();
-        NewGame.customTimer.timeLeftMS = 30000;
-        NewGame.customTimer.startTimer();
 
         System.out.println("Change Round complete. whose round:" + whoseRound().ID);
         GameController.movementFinish();
