@@ -7,8 +7,12 @@ public class Fountain extends Block {
         super(context);
         this.setImageResource(R.drawable.fountain);
     }
-
-    static void applySkillPoint_MovePoint(){
-
+    public boolean checkCanEnter(Chess chess){
+        if(chess.chessName=="rock"||chess.chessName=="spy"){
+            return false;
+        }else{
+            return true;
+        }
     }
+
 }
