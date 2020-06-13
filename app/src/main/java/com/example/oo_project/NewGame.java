@@ -419,5 +419,7 @@ public class NewGame extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         playChessTimer.stopTimer();
+        putChessTimer.stopTimer();
+        finish();
     }
 }

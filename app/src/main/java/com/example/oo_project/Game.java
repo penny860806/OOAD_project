@@ -369,6 +369,9 @@ public class Game {
                                 chess = new Jet(context, name, player1, GM.map[y][x]);
                                 GameView.chessView_Jet(chess);
                                 break;
+                            case "hercules":
+                                chess = new Hercules(context, name, player1, GM.map[y][x]);
+                                GameView.chessView_Hercules(chess);
                             default:
                                 chess = new Chess(context, name, player1, GM.map[y][x]);
                         }
@@ -404,6 +407,9 @@ public class Game {
                                 chess = new Jet(context, name, player2, GM.map[y][x]);
                                 GameView.chessView_Jet(chess);
                                 break;
+                            case "hercules":
+                                chess = new Hercules(context, name, player2, GM.map[y][x]);
+                                GameView.chessView_Hercules(chess);
                             default:
                                 chess = new Chess(context, name, player2, GM.map[y][x]);
                         }
