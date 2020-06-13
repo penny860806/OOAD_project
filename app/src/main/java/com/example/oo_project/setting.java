@@ -51,7 +51,8 @@ public class setting extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //開始計時
-                NewGame.customTimer.toggleTimer();
+                NewGame.playChessTimer.toggleTimer();
+                NewGame.putChessTimer.toggleTimer();
                 //結束設定畫面，返回遊戲畫面
                 finish();
             }

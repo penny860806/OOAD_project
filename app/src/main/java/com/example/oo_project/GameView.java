@@ -1,6 +1,7 @@
 package com.example.oo_project;
 
 import android.util.Log;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
@@ -186,9 +187,15 @@ public class GameView {
 
 
     public static void changePage(){
+        Log.i("changePage","inside");
+
         masterView.removeView(View2);
+        if(View1.getParent() != null){
+            ((ViewGroup)View1.getParent()).removeView(View1);
+        }
         masterView.addView(View1);
         //start timer
-        NewGame.customTimer.startTimer();
+        NewGame.playChessTimer.startTimer();
+
     }
 }

@@ -1,16 +1,23 @@
 package com.example.oo_project;
 
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 public class CustomTimer {
     CountDownTimer countDownTimer;
-    long timeLeftMS = 30000;
+    long maxTime = 10000;
+    long timeLeftMS = 10000;
     boolean timerRunning = false;
-    TextView timer;
-    public CustomTimer(View v){
-        timer = (TextView) v;
+    TextView timerView;
+    static Game game;
+    PutChess putChess;
+    final public static int putChessState=0  , playChessState=1;
+    int state=0;
+    public CustomTimer(View v , int state){
+        this.state = state;
+        timerView = (TextView) v;
     }
     public void toggleTimer(){
         if(timerRunning){
@@ -31,10 +38,36 @@ public class CustomTimer {
             public void onFinish() {
                 //reset
                 stopTimer();
-                timeLeftMS = 30000;
+                timeLeftMS = 10000;
                 //change round
-                GameController.setClickButton(GameController.endRoundButton);
+
+
+                if(state == putChessState){
+                    Log.i("timer","putChessTimer end");
+
+                    stopTimer();
+                    if( !putChess.changeRound()){
+
+                        start();
+                    }
+                    else {
+                        Log.i("timer","cancel");
+                        cancel();
+                    }
+
+                }
+
+                else {
+                    Log.i("timer","playChessTimer end");
+                    stopTimer();
+                    game.changeRound();
+                    start();
+                }
+
+
+
             }
+
         }.start();
         timerRunning = true;
     }
@@ -44,6 +77,6 @@ public class CustomTimer {
     }
     public void updateTimer(){
         int seconds = (int) timeLeftMS / 1000;
-        timer.setText(String.valueOf(seconds));
+        timerView.setText(String.valueOf(seconds));
     }
 }
