@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -84,6 +85,7 @@ public class FullscreenActivity extends AppCompatActivity {
      * system UI. This is to prevent the jarring behavior of controls going away
      * while interacting with activity UI.
      */
+    static MediaPlayer BGMusic;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
@@ -92,6 +94,10 @@ public class FullscreenActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_fullscreen);
 
+        BGMusic = MediaPlayer.create(FullscreenActivity.this,R.raw.background);
+        BGMusic.start();
+
+        //放音樂 play background music
         mVisible = true;
         mContentView = (LinearLayout)findViewById(R.id.fullscreen_content);
         //按鈕做事->開新遊戲
@@ -100,11 +106,7 @@ public class FullscreenActivity extends AppCompatActivity {
         NewGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putInt("state",0);
-                Intent intent = new Intent();
-                intent.putExtras(bundle);
-                intent.setClass(FullscreenActivity.this, NewGame.class);
+                Intent intent = new Intent(FullscreenActivity.this, NewGame.class);
                 startActivity(intent);
             }
         });
@@ -112,11 +114,7 @@ public class FullscreenActivity extends AppCompatActivity {
         oldGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putInt("state",1);
-                Intent intent = new Intent();
-                intent.putExtras(bundle);
-                intent.setClass(FullscreenActivity.this, NewGame.class);
+                Intent intent = new Intent(FullscreenActivity.this, NewGame.class);
                 startActivity(intent);
             }
         });

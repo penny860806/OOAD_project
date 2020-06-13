@@ -17,8 +17,11 @@ public class blue_win extends AppCompatActivity {
         B_GoBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(blue_win.this, FullscreenActivity.class);
-                startActivity(intent);
+                //restart app
+                Intent restartIntent = getBaseContext().getPackageManager()
+                        .getLaunchIntentForPackage(getBaseContext().getPackageName());
+                restartIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(restartIntent);
             }
         });
     }

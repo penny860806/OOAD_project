@@ -1,29 +1,27 @@
 package com.example.oo_project;
 
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 public class CustomTimer {
     CountDownTimer countDownTimer;
-    long maxTime = 10000;
-    long timeLeftMS = 10000;
+    long maxTime = 30000;
+    long timeLeftMS = 30000;
     boolean timerRunning = false;
     TextView timer;
     Game game;
     PutChess putChess;
     final public static int putChessState=0  , playChessState=1;
     int state=0;
-    public CustomTimer(View v , Game game , PutChess putChess, int state){
+    public CustomTimer(View v){
         timer = (TextView) v;
-        this.game = game;
-        this.state = state;
-        this.putChess = putChess;
     }
 
-    public void setTimer(TextView timer) {
-        this.timer = timer;
-    }
+//    public void setTimer(TextView timer) {
+//        this.timer = timer;
+//    }
 
     public void toggleTimer(){
         if(timerRunning){
@@ -34,6 +32,7 @@ public class CustomTimer {
     }
     public void startTimer(){
         countDownTimer = new CountDownTimer(timeLeftMS,1000) {
+
             @Override
             public void onTick(long millisUntilFinished) {
                 timeLeftMS = millisUntilFinished;
@@ -42,25 +41,35 @@ public class CustomTimer {
 
             @Override
             public void onFinish() {
+                //reset
                 stopTimer();
+                timeLeftMS = 30000;
+                //change round
+
+
                 if(state == putChessState){
                     if( putChess.changeRound()){
                         stopTimer();
                     }
+                    else if(game == null){
+                        Log.i("timer","game is null");
+                    }
                     else {
                         game.changeRound();
-                        timeLeftMS = maxTime;
+                        timeLeftMS = 30000;
                         start();
 
                     }
                 }
 
-                else if(state == playChessState){
-                    game.changeRound();
+//                else if(state == playChessState){
+//                    game.changeRound();
+//
+//                }
 
-                }
 
-        }
+
+            }
         }.start();
         timerRunning = true;
     }

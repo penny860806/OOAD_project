@@ -26,7 +26,6 @@ public class setting extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         //儲存遊戲 按鍵
         Button SaveGame = (Button) findViewById(R.id.saveGame);
         SaveGame.setOnClickListener(new View.OnClickListener() {
@@ -36,7 +35,6 @@ public class setting extends AppCompatActivity {
 
             }
         });
-
         //返回遊戲 按鍵
         Button backgame = (Button) findViewById(R.id.backgame);
         backgame.setOnClickListener(new View.OnClickListener() {

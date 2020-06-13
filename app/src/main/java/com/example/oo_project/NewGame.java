@@ -58,6 +58,8 @@ public class NewGame extends AppCompatActivity {
         }
     };
     public LinearLayout NewGame_back;
+    //全域Timer
+    public static CustomTimer customTimer;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
@@ -116,7 +118,18 @@ public class NewGame extends AppCompatActivity {
         //masterView.removeView(View2);
         //masterView.addView(View1);
 
-
+        //設定功能
+        Button setting = (Button) findViewById(R.id.setting);
+        setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //暫停計時
+                customTimer.toggleTimer();
+                //切換到設定介面
+                Intent intent = new Intent(NewGame.this, setting.class);
+                startActivity(intent);
+            }
+        });
 
         //下棋 角色說明文字部分可以上下滾動
         Text.PlayChess.chessNameBlock = (TextView) main1.findViewById(R.id.chess_name);
@@ -133,8 +146,8 @@ public class NewGame extends AppCompatActivity {
         Text.PutChess.messageBlock = (TextView) main2.findViewById(R.id.message_block);
         Text.PutChess.messageBlock.setMovementMethod(ScrollingMovementMethod.getInstance());
         Text.PutChess.timer = (TextView) main2.findViewById(R.id.put_timer);
-        Text.timer = new CustomTimer(Text.PutChess.timer , test ,putChess, CustomTimer.putChessState);
-        Text.timer.startTimer();
+        customTimer = new CustomTimer(Text.PutChess.timer);
+        customTimer.startTimer();
 
         //所有會用到右側功能面板的，都要寫在這邊，而要呼叫findviewById都要先call他的XML名稱
         //putchess是main2, playchess是main1

@@ -135,6 +135,7 @@ public class GameController {
             if(temp == 2){
                 changeState(initial);
                 GameView.changePage();
+                System.out.println(game.whoseRound().ID);
             }
             else if(temp != 0) {
                 Log.i("commonHandler","putChessState error 136");

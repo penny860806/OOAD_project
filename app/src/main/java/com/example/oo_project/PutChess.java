@@ -194,6 +194,8 @@ public class PutChess extends AppCompatActivity {
         return 0;
     }
 
+
+    // true if put chess finish
     public static boolean changeRound(){
         int player = 0;
 

@@ -95,10 +95,12 @@ public class Game {
 
         }
         if(whoseRound() == player2) {
-            GM.lowestLayout.setBackgroundColor(Color.parseColor("#ffff4444")
-                    //blue player backgound (holo_blue_light)
-            );
+            GM.lowestLayout.setBackgroundColor(Color.parseColor("#ffff4444"));//red player backgound (holo_blue_light)
         }
+        //reset timer
+        NewGame.customTimer.stopTimer();
+        NewGame.customTimer.timeLeftMS = 30000;
+        NewGame.customTimer.startTimer();
 
         System.out.println("Change Round complete. whose round:" + whoseRound().ID);
         GameController.movementFinish();
@@ -121,7 +123,17 @@ public class Game {
                         for (int k = 0; k < 6; k++) {
                             Chess nei_chess = chess.positionBlock.getNeighbor(k).chess;
                             if (nei_chess != null && nei_chess.team != null) {
-                                if (chess.deathTeam == nei_chess.team) count++;
+                                if (chess.deathTeam){
+                                    if(chess.team==nei_chess.team){
+                                        count++;
+                                        flag = true;
+                                    }
+                                }else{
+                                    if(chess.team!=nei_chess.team){
+                                        count++;
+                                        flag = true;
+                                    }
+                                }
                             }
                         }
                         if (count >= chess.deathNum) {
