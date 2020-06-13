@@ -107,11 +107,11 @@ public class Game {
 
         /* 判斷勝利 */
         /* 城 */
-        boolean player1Win = false , player2Win = false;
-        if(castle.chess != null && castle.player.myRound == true){
-            castle.setOccupiedRound(castle.getOccupiedRound()+1);
-            if(castle.getOccupiedRound() >= 3){
-                if(castle.player == player1){
+        boolean player1Win = false, player2Win = false;
+        if (castle.chess != null && castle.player.myRound == true) {
+            castle.setOccupiedRound(castle.getOccupiedRound() + 1);
+            if (castle.getOccupiedRound() >= 3) {
+                if (castle.player == player1) {
                     player1Win = true;
                 } else if (castle.player == player2) {
                     player2Win = true;
@@ -126,8 +126,8 @@ public class Game {
 //        if(player2.chessNum <= 5){
 //            player1Win = true;
 //        }
-        Log.i("change round","player1: "+player1.chessNum+"\nplayer2: "+player2.chessNum);
-        if(player1Win && !player2Win){
+        Log.i("change round", "player1: " + player1.chessNum + "\nplayer2: " + player2.chessNum);
+        if (player1Win && !player2Win) {
             blueWin();
         } else if (player2Win && !player1Win) {
             redWin();
@@ -194,7 +194,7 @@ public class Game {
                         Chess chess = GM.map[i][j].chess;
                         if (chess != null && chess.team != null) {
                             if (chess.ImDead == true) {
-                                Log.i("death",chess.chessName+" "+Integer.toString(chess.deathNum));
+                                Log.i("death", chess.chessName + " " + Integer.toString(chess.deathNum));
                                 chess.team.chessNum--;
                                 chess.positionBlock.chess = null;
                                 chess.positionBlock.player = null;
@@ -205,7 +205,7 @@ public class Game {
                 }
             }
         }
-        if(GameController.clickChess.ImDead == true){
+        if (GameController.clickChess.ImDead == true) {
             GameController.changeState(GameController.initial);
         }
         return flag;
@@ -320,14 +320,15 @@ public class Game {
             } else {
                 System.out.println("load whoseRound error");
             }
-            //load castle's occupied_round
-            Castle castle = (Castle) GM.map[GM.getLength() - 1][GM.getLength() - 1];
-            castle.setOccupiedRound(Integer.parseInt(all_info[2]));
-            //load map information
             if (all_info.length < 4) {
-                Toast toast = Toast.makeText(context, "no saved map", Toast.LENGTH_SHORT);
+                //no map info
+                Toast toast = Toast.makeText(context, "no saved map, back please", Toast.LENGTH_SHORT);
                 toast.show();
             } else {
+                //load castle's occupied_round
+                Castle castle = (Castle) GM.map[GM.getLength() - 1][GM.getLength() - 1];
+                castle.setOccupiedRound(Integer.parseInt(all_info[2]));
+                //load map information
                 temp_info = all_info[3].split(",");
                 for (int i = 0; i < temp_info.length; i++) {
                     String[] block_info = temp_info[i].split(":");
@@ -426,18 +427,20 @@ public class Game {
 
     }
 
-    public static void blueWin(){//藍方勝利
-        Log.i("game","blueWin");
+    public static void blueWin() {//藍方勝利
+        Log.i("game", "blueWin");
         Text.PlayChess.messageBlock.setText("藍方勝利");
         NewGame.EndGAME(2);
 
     }
-    public static void redWin(){//紅方勝利
-        Log.i("game","redWin");
+
+    public static void redWin() {//紅方勝利
+        Log.i("game", "redWin");
         Text.PlayChess.messageBlock.setText("紅方勝利");
         NewGame.EndGAME(1);
     }
-    public static void tie(){//平手
+
+    public static void tie() {//平手
         Text.PlayChess.messageBlock.setText("雙方平手");
         NewGame.EndGAME(3);
     }
