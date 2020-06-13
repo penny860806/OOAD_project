@@ -46,7 +46,7 @@ public class Game {
                     fountainList[temp++] = (Fountain) map.map[i][j];
                 }
                 if (GM.map[i][j] != null && map.map[i][j] instanceof Castle) {
-                    castle = (Castle)map.map[i][j];
+                    castle = (Castle) map.map[i][j];
                 }
 
             }
@@ -101,40 +101,36 @@ public class Game {
         }
         if (whoseRound() == player2) {
             GM.lowestLayout.setBackgroundColor(Color.parseColor("#ffff4444"));  //red player backgound (holo_red_light)
-            
+
         }
 
 
         /* 判斷勝利 */
         /* 城 */
-        boolean player1Win = false , player2Win = false;
-        if(castle.chess != null){
-            castle.setOccupiedRound(castle.getOccupiedRound()+1);
-            if(castle.getOccupiedRound() >= 3){
-                if(castle.player == player1){
+        boolean player1Win = false, player2Win = false;
+        if (castle.chess != null) {
+            castle.setOccupiedRound(castle.getOccupiedRound() + 1);
+            if (castle.getOccupiedRound() >= 3) {
+                if (castle.player == player1) {
                     player1Win = true;
-                }
-                else if(castle.player == player2){
+                } else if (castle.player == player2) {
                     player2Win = true;
                 }
             }
         }
 
         /* 棋子數小於五 */
-        if(player1.chessNum <= 5){
+        if (player1.chessNum <= 5) {
             player2Win = true;
-        }
-        else if(player2.chessNum <= 5){
+        } else if (player2.chessNum <= 5) {
             player1Win = true;
         }
 
-        if(player1Win && !player2Win){
+        if (player1Win && !player2Win) {
             blueWin();
-        }
-        else if(player2Win && !player1Win){
+        } else if (player2Win && !player1Win) {
             redWin();
-        }
-        else if (player1Win && player2Win){
+        } else if (player1Win && player2Win) {
             tie();
         }
         System.out.println("Change Round complete. whose round:" + whoseRound().ID);
@@ -154,16 +150,16 @@ public class Game {
             for (int j = 0; j < GM.map[i].length - 1; j++) {
                 if (GM.map[i][j] != null) {
                     Chess chess = GM.map[i][j].chess;
-                    if(chess instanceof TransferTower){
+                    if (chess instanceof TransferTower) {
                         boolean temp = true;
                         for (int k = 0; k < 6; k++) {
                             Chess nei_chess = chess.positionBlock.getNeighbor(k).chess;
-                            if (nei_chess != null && nei_chess.team != null && (chess.team==nei_chess.team)) { // 有隊友
+                            if (nei_chess != null && nei_chess.team != null && (chess.team == nei_chess.team)) { // 有隊友
                                 temp = false;
                                 break;
                             }
                         }
-                        if(temp == true) {
+                        if (temp == true) {
                             chess.ImDead = true;
                             flag = true;
                         }
@@ -173,10 +169,9 @@ public class Game {
                         for (int k = 0; k < 6; k++) {
                             Chess nei_chess = chess.positionBlock.getNeighbor(k).chess;
                             if (nei_chess != null && nei_chess.team != null) {
-                                if (chess.deathTeam && (chess.team==nei_chess.team)){
+                                if (chess.deathTeam && (chess.team == nei_chess.team)) {
                                     count++;
-                                }
-                                else if(!chess.deathTeam && (chess.team!=nei_chess.team)){
+                                } else if (!chess.deathTeam && (chess.team != nei_chess.team)) {
                                     count++;
                                 }
                             }
@@ -190,7 +185,7 @@ public class Game {
                 }
             }
         }
-        if(flag == true) {
+        if (flag == true) {
             for (int i = 0; i < GM.map.length - 1; i++) {
                 for (int j = 0; j < GM.map[i].length - 1; j++) {
                     if (GM.map[i][j] != null) {
@@ -231,11 +226,11 @@ public class Game {
         String save = "";
         //save player info : playerID, movePoint, skillPoint, whoseRound
         save = save + player1.ID + ":" + player1.movePoint + ":"
-                + player1.skillPoint + ":" + player1.chessNum +",";
+                + player1.skillPoint + ":" + player1.chessNum + ",";
         save = save + player2.ID + ":" + player2.movePoint + ":"
                 + player2.skillPoint + ":" + player2.chessNum;
         save += "=" + whoseRound().ID + "=";
-        Castle castle = (Castle)GM.map[GM.getLength()-1][GM.getLength()-1];
+        Castle castle = (Castle) GM.map[GM.getLength() - 1][GM.getLength() - 1];
         save += castle.getOccupiedRound() + "=";
 
         //save map info
@@ -320,7 +315,7 @@ public class Game {
                 System.out.println("load whoseRound error");
             }
             //load castle's occupied_round
-            Castle castle = (Castle)GM.map[GM.getLength()-1][GM.getLength()-1];
+            Castle castle = (Castle) GM.map[GM.getLength() - 1][GM.getLength() - 1];
             castle.setOccupiedRound(Integer.parseInt(all_info[2]));
             //load map information
             if (all_info.length < 3) {
@@ -419,14 +414,20 @@ public class Game {
 
     }
 
-    public void blueWin(){//藍方勝利
+    static public void blueWin() {//藍方勝利
         Text.PlayChess.messageBlock.setText("藍方勝利");
+        NewGame.EndGAME(2);
+
     }
-    public void redWin(){//紅方勝利
+
+    static public void redWin() {//紅方勝利
         Text.PlayChess.messageBlock.setText("紅方勝利");
+        NewGame.EndGAME(1);
     }
-    public void tie(){//平手
+
+    static public void tie() {//平手
         Text.PlayChess.messageBlock.setText("雙方平手");
+        NewGame.EndGAME(3);
     }
 
 }

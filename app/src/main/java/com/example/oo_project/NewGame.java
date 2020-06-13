@@ -61,14 +61,17 @@ public class NewGame extends AppCompatActivity {
         }
     };
     public LinearLayout NewGame_back;
+    static Context EGame;
     //全域Timer
-    public static CustomTimer putChessTimer , playChessTimer;
+    public static CustomTimer putChessTimer, playChessTimer;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_game);
+
+        EGame = this;
 
         NewGame_back = (LinearLayout) findViewById(R.id.Map);
         NewGame_back.setOnLongClickListener(new View.OnLongClickListener() {
@@ -161,14 +164,14 @@ public class NewGame extends AppCompatActivity {
         Text.PlayChess.skillPoint_blue = (TextView) main1.findViewById(R.id.player_skillPoint_blue);
         Text.PlayChess.skillPoint_red = (TextView) main1.findViewById(R.id.skillPoint_red);
         Text.PlayChess.timer = (TextView) main1.findViewById(R.id.game_timer);
-        playChessTimer = new CustomTimer(Text.PlayChess.timer , CustomTimer.playChessState);
+        playChessTimer = new CustomTimer(Text.PlayChess.timer, CustomTimer.playChessState);
 
         //放棋
         Text.PutChess.chessNameBlock = (TextView) main2.findViewById(R.id.chess_name);
         Text.PutChess.messageBlock = (TextView) main2.findViewById(R.id.message_block);
         Text.PutChess.messageBlock.setMovementMethod(ScrollingMovementMethod.getInstance());
         Text.PutChess.timer = (TextView) main2.findViewById(R.id.put_timer);
-        putChessTimer = new CustomTimer(Text.PutChess.timer , CustomTimer.putChessState);
+        putChessTimer = new CustomTimer(Text.PutChess.timer, CustomTimer.putChessState);
         putChessTimer.startTimer();
 
         //所有會用到右側功能面板的，都要寫在這邊，而要呼叫findviewById都要先call他的XML名稱
@@ -339,9 +342,9 @@ public class NewGame extends AppCompatActivity {
         }
         Bundle bundle = getIntent().getExtras();
         int new_or_old = bundle.getInt("state");
-        if(new_or_old==1){
+        if (new_or_old == 1) {
             //new game
-        }else if(new_or_old==2){
+        } else if (new_or_old == 2) {
             //old game
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 try {
@@ -353,9 +356,17 @@ public class NewGame extends AppCompatActivity {
             //change state
             GameController.changeState(0);
             GameView.changePage();
-        }else{
+        } else {
             //error
         }
+    }
+
+    //Game finish
+    static public void EndGAME(int who) {
+        //遊戲結束的畫面
+        Intent EndGame = new Intent(EGame, endGame.class);
+        EndGame.putExtra("who", who);
+        EGame.startActivity(EndGame);
     }
 
     @Override

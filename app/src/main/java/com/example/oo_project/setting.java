@@ -34,9 +34,19 @@ public class setting extends AppCompatActivity {
             public void onClick(View v) {
                 //stop music
                 FullscreenActivity.BGMusic.stop();
-                //blue wins
-                Intent intent = new Intent(setting.this, endGame.class);
-                startActivity(intent);
+                //who wins
+                int who=0;
+                if(Game.whoseRound()==Game.player1) {
+                    //who=1;
+                    Game.blueWin();
+                }
+                else {
+                    //who=2;
+                    Game.redWin();
+                }
+                //Intent intent = new Intent(setting.this, endGame.class);
+                //intent.putExtra("who", who);
+                //startActivity(intent);
             }
         });
 
