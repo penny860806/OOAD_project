@@ -278,58 +278,70 @@ public class Game {
                         switch (name) {
                             case "clip":
                                 chess = new Clip(context, name, player1, GM.map[y][x]);
+                                GameView.chessView_Clip(chess);
                                 break;
                             case "horse":
                                 chess = new Horse(context, name, player1, GM.map[y][x]);
+                                GameView.chessView_Horse(chess);
                                 break;
                             case "rhino":
                                 chess = new Rhino(context, name, player1, GM.map[y][x]);
+                                GameView.chessView_Rhino(chess);
                                 break;
                             case "rock":
                                 chess = new Rock(context, name, player1, GM.map[y][x]);
+                                GameView.chessView_Rock(chess);
                                 break;
                             case "spy":
                                 chess = new Spy(context, name, player1, GM.map[y][x]);
+                                GameView.chessView_Spy(chess);
                                 break;
                             case "transfertower":
                                 chess = new TransferTower(context, name, player1, GM.map[y][x]);
+                                GameView.chessView_TransferTower(chess);
                                 break;
                             case "jet":
                                 chess = new Jet(context, name, player1, GM.map[y][x]);
+                                GameView.chessView_Jet(chess);
                                 break;
                             default:
                                 chess = new Chess(context, name, player1, GM.map[y][x]);
                         }
-                        GameView.chessView_Blue(chess);
                         System.out.println(chess.team.ID);
                         System.out.println(chess.chessName);
                     } else {
                         switch (name) {
                             case "clip":
                                 chess = new Clip(context, name, player2, GM.map[y][x]);
+                                GameView.chessView_Clip(chess);
                                 break;
                             case "horse":
                                 chess = new Horse(context, name, player2, GM.map[y][x]);
+                                GameView.chessView_Horse(chess);
                                 break;
                             case "rhino":
                                 chess = new Rhino(context, name, player2, GM.map[y][x]);
+                                GameView.chessView_Rhino(chess);
                                 break;
                             case "rock":
                                 chess = new Rock(context, name, player2, GM.map[y][x]);
+                                GameView.chessView_Rock(chess);
                                 break;
                             case "spy":
                                 chess = new Spy(context, name, player2, GM.map[y][x]);
+                                GameView.chessView_Spy(chess);
                                 break;
                             case "transfertower":
                                 chess = new TransferTower(context, name, player2, GM.map[y][x]);
+                                GameView.chessView_TransferTower(chess);
                                 break;
                             case "jet":
                                 chess = new Jet(context, name, player2, GM.map[y][x]);
+                                GameView.chessView_Jet(chess);
                                 break;
                             default:
                                 chess = new Chess(context, name, player2, GM.map[y][x]);
                         }
-                        GameView.chessView_Red(chess);
                         System.out.println(chess.team.ID);
                         System.out.println(chess.chessName);
                     }
