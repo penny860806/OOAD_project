@@ -2,6 +2,9 @@ package com.example.oo_project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -20,10 +23,10 @@ public class endGame extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         int who=extras.getInt("who");
         if(who==2){
-            BG.setBackgroundResource(R.drawable.winner_red_bg);
+            BG.setBackgroundResource(R.drawable.winner_blue_bg);
         }
         else if(who==1){
-            BG.setBackgroundResource(R.drawable.winner_blue_bg);
+            BG.setBackgroundResource(R.drawable.winner_red_bg);
         }
         else{
             BG.setBackgroundResource(R.drawable.winner_tie_bg);
@@ -35,9 +38,7 @@ public class endGame extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //restart app
-                Intent restartIntent = getBaseContext().getPackageManager()
-                        .getLaunchIntentForPackage(getBaseContext().getPackageName());
-                restartIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Intent restartIntent = new Intent(endGame.this, FullscreenActivity.class);
                 startActivity(restartIntent);
             }
         });

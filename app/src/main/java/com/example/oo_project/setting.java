@@ -38,15 +38,12 @@ public class setting extends AppCompatActivity {
                 int who=0;
                 if(Game.whoseRound()==Game.player1) {
                     //who=1;
-                    Game.blueWin();
+                    Game.redWin();
                 }
                 else {
                     //who=2;
-                    Game.redWin();
+                    Game.blueWin();
                 }
-                //Intent intent = new Intent(setting.this, endGame.class);
-                //intent.putExtra("who", who);
-                //startActivity(intent);
             }
         });
 
