@@ -6,12 +6,11 @@ import android.os.SystemClock;
 
 public class Jet extends Chess {
     public boolean canBePush = true;
-    protected int deathNum = 3;
 
 
     Jet(Context context, String name, Player team, Block positionBlock) {
         super(context, "氣場", 1, team, positionBlock, true);
-        super.deathNum = 3;
+        deathNum = 3;
     }
 
     Jet(Context context, Player team, Block positionBlock) {

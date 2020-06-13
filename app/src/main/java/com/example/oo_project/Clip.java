@@ -6,12 +6,11 @@ import android.util.Log;
 
 public class Clip extends Chess {
     public boolean canBePush = true;
-    protected int deathNum = 4;
     String chessName = "夾子";
 
     Clip(Context context, String name, Player team, Block positionBlock) {
         super(context, name, 2, team, positionBlock, true);
-        super.deathNum = 4;
+        deathNum = 4;
 
     }
 
@@ -52,7 +51,7 @@ public class Clip extends Chess {
             }
         }
 
-
+        team.skillPoint--;
         return reInitial;
     }
 

@@ -103,6 +103,7 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 				avail= true;
 			}
 		}
+
 		System.out.println("Can move?"+avail);
 		return avail;
 	}

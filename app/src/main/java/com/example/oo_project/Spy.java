@@ -5,14 +5,13 @@ import android.os.SystemClock;
 
 public class Spy extends Chess {
     public boolean canBePush = true;
-    protected int deathNum = 2;
     private static int step = 4;
     String chessName = "間碟";
 
     Spy(Context context, String name, Player team, Block positionBlock) {
         super(context, name, 4, team, positionBlock, true);
-        super.deathTeam = true;
-        super.deathNum = 2;
+        this.deathTeam = true;
+        deathNum = 2;
     }
 
     Spy(Context context, Player team, Block positionBlock) {
@@ -26,6 +25,7 @@ public class Spy extends Chess {
             step --;
             if (step == 0) {
                 step = 4;
+                team.skillPoint-=2;
                 return reInitial;
             }
             Text.PlayChess.messageBlock.setText("間諜技能:剩餘"+Integer.toString(step)+"步");

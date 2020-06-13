@@ -194,6 +194,7 @@ public class Game {
                         Chess chess = GM.map[i][j].chess;
                         if (chess != null && chess.team != null) {
                             if (chess.ImDead == true) {
+                                Log.i("death",chess.chessName+" "+Integer.toString(chess.deathNum));
                                 chess.team.chessNum--;
                                 chess.positionBlock.chess = null;
                                 chess.positionBlock.player = null;

@@ -19,7 +19,7 @@ public class TransferTower extends Chess {
             Text.PlayChess.messageBlock.setText(Text.PlayChess.notClickEnemy);
             return reChessClick;
         } else {
-            team.skillPoint--;
+
             positionBlock.swap(targetChess.positionBlock);
             GameView.changeChess_View(this, targetChess);
             Block temp = targetChess.positionBlock;
@@ -28,6 +28,7 @@ public class TransferTower extends Chess {
 
             game.checkAllDeath();
 
+            team.skillPoint--;
             return reInitial;
         }
     }
