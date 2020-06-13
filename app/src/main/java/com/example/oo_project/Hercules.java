@@ -40,7 +40,7 @@ public class Hercules extends Chess {
     public int skillrunner(Chess targetChess, Block targetBlock) {
         targetChess.positionBlock.swap(targetBlock);
         GameView.moveChess_View(targetChess.positionBlock,targetBlock,targetChess);
-        targetBlock.chess = targetChess;
+        targetChess.positionBlock = targetBlock;
         return 3;
     }
 
