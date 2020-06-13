@@ -30,6 +30,10 @@ public class Spy extends Chess {
             return reBlockClick;
         }
         if (moveChess(targetBlock)) {
+            if(step == 4){
+                team.skillPoint-=2;
+            }
+
             step --;
             if (step == 0) {
                 step = 4;
@@ -37,7 +41,8 @@ public class Spy extends Chess {
                 return reInitial;
             }
             Text.PlayChess.messageBlock.setText("間諜技能:剩餘"+Integer.toString(step)+"步(按取消選取終止移動)");
-            team.skillPoint-=2;
+
+
             return reBlockClick;
         } else {
             Text.PlayChess.messageBlock.setText(Text.PlayChess.notAvailTarget);
@@ -48,7 +53,7 @@ public class Spy extends Chess {
 
     public int skill() {
         Text.PlayChess.messageBlock.setText(Text.PlayChess.clickBlockAround);
-
+        step = 4;
         return reBlockClick;
     }
 }

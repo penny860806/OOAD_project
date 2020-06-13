@@ -155,15 +155,15 @@ public class GameController {
         } else if (state == chessMenu) {
             System.out.println("state chessMenu");
             if (clickButton == skillButton) {
-                if (game.whoseRound().skillPoint <= 0) {
-                    Text.PlayChess.messageBlock.setText("技能點數用完，請選擇其他指令或取消選取");
+                if (game.whoseRound().skillPoint <= 0 || (clickChess instanceof Spy && game.whoseRound().skillPoint <= 2)) {
+                    Text.PlayChess.messageBlock.setText("技能點數不足，請選擇其他指令或取消選取");
                 } else {
                     changeState(skillState);
                     commonHandler();
                 }
             } else if (clickButton == moveButton) {
                 if (game.whoseRound().movePoint <= 0) {
-                    Text.PlayChess.messageBlock.setText("移動點數用完，請選擇其他指令或取消選取");
+                    Text.PlayChess.messageBlock.setText("移動點數不足，請選擇其他指令或取消選取");
 
                 } else if (clickChess instanceof Spy) {
                     Text.PlayChess.messageBlock.setText("間諜不能靠技能移動，請選擇技能或取消選取");
