@@ -8,7 +8,7 @@ import android.widget.TextView;
 public class CustomTimer {
     boolean flag = false;
     CountDownTimer countDownTimer;
-    final long maxTime = 600000;
+    final long maxTime = 60000;
     long timeLeftMS = maxTime;
     boolean timerRunning = false;
     TextView timerView;

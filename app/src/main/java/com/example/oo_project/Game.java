@@ -120,12 +120,12 @@ public class Game {
         }
 
         /* 棋子數小於五 */
-//        if(player1.chessNum <= 5){
-//            player2Win = true;
-//        }
-//        if(player2.chessNum <= 5){
-//            player1Win = true;
-//        }
+        if(player1.chessNum <= 5){
+            player2Win = true;
+        }
+        if(player2.chessNum <= 5){
+            player1Win = true;
+        }
         Log.i("change round", "player1: " + player1.chessNum + "\nplayer2: " + player2.chessNum);
         if (player1Win && !player2Win) {
             blueWin();
