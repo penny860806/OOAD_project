@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".setting">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -12,57 +13,56 @@
         android:gravity="center"
         android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/music"
+                android:textSize="30dp"></TextView>
 
-            android:text="@string/music"
-            android:textSize="30dp"></TextView>
+            <ToggleButton
+                android:id="@+id/bgmusic"
+                android:layout_width="169dp"
+                android:layout_height="wrap_content"
+                android:background="@color/holo_red_light"
+                android:textOff="turn off"
+                android:textOn="turn on"
+                android:textSize="30dp"
+                tools:ignore="MissingConstraints">
 
-        <ToggleButton
-            android:id="@+id/bgmusic"
-            android:layout_width="169dp"
-            android:layout_height="wrap_content"
-            android:background="@color/holo_red_light"
-            android:textOff="turn off"
-            android:textOn="turn on"
-            android:textSize="30dp"
-            tools:ignore="MissingConstraints">
+            </ToggleButton>
+        </LinearLayout>
 
-        </ToggleButton>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
-        <Button
-            android:id="@+id/backgame"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/backtogame"
-            android:textSize="30sp"></Button>
-        <Button
-            android:id="@+id/saveGame"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30sp"
-            android:text="@string/save"
-            android:textSize="30sp"></Button>
-        <Button
-            android:id="@+id/surrender"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30sp"
-            android:text="@string/surrender"
-            android:textSize="30dp"></Button>
-    </LinearLayout>
+            android:layout_marginTop="20dp">
+
+            <Button
+                android:id="@+id/backgame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/backtogame"
+                android:textSize="30sp"></Button>
+            <Button
+                android:id="@+id/saveGame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30sp"
+                android:text="@string/save"
+                android:textSize="30sp"></Button>
+            <Button
+                android:id="@+id/surrender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30sp"
+                android:text="@string/surrender"
+                android:textSize="30dp"></Button>
+        </LinearLayout>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

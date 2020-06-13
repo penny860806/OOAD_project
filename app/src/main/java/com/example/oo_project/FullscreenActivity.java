@@ -94,10 +94,10 @@ public class FullscreenActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_fullscreen);
 
+        //放音樂 play background music
         BGMusic = MediaPlayer.create(FullscreenActivity.this,R.raw.background);
         BGMusic.start();
 
-        //放音樂 play background music
         mVisible = true;
         mContentView = (LinearLayout)findViewById(R.id.fullscreen_content);
         //按鈕做事->開新遊戲

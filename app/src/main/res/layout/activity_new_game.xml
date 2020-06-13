@@ -33,6 +33,6 @@
             android:id="@+id/setting"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:background="@drawable/setting"/>
+            android:background="@drawable/setting" />
     </LinearLayout>
 </FrameLayout>

@@ -3,60 +3,58 @@ package com.example.oo_project;
 import android.widget.TextView;
 
 public class Text {
-    public static CustomTimer customTimer;
     public static class PutChess {
         static TextView chessNameBlock , messageBlock;
         static TextView timer;
         static final String TransferTower =
                 "傳送塔(周圍沒有友軍時死亡)\n" +
-                        "移動範圍：1\n" +
-                        "技能說明：\n" +
-                        "點選一名任意友軍，傳送塔將與其互換位置\n";
+                "移動範圍：1\n" +
+                "技能說明：\n" +
+                "點選一名任意友軍，傳送塔將與其互換位置\n";
         static final String Jet =
                 "氣場(周圍3名敵軍時死亡)\n" +
-                        "移動範圍：2\n" +
-                        "技能說明：\n" +
-                        "將周圍所有人外推一格(連同與被推棋子同一直線且相連的目標)\n" +
-                        "施放完技能後可額外移動一次\n";
+                "移動範圍：2\n" +
+                "技能說明：\n" +
+                "將周圍所有人外推一格(連同與被推棋子同一直線且相連的目標)\n" +
+                "施放完技能後可額外移動一次\n";
         static final String Rhino =
                 "犀牛(周圍5名敵軍時死亡)\n" +
-                        "移動範圍：2\n" +
-                        "技能說明：\n" +
-                        "點選一名敵軍，犀牛會將其衝撞至底部，並將沿途遇到的棋子一併撞擊到底\n";
+                "移動範圍：2\n" +
+                "技能說明：\n" +
+                "點選一名敵軍，犀牛會將其衝撞至底部，並將沿途遇到的棋子一併撞擊到底\n";
         static final String Rock =
                 "巨石(周圍4名敵軍時死亡)\n" +
-                        "移動範圍：1\n" +
-                        "技能說明：\n" +
-                        "無法被任何技能控制或移動\n";
+                "移動範圍：1\n" +
+                "技能說明：\n" +
+                "無法被任何技能控制或移動\n";
         static final String Clip =
                 "夾子(周圍4名敵軍時死亡)\n" +
-                        "移動範圍：2\n" +
-                        "技能說明：\n" +
-                        "點選一名敵軍，之後將其拉至撞到任意目標為止\n";
+                "移動範圍：2\n" +
+                "技能說明：\n" +
+                "點選一名敵軍，之後將其拉至撞到任意目標為止\n";
         static final String Hercules =
                 "力士(周圍4名敵軍時死亡)\n" +
-                        "移動範圍：1\n" +
-                        "技能說明：\n" +
-                        "點選周圍一名敵軍，緊接著點選周圍一個空格\n" +
-                        "力士將會把它抓舉至該處\n";
+                "移動範圍：1\n" +
+                "技能說明：\n" +
+                "點選周圍一名敵軍，緊接著點選周圍一個空格\n" +
+                "力士將會把它抓舉至該處\n";
         static final String Horse =
                 "馬(周圍3名敵軍時死亡)\n" +
-                        "移動範圍：2\n" +
-                        "技能說明：(分敵軍及隊友)\n" +
-                        "點選敵軍時，將馬的位置和目標敵軍位置互換\n" +
-                        "點選友軍時，將友軍踢飛兩格遠(撞到任意目標將停下)\n";
+                "移動範圍：2\n" +
+                "技能說明：(分敵軍及隊友)\n" +
+                "點選敵軍時，將馬的位置和目標敵軍位置互換\n" +
+                "點選友軍時，將友軍踢飛兩格遠(撞到任意目標將停下)\n";
         static final String Spy =
                 "間諜(周圍兩名友軍時死亡)\n" +
-                        "移動範圍：4\n" +
-                        "技能說明：\n" +
-                        "開場於敵方位置布陣\n" +
-                        "移動時消耗2技能點而非移動點\n";
+                "移動範圍：4\n" +
+                "技能說明：\n" +
+                "開場於敵方位置布陣\n" +
+                "移動時消耗2技能點而非移動點\n";
         static final String runOutChess = "你所能放置的這顆棋子已用完";
         static final String noSelectedChess = "請先選取棋子";
         static final String notAvailableBlock_red = "紅方只能放置棋子於上半部(間諜除外)" ,notAvailableBlock_blue = "藍方只能放置棋子於下半部(間諜除外)";
         static final String notAvailableBlockOnFountain = "不可放置棋子於泉上";
-        static final String notAvailableBlockSpy = "間諜不可放置棋子於中間線或自己的領域";
-
+        static final String notAvailableBlockSpy = "間諜不可放置棋子於中間線上";
     }
     public static class PlayChess {
         static TextView messageBlock , chessNameBlock;
@@ -64,47 +62,47 @@ public class Text {
         static TextView timer;
         static final String TransferTower =
                 "傳送塔(周圍沒有友軍時死亡)\n" +
-                        "移動範圍：1\n" +
-                        "技能說明：\n" +
-                        "點選一名任意友軍，傳送塔將與其互換位置\n";
+                "移動範圍：1\n" +
+                "技能說明：\n" +
+                "點選一名任意友軍，傳送塔將與其互換位置\n";
         static final String Jet =
                 "氣場(周圍3名敵軍時死亡)\n" +
-                        "移動範圍：2\n" +
-                        "技能說明：\n" +
-                        "將周圍所有人外推一格(連同與被推棋子同一直線且相連的目標)\n" +
-                        "施放完技能後可額外移動一次\n";
+                "移動範圍：2\n" +
+                "技能說明：\n" +
+                "將周圍所有人外推一格(連同與被推棋子同一直線且相連的目標)\n" +
+                "施放完技能後可額外移動一次\n";
         static final String Rhino = "犀牛(周圍5名敵軍時死亡)\n" +
                 "移動範圍：2\n" +
                 "技能說明：\n" +
                 "點選一名敵軍，犀牛會將其衝撞至底部，並將沿途遇到的棋子一併撞擊到底\n";
         static final String Rock =
                 "巨石(周圍4名敵軍時死亡)\n" +
-                        "移動範圍：1\n" +
-                        "技能說明：\n" +
-                        "無法被任何技能控制或移動\n";
+                "移動範圍：1\n" +
+                "技能說明：\n" +
+                "無法被任何技能控制或移動\n";
         static final String Clip =
                 "夾子(周圍4名敵軍時死亡)\n" +
-                        "移動範圍：2\n" +
-                        "技能說明：\n" +
-                        "點選一名敵軍，之後將其拉至撞到任意目標為止\n";
+                "移動範圍：2\n" +
+                "技能說明：\n" +
+                "點選一名敵軍，之後將其拉至撞到任意目標為止\n";
         static final String Hercules =
                 "力士(周圍4名敵軍時死亡)\n" +
-                        "移動範圍：1\n" +
-                        "技能說明：\n" +
-                        "點選周圍一名敵軍，緊接著點選周圍一個空格\n" +
-                        "力士將會把它抓舉至該處\n";
+                "移動範圍：1\n" +
+                "技能說明：\n" +
+                "點選周圍一名敵軍，緊接著點選周圍一個空格\n" +
+                "力士將會把它抓舉至該處\n";
         static final String Horse =
                 "馬(周圍3名敵軍時死亡)\n" +
-                        "移動範圍：2\n" +
-                        "技能說明：(分敵軍及隊友)\n" +
-                        "點選敵軍時，將馬的位置和目標敵軍位置互換\n" +
-                        "點選友軍時，將友軍踢飛兩格遠(撞到任意目標將停下)\n";
+                "移動範圍：2\n" +
+                "技能說明：(分敵軍及隊友)\n" +
+                "點選敵軍時，將馬的位置和目標敵軍位置互換\n" +
+                "點選友軍時，將友軍踢飛兩格遠(撞到任意目標將停下)\n";
         static final String Spy =
                 "間諜(周圍兩名友軍時死亡)\n" +
-                        "移動範圍：4\n" +
-                        "技能說明：\n" +
-                        "開場於敵方位置布陣\n" +
-                        "移動時消耗2技能點而非移動點\n";
+                "移動範圍：4\n" +
+                "技能說明：\n" +
+                "開場於敵方位置布陣\n" +
+                "移動時消耗2技能點而非移動點\n";
         static final String clickBlock = "請點選一顆格子";
         static final String clickChess = "請點選一顆棋子";
         static final String clickChessAround = "請點選一顆該棋子周圍的棋子";
@@ -148,9 +146,5 @@ public class Text {
                 messageBlock.setText(Spy);
             }
         }
-
     }
-
-
-
 }

@@ -19,7 +19,7 @@ public class PutChess extends AppCompatActivity {
     static TextView[] chessText ;
     static int chessRemain = 1, round = 1;
     static Player playerNow;
-    final static int lastRound = 3;
+    final static int lastRound = 2;
     private static int[][] chessAmount;
 
     public PutChess(Game game, NewGame newGame) {
@@ -67,7 +67,7 @@ public class PutChess extends AppCompatActivity {
         //check the selected block is illegal
         {
             if(selectedChessId == Game.SpyId  ){
-                if((playerNow == game.player2 && block.y <= 5) || (playerNow == game.player1 && block.y >= 5)) {
+                if(block.y == 5) {
                     Text.PutChess.messageBlock.setText(Text.PutChess.notAvailableBlockSpy);
                     return 0;
                 }
@@ -144,9 +144,6 @@ public class PutChess extends AppCompatActivity {
     private static int checkChangeRound() {
         int player = 0;
         if (chessRemain <= 0) {
-            Text.timer.stopTimer();
-            Text.timer.timeLeftMS = Text.timer.maxTime;
-            Text.timer.startTimer();
             if (playerNow == game.player1) {
                 playerNow = game.player2;
 
@@ -156,6 +153,7 @@ public class PutChess extends AppCompatActivity {
                 Log.i("checkChangeRound", "error 213");
                 return -1;
             }
+            System.out.println(game.whoseRound().ID);
             round++;
             chessRemain = 2;
             if (round == lastRound) {
@@ -171,14 +169,10 @@ public class PutChess extends AppCompatActivity {
         else {
             player = 1;
         }
-
-
         for(int i=0 ; i<chessText.length ; i++){
             String stringValue = Integer.toString(chessAmount[player][i]);
             chessText[i].setText(stringValue);
         }
-
-
         Text.PutChess.messageBlock.setText("");
         Text.PutChess.chessNameBlock.setText("");
         if(playerNow == game.player1) {
@@ -194,56 +188,5 @@ public class PutChess extends AppCompatActivity {
         return 0;
     }
 
-
-    // true if put chess finish
-    public static boolean changeRound(){
-        int player = 0;
-
-        if (playerNow == game.player1) {
-            playerNow = game.player2;
-
-        } else if (playerNow == game.player2) {
-            playerNow = game.player1;
-        } else {
-            Log.i("checkChangeRound", "error 213");
-        }
-        round++;
-        chessRemain = 2;
-        if (round == lastRound) {
-            chessRemain = 1;
-        }
-        if(round > lastRound){
-            GameView.changePage();
-            GameController.changeState(GameController.initial);
-            return true;
-        }
-
-        if(playerNow == game.player1){
-            player = 0;
-        }
-        else {
-            player = 1;
-        }
-
-
-        for(int i=0 ; i<chessText.length ; i++){
-            String stringValue = Integer.toString(chessAmount[player][i]);
-            chessText[i].setText(stringValue);
-        }
-
-
-        Text.PutChess.messageBlock.setText("");
-        Text.PutChess.chessNameBlock.setText("");
-        if(playerNow == game.player1) {
-            game.GM.lowestLayout.setBackgroundColor(Color.parseColor("#ff33b5e5")); //blue player backgound (holo_blue_light)
-
-        }
-        if(playerNow == game.player2) {
-            game.GM.lowestLayout.setBackgroundColor(Color.parseColor("#ffff4444")
-                    //blue player backgound (holo_blue_light)
-            );
-        }
-        return false;
-    }
 }
 

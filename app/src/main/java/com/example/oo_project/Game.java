@@ -26,21 +26,22 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
 public class Game {
-    public Fountain[] fountainList=  new Fountain[6];
+    public Fountain[] fountainList = new Fountain[6];
     int step = 1;
-    int deathChess=0;
-    Player player1 ,player2;
+    int deathChess = 0;
+    static Player player1, player2;
 
     GameMap GM;
-    final public static int TransferTowerId = 0,RhinoId = 1,RockId = 2,ClipId=3,HerculesId = 4,JetId = 5,HorseId = 6,SpyId=7;
+    final public static int TransferTowerId = 0, RhinoId = 1, RockId = 2, ClipId = 3, HerculesId = 4, JetId = 5, HorseId = 6, SpyId = 7;
+
     Game(GameMap map) {
         GM = map;
-        player1= new Player(true, "blue");//讓玩家1先手
+        player1 = new Player(true, "blue");//讓玩家1先手
         player2 = new Player(false, "red");//玩家2後手
 
-        int temp=0;
-        for(int i=0 ; i<map.map.length ; i++){
-            for(int j=0 ; j<map.map[i].length ; j++){
+        int temp = 0;
+        for (int i = 0; i < map.map.length; i++) {
+            for (int j = 0; j < map.map[i].length; j++) {
                 if (GM.map[i][j] != null && map.map[i][j] instanceof Fountain) {
                     fountainList[temp++] = (Fountain) map.map[i][j];
                 }
@@ -48,15 +49,15 @@ public class Game {
         }
     }
 
-    public void changeRound() {//交換回合，待新增泉與城後做修正
+    public void ChangeRound() {//交換回合，待新增泉與城後做修正
         System.out.println("ChangeRound");
         player1.myRound = !player1.myRound;
         player2.myRound = !player2.myRound;
 
-        for (int i = 0; i < GM.map.length ; i++) {
+        for (int i = 0; i < GM.map.length; i++) {
             for (int j = 0; j < GM.map[i].length; j++) {
 
-                if (GM.map[i][j] != null && GM.map[i][j].chess != null && GM.map[i][j].chess.team !=null) {
+                if (GM.map[i][j] != null && GM.map[i][j].chess != null && GM.map[i][j].chess.team != null) {
                     GM.map[i][j].chess.setClickAvail(GM.map[i][j].chess.team.myRound);
                 }
             }
@@ -71,7 +72,7 @@ public class Game {
 
         /* fountain 提供雙方額外技能點和移動步數 */
         {
-            int fountainOccupy_player1=0 , fountainOccupy_player2=0;
+            int fountainOccupy_player1 = 0, fountainOccupy_player2 = 0;
             for (int i = 0; i < fountainList.length; i++) {
                 if (fountainList[i].player == player1) {
                     fountainOccupy_player1++;
@@ -82,20 +83,21 @@ public class Game {
             }
             player1.skillPoint += fountainOccupy_player1;
             player2.skillPoint += fountainOccupy_player2;
-            if(fountainOccupy_player1 >= 4){
-                player1.movePoint ++;
+            if (fountainOccupy_player1 >= 4) {
+                player1.movePoint++;
             }
-            if(fountainOccupy_player2 >= 4){
-                player2.movePoint ++;
+            if (fountainOccupy_player2 >= 4) {
+                player2.movePoint++;
             }
         }
         /* 缺換底色 */
-        if(whoseRound() == player1) {
+        if (whoseRound() == player1) {
             GM.lowestLayout.setBackgroundColor(Color.parseColor("#ff33b5e5")); //blue player backgound (holo_blue_light)
 
         }
-        if(whoseRound() == player2) {
-            GM.lowestLayout.setBackgroundColor(Color.parseColor("#ffff4444"));//red player backgound (holo_blue_light)
+        if (whoseRound() == player2) {
+            GM.lowestLayout.setBackgroundColor(Color.parseColor("#ffff4444"));  //red player backgound (holo_red_light)
+            
         }
         //reset timer
         NewGame.customTimer.stopTimer();
@@ -109,9 +111,9 @@ public class Game {
 
     /**
      * return true if any chess die
+     *
      * @return
      */
-
     public boolean checkAllDeath() {
         int count = 0;
         boolean flag = false;
@@ -151,16 +153,15 @@ public class Game {
     }
 
 
-
-    public Player whoseRound() {//找出當回合玩家的方法
+    static public Player whoseRound() {//找出當回合玩家的方法
         Player playerNow;
-        if (this.player1.myRound == true)
+        if (player1.myRound == true)
             playerNow = player1;
         else
             playerNow = player2;
 
-        if(playerNow == null){
-            Log.i("Game.whoseRound","null return 117");
+        if (playerNow == null) {
+            Log.i("Game.whoseRound", "null return 117");
         }
         return playerNow;
     }
@@ -194,15 +195,15 @@ public class Game {
         try {
             fos = context.openFileOutput("save.txt", Context.MODE_PRIVATE);
             fos.write(save.getBytes());
-            System.out.println("save file to: "+context.getFilesDir());
+            System.out.println("save file to: " + context.getFilesDir());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             System.out.println("save file not found error");
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("save other error");
-        }finally {
-            if(fos!=null){
+        } finally {
+            if (fos != null) {
                 fos.close();
             }
         }
@@ -227,14 +228,14 @@ public class Game {
         } catch (IOException e) {
             // Error occurred when opening raw file for reading.
         } finally {
-            if(fis !=null) {
+            if (fis != null) {
                 contents = stringBuilder.toString();
                 System.out.println(contents);
                 fis.close();
             }
 
         }
-        if(contents!=null){
+        if (contents != null) {
             String[] all_info = contents.split("=");
             //load player information
             String[] temp_info = all_info[0].split(",");
@@ -247,20 +248,20 @@ public class Game {
             player2.movePoint = Short.parseShort(p2_info[1]);
             player2.skillPoint = Short.parseShort(p2_info[2]);
             //load whoseRound
-            if(all_info[1].equals(player1.ID)){
+            if (all_info[1].equals(player1.ID)) {
                 player1.myRound = true;
                 player2.myRound = false;
-            }else if(all_info[1]==player2.ID){
+            } else if (all_info[1] == player2.ID) {
                 player1.myRound = false;
                 player2.myRound = true;
-            }else{
+            } else {
                 System.out.println("load whoseRound error");
             }
             //load map information
-            if(all_info.length<3){
-                Toast toast = Toast.makeText(context,"no saved map",Toast.LENGTH_SHORT);
+            if (all_info.length < 3) {
+                Toast toast = Toast.makeText(context, "no saved map", Toast.LENGTH_SHORT);
                 toast.show();
-            }else {
+            } else {
                 temp_info = all_info[2].split(",");
                 for (int i = 0; i < temp_info.length; i++) {
                     String[] block_info = temp_info[i].split(":");
@@ -335,7 +336,7 @@ public class Game {
 
                 }
             }
-        }else{
+        } else {
             System.out.println("save no contents");
         }
 

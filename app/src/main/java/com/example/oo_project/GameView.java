@@ -37,6 +37,7 @@ public class GameView {
         FrameLayout layout = (FrameLayout) chess.positionBlock.getParent();
         layout.removeView(chess);
     }
+
     public static void chessView_Red(Chess chess) {
         FrameLayout.LayoutParams chessParams = (FrameLayout.LayoutParams) chess.positionBlock.getLayoutParams();
         chess.setLayoutParams(chessParams);
@@ -187,8 +188,6 @@ public class GameView {
     public static void changePage(){
         masterView.removeView(View2);
         masterView.addView(View1);
-//        Text.timer.setTimer(Text.PlayChess.timer);
-//        Text.timer.startTimer();
         //start timer
         NewGame.customTimer.startTimer();
     }

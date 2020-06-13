@@ -22,10 +22,19 @@ public class setting extends AppCompatActivity {
         surrender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(setting.this, red_win.class);
-                startActivity(intent);
+                //stop music
+                FullscreenActivity.BGMusic.stop();
+                //blue wins
+                if (Game.whoseRound() == Game.player1) {
+                    Intent intent = new Intent(setting.this, red_win.class);
+                    startActivity(intent);
+                } else if (Game.whoseRound() == Game.player2) {
+                    Intent intent = new Intent(setting.this, blue_win.class);
+                    startActivity(intent);
+                }
             }
         });
+
         //儲存遊戲 按鍵
         Button SaveGame = (Button) findViewById(R.id.saveGame);
         SaveGame.setOnClickListener(new View.OnClickListener() {
@@ -35,6 +44,7 @@ public class setting extends AppCompatActivity {
 
             }
         });
+
         //返回遊戲 按鍵
         Button backgame = (Button) findViewById(R.id.backgame);
         backgame.setOnClickListener(new View.OnClickListener() {
