@@ -114,6 +114,7 @@ public class GameController {
             clickBlock = null;
             request = 0;
             System.out.println("change to initial");
+            Text.PlayChess.messageBlock.setText("請選取棋子");
             Text.PlayChess.messageBlock.setText(Text.PlayChess.clickChess);
         } else if (state == skillState) {
             System.out.println("change to skillState");
