@@ -5,14 +5,12 @@ import android.content.Context;
 import android.os.SystemClock;
 
 public class Horse extends Chess {
-    public boolean canBePush = true;
-    protected int deathNum = 3;
 
     String chessName = "馬";
 
     Horse(Context context, String name, Player team, Block positionBlock) {
         super(context, name, 1, team, positionBlock, true);
-        super.deathNum = 3;
+        deathNum = 3;
     }
 
     Horse(Context context, Player team, Block positionBlock) {
@@ -35,6 +33,7 @@ public class Horse extends Chess {
             Block temp = targetChess.positionBlock;
             targetChess.positionBlock = positionBlock;
             positionBlock = temp;
+            team.skillPoint--;
             return reInitial;
         } else {
             Block[] dest = new Block[2];
@@ -70,6 +69,7 @@ public class Horse extends Chess {
                         targetChess.positionBlock = dest[i];
                     }
                 }
+                team.skillPoint--;
                 return reInitial;
             } else {
                 return 0;

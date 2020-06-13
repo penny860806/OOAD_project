@@ -173,6 +173,9 @@ public class GameController {
                     Text.PlayChess.messageBlock.setText("移動點數用完");
                     changeState(initial);
                 }
+                else if(clickChess instanceof Spy){
+                    Text.PlayChess.messageBlock.setText("間諜不能靠技能移動，請選擇技能或取消選取");
+                }
                 else {
                     Text.PlayChess.messageBlock.setText("移動棋子: "+Text.PlayChess.clickBlockAround);
                     changeState(moveState);

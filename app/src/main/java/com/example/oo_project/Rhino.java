@@ -7,13 +7,12 @@ import android.util.Log;
 
 public class Rhino extends Chess {
     public boolean canBePush = true;
-    protected int deathNum = 3;
 
     String chessName = "犀牛";
 
     Rhino(Context context, String name, Player team, Block positionBlock) {
         super(context, name, 1, team, positionBlock, true);
-        super.deathNum = 5;
+        deathNum = 5;
     }
 
     Rhino(Context context, Player team, Block positionBlock) {
@@ -55,6 +54,7 @@ public class Rhino extends Chess {
                 break;
             }
         }
+        team.skillPoint--;
         return Chess.reInitial;
     }
 
