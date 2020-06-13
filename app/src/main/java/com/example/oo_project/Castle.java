@@ -10,8 +10,8 @@ public class Castle extends Block {
         super(context);
         this.setImageResource(R.drawable.castle);
     }
-    public boolean checkCanEnter(Chess chess){
-        if(chess.chessName=="rock"||chess.chessName=="spy"){
+    public static boolean checkCanEnter(Chess chess){
+        if(chess instanceof Rock||chess instanceof Spy){
             return false;
         }else{
             return true;

@@ -21,15 +21,23 @@ public class Spy extends Chess {
 
     @Override
     public int skill(Block targetBlock) {
+        if(targetBlock instanceof Fountain && !Fountain.checkCanEnter(this)){
+            Text.PlayChess.messageBlock.setText("這個棋子不能進入泉，請選擇另一個格子");
+            return reBlockClick;
+        }
+        if(targetBlock instanceof Castle && !Castle.checkCanEnter(this)){
+            Text.PlayChess.messageBlock.setText("這個棋子不能進入城，請選擇另一個格子");
+            return reBlockClick;
+        }
         if (moveChess(targetBlock)) {
             step --;
             if (step == 0) {
                 step = 4;
-                team.skillPoint-=2;
+
                 return reInitial;
             }
-            Text.PlayChess.messageBlock.setText("間諜技能:剩餘"+Integer.toString(step)+"步");
-
+            Text.PlayChess.messageBlock.setText("間諜技能:剩餘"+Integer.toString(step)+"步(按取消選取終止移動)");
+            team.skillPoint-=2;
             return reBlockClick;
         } else {
             Text.PlayChess.messageBlock.setText(Text.PlayChess.notAvailTarget);
