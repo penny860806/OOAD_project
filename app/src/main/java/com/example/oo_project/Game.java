@@ -419,18 +419,18 @@ public class Game {
 
     }
 
-    public void blueWin(){//藍方勝利
+    public static void blueWin(){//藍方勝利
         Log.i("game","blueWin");
         Text.PlayChess.messageBlock.setText("藍方勝利");
         NewGame.EndGAME(2);
 
     }
-    public void redWin(){//紅方勝利
+    public static void redWin(){//紅方勝利
         Log.i("game","redWin");
         Text.PlayChess.messageBlock.setText("紅方勝利");
         NewGame.EndGAME(1);
     }
-    public void tie(){//平手
+    public static void tie(){//平手
         Text.PlayChess.messageBlock.setText("雙方平手");
         NewGame.EndGAME(3);
     }
