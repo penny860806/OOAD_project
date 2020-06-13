@@ -12,10 +12,11 @@ public class Horse extends Chess {
 
     Horse(Context context, String name, Player team, Block positionBlock) {
         super(context, name, 1, team, positionBlock, true);
+        super.deathNum = 3;
     }
 
     Horse(Context context, Player team, Block positionBlock) {
-        super(context, "horse", 1, team, positionBlock, true);
+        this(context, "horse",  team, positionBlock);
     }
 
     public boolean Death(int x, int y, String team) {

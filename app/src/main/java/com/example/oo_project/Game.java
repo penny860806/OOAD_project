@@ -2,6 +2,7 @@ package com.example.oo_project;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.util.Log;
@@ -27,9 +28,8 @@ import java.nio.charset.StandardCharsets;
 
 public class Game {
     public Fountain[] fountainList = new Fountain[6];
-    int step = 1;
-    int deathChess = 0;
-    Player player1, player2;
+    public Castle castle;
+    static Player player1, player2;
 
     GameMap GM;
     final public static int TransferTowerId = 0, RhinoId = 1, RockId = 2, ClipId = 3, HerculesId = 4, JetId = 5, HorseId = 6, SpyId = 7;
@@ -38,18 +38,22 @@ public class Game {
         GM = map;
         player1 = new Player(true, "blue");//讓玩家1先手
         player2 = new Player(false, "red");//玩家2後手
-
+        CustomTimer.game = this;
         int temp = 0;
         for (int i = 0; i < map.map.length; i++) {
             for (int j = 0; j < map.map[i].length; j++) {
                 if (GM.map[i][j] != null && map.map[i][j] instanceof Fountain) {
                     fountainList[temp++] = (Fountain) map.map[i][j];
                 }
+                if (GM.map[i][j] != null && map.map[i][j] instanceof Castle) {
+                    castle = (Castle)map.map[i][j];
+                }
+
             }
         }
     }
 
-    public void ChangeRound() {//交換回合，待新增泉與城後做修正
+    public void changeRound() {//交換回合，待新增泉與城後做修正
         System.out.println("ChangeRound");
         player1.myRound = !player1.myRound;
         player2.myRound = !player2.myRound;
@@ -99,11 +103,40 @@ public class Game {
             GM.lowestLayout.setBackgroundColor(Color.parseColor("#ffff4444"));  //red player backgound (holo_red_light)
             
         }
-        //reset timer
-        NewGame.customTimer.stopTimer();
-        NewGame.customTimer.timeLeftMS = 30000;
-        NewGame.customTimer.startTimer();
 
+
+        /* 判斷勝利 */
+        /* 城 */
+        boolean player1Win = false , player2Win = false;
+        if(castle.chess != null){
+            castle.setOccupiedRound(castle.getOccupiedRound()+1);
+            if(castle.getOccupiedRound() >= 3){
+                if(castle.player == player1){
+                    player1Win = true;
+                }
+                else if(castle.player == player2){
+                    player2Win = true;
+                }
+            }
+        }
+
+        /* 棋子數小於五 */
+        if(player1.chessNum <= 5){
+            player2Win = true;
+        }
+        else if(player2.chessNum <= 5){
+            player1Win = true;
+        }
+
+        if(player1Win && !player2Win){
+            blueWin();
+        }
+        else if(player2Win && !player1Win){
+            redWin();
+        }
+        else if (player1Win && player2Win){
+            tie();
+        }
         System.out.println("Change Round complete. whose round:" + whoseRound().ID);
         GameController.movementFinish();
 
@@ -121,30 +154,55 @@ public class Game {
             for (int j = 0; j < GM.map[i].length - 1; j++) {
                 if (GM.map[i][j] != null) {
                     Chess chess = GM.map[i][j].chess;
-                    if (chess != null && chess.team != null) {
+                    if(chess instanceof TransferTower){
+                        boolean temp = true;
+                        for (int k = 0; k < 6; k++) {
+                            Chess nei_chess = chess.positionBlock.getNeighbor(k).chess;
+                            if (nei_chess != null && nei_chess.team != null && (chess.team==nei_chess.team)) { // 有隊友
+                                temp = false;
+                                break;
+                            }
+                        }
+                        if(temp == true) {
+                            chess.ImDead = true;
+                            flag = true;
+                        }
+                    }
+                    // normal case
+                    else if (chess != null && chess.team != null) {
                         for (int k = 0; k < 6; k++) {
                             Chess nei_chess = chess.positionBlock.getNeighbor(k).chess;
                             if (nei_chess != null && nei_chess.team != null) {
-                                if (chess.deathTeam){
-                                    if(chess.team==nei_chess.team){
-                                        count++;
-                                        flag = true;
-                                    }
-                                }else{
-                                    if(chess.team!=nei_chess.team){
-                                        count++;
-                                        flag = true;
-                                    }
+                                if (chess.deathTeam && (chess.team==nei_chess.team)){
+                                    count++;
+                                }
+                                else if(!chess.deathTeam && (chess.team!=nei_chess.team)){
+                                    count++;
                                 }
                             }
                         }
                         if (count >= chess.deathNum) {
-                            chess.positionBlock.chess = null;
-                            chess.positionBlock.player = null;
-                            GameView.removeChess_View(chess);
+                            chess.ImDead = true;
                             flag = true;
                         }
                         count = 0;
+                    }
+                }
+            }
+        }
+        if(flag == true) {
+            for (int i = 0; i < GM.map.length - 1; i++) {
+                for (int j = 0; j < GM.map[i].length - 1; j++) {
+                    if (GM.map[i][j] != null) {
+                        Chess chess = GM.map[i][j].chess;
+                        if (chess != null && chess.team != null) {
+                            if (chess.ImDead == true) {
+                                chess.team.chessNum--;
+                                chess.positionBlock.chess = null;
+                                chess.positionBlock.player = null;
+                                GameView.removeChess_View(chess);
+                            }
+                        }
                     }
                 }
             }
@@ -153,9 +211,9 @@ public class Game {
     }
 
 
-    public Player whoseRound() {//找出當回合玩家的方法
+    static public Player whoseRound() {//找出當回合玩家的方法
         Player playerNow;
-        if (this.player1.myRound == true)
+        if (player1.myRound == true)
             playerNow = player1;
         else
             playerNow = player2;
@@ -354,5 +412,14 @@ public class Game {
 
     }
 
+    public void blueWin(){//藍方勝利
+        Text.PlayChess.messageBlock.setText("藍方勝利");
+    }
+    public void redWin(){//紅方勝利
+        Text.PlayChess.messageBlock.setText("紅方勝利");
+    }
+    public void tie(){//平手
+        Text.PlayChess.messageBlock.setText("雙方平手");
+    }
 
 }

@@ -14,7 +14,7 @@ public class GameController {
      * 3: skill state
      */
 
-    private final static int initial = 0, chessMenu = 1, moveState = 2, skillState = 3 , putChessState = 4;
+    final static int initial = 0, chessMenu = 1, moveState = 2, skillState = 3 , putChessState = 4;
     final static int noButton = 0,skillButton = 1, moveButton = 2, cancelButton = 3, endRoundButton = 4;
     private final static int nothingL=0, buttonL = 1,blockL = 2, chessL = 3 ,chess2L = 4;
     private static int state = putChessState;
@@ -76,7 +76,7 @@ public class GameController {
         if(b == endRoundButton){
 
             Log.i("setButton","endRound");
-            game.ChangeRound();
+            game.changeRound();
             changeState(initial);
         }
 
@@ -104,7 +104,7 @@ public class GameController {
         return game;
     }
 
-    private static void changeState(int choice) {
+    public static void changeState(int choice) {
         state = choice;
         if(state == moveState){
             listenFor= blockL;
@@ -260,6 +260,12 @@ public class GameController {
      * check every chess death
      */
     static void movementFinish(){
+        Log.i("movementFinish" , "inside");
+        if(game.castle.chess != game.castle.chessLast){
+            game.castle.setOccupiedRound(0);
+            game.castle.chessLast = game.castle.chess;
+        }
+
         Text.PlayChess.skillPoint_blue.setText(Integer.toString(game.player1.skillPoint));
         Text.PlayChess.movePoint_blue.setText(Integer.toString(game.player1.movePoint));
         Text.PlayChess.skillPoint_red.setText(Integer.toString(game.player2.skillPoint));

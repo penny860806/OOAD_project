@@ -16,11 +16,13 @@ public class Hercules extends Chess {
         super(context, name, 1, team, positionBlock, true);
         targetBlock = null;
         targetChess = null;
+        super.deathNum=4;
+
 
     }
 
     Hercules(Context context, Player team, Block positionBlock) {
-        super(context, "hercules", 1, team, positionBlock, true);
+        this(context, "hercules",  team, positionBlock);
     }
 
     public boolean Death(int x, int y, Player team) {

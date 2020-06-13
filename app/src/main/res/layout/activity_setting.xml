@@ -26,9 +26,9 @@
 
             <ToggleButton
                 android:id="@+id/bgmusic"
-                android:layout_width="169dp"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:background="@color/holo_red_light"
+                android:background="@color/holo_green_light"
                 android:textOff="turn off"
                 android:textOn="turn on"
                 android:textSize="30dp"
@@ -38,25 +38,37 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/moveFunction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp">
 
             <Button
+                android:id="@+id/surrender"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:text="@string/surrender"
+                android:textSize="30dp"></Button>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <Button
                 android:id="@+id/backgame"
-                android:layout_width="wrap_content"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:text="@string/backtogame"
                 android:textSize="30sp"></Button>
 
-            <Button
-                android:id="@+id/surrender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30sp"
-                android:text="@string/surrender"
-                android:textSize="30dp"></Button>
+
         </LinearLayout>
+
+
+
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

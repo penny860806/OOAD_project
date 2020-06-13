@@ -91,7 +91,6 @@ public class GameMap {
                     btn = new Fountain(secondLayout.getContext());//產生泉
                 }else if(i==length-1&&j==length-1){
                     btn = new Castle(secondLayout.getContext());//產生城
-                    Castle.theCastle = (Castle) btn;
                 }else {
                     btn = new Block(secondLayout.getContext()); //產生normal block
                     btn.setImageResource(R.drawable.block);

@@ -11,10 +11,11 @@ public class Rock extends Chess {
 
     Rock(Context context, String name, Player team, Block positionBlock) {
         super(context, name, 1, team, positionBlock, false);
+        super.deathNum = 4;
     }
 
     Rock(Context context, Player team, Block positionBlock) {
-        super(context, "rock", 1, team, positionBlock, false);
+        this(context, "rock",  team, positionBlock );
     }
 
 

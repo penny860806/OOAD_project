@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.ToggleButton;
 
 public class setting extends AppCompatActivity {
@@ -17,15 +18,28 @@ public class setting extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
+        LinearLayout move_function = (LinearLayout) findViewById(R.id.moveFunction);
+        //放棋階段不能按投降，不能儲存
+        if(GameController.getState()==GameController.putChessState){
+            move_function.setVisibility(View.INVISIBLE);
+        }
+        else{
+            move_function.setVisibility(View.VISIBLE);
+        }
+
         //投降 按鍵
         Button surrender = (Button) findViewById(R.id.surrender);
         surrender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(setting.this, red_win.class);
+                //stop music
+                FullscreenActivity.BGMusic.stop();
+                //blue wins
+                Intent intent = new Intent(setting.this, endGame.class);
                 startActivity(intent);
             }
         });
+
 
         //返回遊戲 按鍵
         Button backgame = (Button) findViewById(R.id.backgame);
@@ -33,7 +47,8 @@ public class setting extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //開始計時
-                NewGame.customTimer.toggleTimer();
+                NewGame.playChessTimer.toggleTimer();
+                NewGame.putChessTimer.toggleTimer();
                 //結束設定畫面，返回遊戲畫面
                 finish();
             }
@@ -41,15 +56,26 @@ public class setting extends AppCompatActivity {
 
         //音樂開關
         final ToggleButton bgmusic = (ToggleButton) findViewById(R.id.bgmusic);
+        if(FullscreenActivity.isPlaying==true){
+            bgmusic.setChecked(false);
+            bgmusic.setBackgroundColor(Color.RED);
+        }
+        else{
+            bgmusic.setChecked(true);
+            bgmusic.setBackgroundColor(Color.GREEN);
+        }
+
         bgmusic.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     // The toggle is enabled
                     FullscreenActivity.BGMusic.pause();
+                    FullscreenActivity.isPlaying=false;
                     bgmusic.setBackgroundColor(Color.GREEN);
                 } else {
                     // The toggle is disabled
                     FullscreenActivity.BGMusic.start();
+                    FullscreenActivity.isPlaying=true;
                     bgmusic.setBackgroundColor(Color.RED);
                 }
             }

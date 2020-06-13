@@ -4,7 +4,6 @@ import android.content.Context;
 
 public class Castle extends Block {
     private int occupied_round = 0;
-    static Castle theCastle ;
     Chess chessLast;
 
     public Castle(Context context) {
