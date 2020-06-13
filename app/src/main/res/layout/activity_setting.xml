@@ -28,7 +28,7 @@
                 android:id="@+id/bgmusic"
                 android:layout_width="169dp"
                 android:layout_height="wrap_content"
-                android:background="@color/holo_red_light"
+                android:background="@color/holo_green_light"
                 android:textOff="turn off"
                 android:textOn="turn on"
                 android:textSize="30dp"

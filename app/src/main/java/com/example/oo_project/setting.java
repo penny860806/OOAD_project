@@ -59,15 +59,26 @@ public class setting extends AppCompatActivity {
 
         //音樂開關
         final ToggleButton bgmusic = (ToggleButton) findViewById(R.id.bgmusic);
+        if(FullscreenActivity.isPlaying==true){
+            bgmusic.setChecked(false);
+            bgmusic.setBackgroundColor(Color.RED);
+        }
+        else{
+            bgmusic.setChecked(true);
+            bgmusic.setBackgroundColor(Color.GREEN);
+        }
+
         bgmusic.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     // The toggle is enabled
                     FullscreenActivity.BGMusic.pause();
+                    FullscreenActivity.isPlaying=false;
                     bgmusic.setBackgroundColor(Color.GREEN);
                 } else {
                     // The toggle is disabled
                     FullscreenActivity.BGMusic.start();
+                    FullscreenActivity.isPlaying=true;
                     bgmusic.setBackgroundColor(Color.RED);
                 }
             }
