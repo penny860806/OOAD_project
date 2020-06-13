@@ -66,7 +66,12 @@ public class PutChess extends AppCompatActivity {
 
         //check the selected block is illegal
         {
-            if(selectedChessId == Game.SpyId  ){
+            if(block instanceof Fountain){
+                Text.PutChess.messageBlock.setText(Text.PutChess.notAvailableBlockOnFountain);
+                return 0;
+            }
+
+            else if(selectedChessId == Game.SpyId  ){
                 if(block.y == 5) {
                     Text.PutChess.messageBlock.setText(Text.PutChess.notAvailableBlockSpy);
                     return 0;
@@ -78,10 +83,6 @@ public class PutChess extends AppCompatActivity {
             }
             else if(playerNow == game.player2 && block.y>=5 ) {
                 Text.PutChess.messageBlock.setText(Text.PutChess.notAvailableBlock_red);
-                return 0;
-            }
-            else if(block instanceof Fountain){
-                Text.PutChess.messageBlock.setText(Text.PutChess.notAvailableBlockOnFountain);
                 return 0;
             }
         }
