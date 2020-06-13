@@ -226,15 +226,17 @@ public class Game {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void saveGame(Context context) throws JSONException, IOException {
-        //紀錄whoseRound、Map、ControllerState
+        //"playerInfo=whoseRound=occupiedCastle=mapInfo
 
         String save = "";
         //save player info : playerID, movePoint, skillPoint, whoseRound
         save = save + player1.ID + ":" + player1.movePoint + ":"
-                + player1.skillPoint + ",";
+                + player1.skillPoint + ":" + player1.chessNum +",";
         save = save + player2.ID + ":" + player2.movePoint + ":"
-                + player2.skillPoint;
+                + player2.skillPoint + ":" + player2.chessNum;
         save += "=" + whoseRound().ID + "=";
+        Castle castle = (Castle)GM.map[GM.getLength()-1][GM.getLength()-1];
+        save += castle.getOccupiedRound() + "=";
 
         //save map info
         for (Block[] array : GM.map) {
@@ -302,9 +304,11 @@ public class Game {
             player1.ID = p1_info[0];
             player1.movePoint = Short.parseShort(p1_info[1]);
             player1.skillPoint = Short.parseShort(p1_info[2]);
+            player1.chessNum = Integer.parseInt(p1_info[3]);
             player2.ID = p2_info[0];
             player2.movePoint = Short.parseShort(p2_info[1]);
             player2.skillPoint = Short.parseShort(p2_info[2]);
+            player2.chessNum = Integer.parseInt(p2_info[3]);
             //load whoseRound
             if (all_info[1].equals(player1.ID)) {
                 player1.myRound = true;
@@ -315,12 +319,15 @@ public class Game {
             } else {
                 System.out.println("load whoseRound error");
             }
+            //load castle's occupied_round
+            Castle castle = (Castle)GM.map[GM.getLength()-1][GM.getLength()-1];
+            castle.setOccupiedRound(Integer.parseInt(all_info[2]));
             //load map information
             if (all_info.length < 3) {
                 Toast toast = Toast.makeText(context, "no saved map", Toast.LENGTH_SHORT);
                 toast.show();
             } else {
-                temp_info = all_info[2].split(",");
+                temp_info = all_info[3].split(",");
                 for (int i = 0; i < temp_info.length; i++) {
                     String[] block_info = temp_info[i].split(":");
                     int x = Integer.parseInt(block_info[0]), y = Integer.parseInt(block_info[1]);

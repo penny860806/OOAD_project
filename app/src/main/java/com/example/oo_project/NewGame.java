@@ -351,6 +351,8 @@ public class NewGame extends AppCompatActivity {
                 }
             }
             //change state
+            GameController.changeState(0);
+            GameView.changePage();
         }else{
             //error
         }
@@ -397,6 +399,6 @@ public class NewGame extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        customTimer.stopTimer();
+        playChessTimer.stopTimer();
     }
 }
