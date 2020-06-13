@@ -8,6 +8,7 @@ public class Player {
     short skillPoint = 3;
     static final short baseMovePoint = 1;
     static final short baseSkillPoint = 3;
+    int chessNum = 0;
 
     public void countMove(short move) {
         this.movePoint = move;

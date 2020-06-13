@@ -10,10 +10,12 @@ public class Clip extends Chess {
 
     Clip(Context context, String name, Player team, Block positionBlock) {
         super(context, name, 2, team, positionBlock, true);
+        super.deathNum = 4;
+
     }
 
     Clip(Context context, Player team, Block positionBlock) {
-        super(context, "clip", 2, team, positionBlock, true);
+        this(context, "clip",  team, positionBlock);
     }
 
     @Override

@@ -13,10 +13,11 @@ public class Rhino extends Chess {
 
     Rhino(Context context, String name, Player team, Block positionBlock) {
         super(context, name, 1, team, positionBlock, true);
+        super.deathNum = 5;
     }
 
     Rhino(Context context, Player team, Block positionBlock) {
-        super(context, "rhino", 1, team, positionBlock, true);
+        this(context, "rhino", team, positionBlock);
     }
 
     @Override

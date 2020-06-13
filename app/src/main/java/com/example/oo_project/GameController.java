@@ -257,6 +257,12 @@ public class GameController {
      * check every chess death
      */
     static void movementFinish(){
+        Log.i("movementFinish" , "inside");
+        if(game.castle.chess != game.castle.chessLast){
+            game.castle.setOccupiedRound(0);
+            game.castle.chessLast = game.castle.chess;
+        }
+
         Text.PlayChess.skillPoint_blue.setText(Integer.toString(game.player1.skillPoint));
         Text.PlayChess.movePoint_blue.setText(Integer.toString(game.player1.movePoint));
         Text.PlayChess.skillPoint_red.setText(Integer.toString(game.player2.skillPoint));

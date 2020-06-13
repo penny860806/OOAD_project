@@ -19,7 +19,7 @@ public class PutChess extends AppCompatActivity {
     static TextView[] chessText ;
     static int chessRemain = 1, round = 1;
     static Player playerNow;
-    final static int lastRound = 2;
+    final static int lastRound = 3;
     private static int[][] chessAmount;
 
     public PutChess(Game game, NewGame newGame) {
@@ -91,7 +91,7 @@ public class PutChess extends AppCompatActivity {
             if (selectedChessId == game.TransferTowerId) {
                 chess = new TransferTower(newGame, playerNow, block);
                 GameView.chessView_TransferTower(chess);
-                chessRemain--;
+
             } else if (selectedChessId == game.RhinoId) {
                 chess = new Rhino(newGame, playerNow, block);
                 GameView.chessView_Rhino(chess);
@@ -128,6 +128,8 @@ public class PutChess extends AppCompatActivity {
             else {
                 chessAmount[1][selectedChessId]--;
             }
+            playerNow.chessNum++;
+            chessRemain--;
         }
         else{
             Text.PutChess.messageBlock.setText(Text.PutChess.runOutChess);

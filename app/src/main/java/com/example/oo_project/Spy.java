@@ -11,11 +11,13 @@ public class Spy extends Chess {
 
     Spy(Context context, String name, Player team, Block positionBlock) {
         super(context, name, 4, team, positionBlock, true);
+        this.deathTeam = true;
+        this.deathNum = 2;
     }
 
     Spy(Context context, Player team, Block positionBlock) {
-        super(context, "spy", 4, team, positionBlock, true);
-        this.deathTeam = true;
+        this(context, "spy",  team, positionBlock);
+
     }
 
     @Override
