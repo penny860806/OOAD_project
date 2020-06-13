@@ -24,7 +24,7 @@ public class Horse extends Chess {
     }
 
     public int skill(Chess targetChess) {
-        if (targetChess == this) {
+        if (targetChess == this || targetChess instanceof Rock) {
             Text.PlayChess.messageBlock.setText(Text.PlayChess.notAvailTarget);
             return reChessClick;
         } else if (targetChess.team != this.team) {

@@ -140,7 +140,7 @@ class PlayChessTimer extends CustomTimer{
                 //reset
 
                 //change round
-                Log.i("timer","putChessTimer end");
+                Log.i("timer","playChessTimer end");
 
                 game.changeRound();
 
