@@ -19,10 +19,6 @@ public class Horse extends Chess {
         this(context, "horse",  team, positionBlock);
     }
 
-    public boolean Death(int x, int y, String team) {
-
-        return false;
-    }
 
     public void setPosition(Block block, Player setTeam) {
         positionBlock = block;
@@ -31,14 +27,15 @@ public class Horse extends Chess {
 
     public int skill(Chess targetChess) {
         if (targetChess == this) {
-            return 0;
+            Text.PlayChess.messageBlock.setText(Text.PlayChess.notAvailTarget);
+            return reChessClick;
         } else if (targetChess.team != this.team) {
             positionBlock.swap(targetChess.positionBlock);
             GameView.changeChess_View(this, targetChess);
             Block temp = targetChess.positionBlock;
             targetChess.positionBlock = positionBlock;
             positionBlock = temp;
-            return 3;
+            return reInitial;
         } else {
             Block[] dest = new Block[2];
             Block temp;
@@ -54,8 +51,18 @@ public class Horse extends Chess {
                                 dest[1] = temp;
                             }
                         }
-                    } else return 0;
-                } else return 0;
+                    } else {
+                        Text.PlayChess.messageBlock.setText(Text.PlayChess.notAvailTarget);
+
+
+                        return reChessClick;
+                    }
+                } else {
+                    Text.PlayChess.messageBlock.setText(Text.PlayChess.notAvailTarget);
+
+                    return reChessClick;
+                }
+
                 for (int i = 0; i < 2; i++) {
                     if (dest[i] != null) {
                         targetChess.positionBlock.swap(dest[i]);
@@ -63,14 +70,17 @@ public class Horse extends Chess {
                         targetChess.positionBlock = dest[i];
                     }
                 }
-                return 3;
-            } else return 0;
+                return reInitial;
+            } else {
+                return 0;
+            }
 
         }
     }
 
     public int skill() {
-        return 1;
+        Text.PlayChess.messageBlock.setText(Text.PlayChess.clickChessAround);
+        return reChessClick;
     }
 
     public int isNeighbor(Block block) {

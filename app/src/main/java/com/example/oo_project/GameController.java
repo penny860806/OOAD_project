@@ -125,6 +125,7 @@ public class GameController {
         }
     }
 
+
     static int request = 0;
     public static void commonHandler() {
         Log.i("GameController", "commonHandler");
@@ -160,9 +161,11 @@ public class GameController {
                 commonHandler();
             } else if (clickButton == moveButton) {
                 if(game.whoseRound().movePoint <= 0){
+                    Text.PlayChess.messageBlock.setText("移動點數用完");
                     changeState(initial);
                 }
                 else {
+                    Text.PlayChess.messageBlock.setText("移動棋子: "+Text.PlayChess.clickBlockAround);
                     changeState(moveState);
                 }
             }
@@ -216,7 +219,6 @@ public class GameController {
 
         else if(state== moveState) {
             System.out.println("state moveState");
-
             if (clickChess != null && clickBlock != null) {
                 moveHandler();
             } else {
@@ -235,7 +237,6 @@ public class GameController {
     private static boolean moveHandler() {
 
        Log.i("moveHandler","moveHandler");
-
         boolean ret = clickChess.moveChess(clickBlock);
         game.checkAllDeath();
         if (ret) {

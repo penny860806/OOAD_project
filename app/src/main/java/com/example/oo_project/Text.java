@@ -6,6 +6,7 @@ public class Text {
     public static class PutChess {
         static TextView chessNameBlock, messageBlock;
         static TextView timer;
+        static TextView round;
         static final String TransferTower =
                 "-死亡條件：周圍沒有友軍時死亡\n" +
                         "-移動距離：1\n" +
@@ -91,7 +92,7 @@ public class Text {
                         "將周圍所有人外推一格(連同與被推棋子同一直線且相連的目標)，施放完技能後可額外移動一次\n";
         static final String Rhino =
                 "-死亡條件：周圍5名敵軍時死亡\n" +
-                        "-移動距離：2\n" +
+                        "-移動距離：1\n" +
                         "-技能範圍：1\n" +
                         "-技能耗點：1\n" +
                         "-技能說明：\n" +
@@ -105,7 +106,7 @@ public class Text {
                         "無法被任何技能控制或移動\n";
         static final String Clip =
                 "-死亡條件：周圍4名敵軍時死亡\n" +
-                        "-移動距離：2\n" +
+                        "-移動距離：1\n" +
                         "-技能範圍：1\n" +
                         "-技能耗點：1\n" +
                         "-技能說明：\n" +
@@ -136,13 +137,14 @@ public class Text {
         static final String clickBlock = "請點選一顆格子";
         static final String clickChess = "請點選一顆棋子";
         static final String clickChessAround = "請點選一顆該棋子周圍的棋子";
-        static final String clickBlockAround = "請點選一顆該格子周圍的棋子";
+        static final String clickBlockAround = "請點選一個該棋子周圍的格子";
         static final String notClickRock = "巨石不能被選為技能對象，請選擇另一顆有效棋子";
         static final String notClickSameTeam = "屬於你的棋子不能被選為技能對象，請選擇另一顆有效棋子";
         static final String notClickEnemyTeam = "對手的棋子不能被選為技能對象，請選擇另一顆有效棋子";
         static final String notClickChessOuter = "不屬於周圍的棋子不能被選為技能對象，請選擇另一顆有效棋子";
-        static final String notClickBlockOuter = "不屬於周圍的格子不能被選為技能對象，請選擇另一顆有效棋子";
-
+        static final String notClickBlockOuter = "不屬於周圍的格子不能被選為技能對象，請選擇另一顆有效格子";
+        static final String notClickEnemy = "敵對棋子不能被選為技能對象，請選擇另一顆有效棋子";
+        static final String notAvailTarget = "選取對象無效，請選擇另一個有效的對象";
         static void chessInfo(Chess chess) {
             if (chess instanceof TransferTower) {
                 chessNameBlock.setText("傳送塔");

@@ -21,6 +21,7 @@ public class Rock extends Chess {
 
     @Override
     public int skill() {
-        return 3;
+
+        return reInitial;
     }
 }

@@ -25,19 +25,6 @@ public class Hercules extends Chess {
         this(context, "hercules",  team, positionBlock);
     }
 
-    public boolean Death(int x, int y, Player team) {
-/*
-        if (myTeam == team) {
-            if (deathNum <= x) {
-                return true;
-            } else return false;
-        } else {
-            if (deathNum <= y)
-                return true;
-            else return false;
-        }*/
-        return true;
-    }
 
 
     /**
@@ -56,28 +43,39 @@ public class Hercules extends Chess {
     }
 
     public int skill() {
+        targetChess = null;
+        targetBlock = null;
         if (targetChess == null) {
-            return 1;
-        } else return 3;
+            Text.PlayChess.messageBlock.setText(Text.PlayChess.clickChessAround);
+            return reChessClick;
+        } else return reError;
     }
 
     public int skill(Chess targetChess) {
         if (targetBlock == null && targetChess != null && targetChess.team != this.team &&
-                this.isNeighbor(targetChess.positionBlock) >= 0) {
+            this.isNeighbor(targetChess.positionBlock) >= 0) {
             this.targetChess = targetChess;
-            return 2;
+            Text.PlayChess.messageBlock.setText(Text.PlayChess.clickBlockAround);
+
+            return reBlockClick;
         } else {
-            return 1
-                    ;
+            Text.PlayChess.messageBlock.setText(Text.PlayChess.notAvailTarget);
+            return reChessClick;
         }
     }
 
     public int skill(Block targetBlock) {
-        if (this.isNeighbor(targetBlock) >= 0 && targetBlock.player == null) {
-            this.skillrunner(targetChess, targetBlock);
+        if (isNeighbor(targetBlock) >= 0 && targetBlock.player == null) {
+            skillrunner(targetChess, targetBlock);
+            team.skillPoint--;
+            targetChess = null;
+
         }
-        this.targetChess = null;
-        return 3;
+        else {
+            Text.PlayChess.messageBlock.setText(Text.PlayChess.notAvailTarget);
+            return reBlockClick;
+        }
+        return reInitial;
     }
 
     public int isNeighbor(Block block) {

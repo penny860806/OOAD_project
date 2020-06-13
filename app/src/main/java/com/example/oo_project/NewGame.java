@@ -85,7 +85,7 @@ public class NewGame extends AppCompatActivity {
         Game test = new Game(GM);//測試地圖
         GameView gameView = new GameView(test);
         PutChess putChess = new PutChess(test, this);
-        GameController gameController = new GameController(test);
+        final GameController gameController = new GameController(test);
         Chess.setRequirement(test);
 
 
@@ -124,8 +124,12 @@ public class NewGame extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //暫停計時
-                putChessTimer.toggleTimer();
-                playChessTimer.toggleTimer();
+                if(gameController.getState() == gameController.putChessState) {
+                    putChessTimer.toggleTimer();
+                }
+                else {
+                    playChessTimer.toggleTimer();
+                }
                 //切換到設定介面
                 Intent intent = new Intent(NewGame.this, setting.class);
                 startActivity(intent);
@@ -142,14 +146,15 @@ public class NewGame extends AppCompatActivity {
         Text.PlayChess.skillPoint_blue = (TextView) main1.findViewById(R.id.player_skillPoint_blue);
         Text.PlayChess.skillPoint_red = (TextView) main1.findViewById(R.id.skillPoint_red);
         Text.PlayChess.timer = (TextView) main1.findViewById(R.id.game_timer);
-        playChessTimer = new CustomTimer(Text.PlayChess.timer , CustomTimer.playChessState);
+        playChessTimer = new PlayChessTimer(Text.PlayChess.timer);
 
         //放棋
         Text.PutChess.chessNameBlock = (TextView) main2.findViewById(R.id.chess_name);
         Text.PutChess.messageBlock = (TextView) main2.findViewById(R.id.message_block);
         Text.PutChess.messageBlock.setMovementMethod(ScrollingMovementMethod.getInstance());
         Text.PutChess.timer = (TextView) main2.findViewById(R.id.put_timer);
-        putChessTimer = new CustomTimer(Text.PutChess.timer , CustomTimer.putChessState);
+        Text.PutChess.round = (TextView) main2.findViewById(R.id.round);
+        putChessTimer = new PutChessTimer(Text.PutChess.timer);
         putChessTimer.startTimer();
 
         //所有會用到右側功能面板的，都要寫在這邊，而要呼叫findviewById都要先call他的XML名稱

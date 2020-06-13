@@ -7,16 +7,13 @@ import android.widget.TextView;
 
 public class CustomTimer {
     CountDownTimer countDownTimer;
-    long maxTime = 10000;
+    final long maxTime = 10000;
     long timeLeftMS = 10000;
     boolean timerRunning = false;
     TextView timerView;
     static Game game;
     PutChess putChess;
-    final public static int putChessState=0  , playChessState=1;
-    int state=0;
-    public CustomTimer(View v , int state){
-        this.state = state;
+    public CustomTimer(View v){
         timerView = (TextView) v;
     }
     public void toggleTimer(){
@@ -26,6 +23,74 @@ public class CustomTimer {
             startTimer();
         }
     }
+    public void startTimer(){
+//        countDownTimer = new CountDownTimer(timeLeftMS,1000) {
+//            @Override
+//            public void onTick(long millisUntilFinished) {
+//                timeLeftMS = millisUntilFinished;
+//                updateTimer();
+//            }
+//
+//            @Override
+//            public void onFinish() {
+//                //reset
+//                stopTimer();
+//                timeLeftMS = 10000;
+//                //change round
+//
+//
+//                if(state == putChessState){
+//                    Log.i("timer","putChessTimer end");
+//
+//                    stopTimer();
+//                    if( !putChess.changeRound()){
+//
+//                        start();
+//                    }
+//                    else {
+//                        Log.i("timer","cancel");
+//                        cancel();
+//                    }
+//
+//                }
+//
+//                else {
+//                    Log.i("timer","playChessTimer end");
+//                    stopTimer();
+//                    game.changeRound();
+//                    start();
+//                }
+//
+//
+//
+//            }
+//
+//        }.start();
+//        timerRunning = true;
+    }
+    public void stopTimer(){
+        countDownTimer.cancel();
+        timerRunning = false;
+    }
+    public void updateTimer(){
+        int seconds = (int) timeLeftMS / 1000;
+        timerView.setText(String.valueOf(seconds));
+    }
+
+
+    public void resetTimer(){
+        stopTimer();
+        timeLeftMS = maxTime;
+        startTimer();
+    }
+}
+
+class PutChessTimer extends CustomTimer{
+
+    public PutChessTimer(View v) {
+        super(v);
+    }
+
     public void startTimer(){
         countDownTimer = new CountDownTimer(timeLeftMS,1000) {
             @Override
@@ -40,43 +105,46 @@ public class CustomTimer {
                 stopTimer();
                 timeLeftMS = 10000;
                 //change round
-
-
-                if(state == putChessState){
-                    Log.i("timer","putChessTimer end");
-
-                    stopTimer();
-                    if( !putChess.changeRound()){
-
-                        start();
-                    }
-                    else {
-                        Log.i("timer","cancel");
-                        cancel();
-                    }
-
-                }
-
-                else {
-                    Log.i("timer","playChessTimer end");
-                    stopTimer();
-                    game.changeRound();
+                Log.i("timer","putChessTimer end");
+                stopTimer();
+                if( !putChess.changeRound()){
                     start();
                 }
-
-
-
+                else {
+                    Log.i("timer","cancel");
+                    cancel();
+                }
             }
-
         }.start();
         timerRunning = true;
     }
-    public void stopTimer(){
-        countDownTimer.cancel();
-        timerRunning = false;
+}
+class PlayChessTimer extends CustomTimer{
+
+    public PlayChessTimer(View v) {
+        super(v);
     }
-    public void updateTimer(){
-        int seconds = (int) timeLeftMS / 1000;
-        timerView.setText(String.valueOf(seconds));
+
+    public void startTimer(){
+        countDownTimer = new CountDownTimer(timeLeftMS,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timeLeftMS = millisUntilFinished;
+                updateTimer();
+            }
+
+            @Override
+            public void onFinish() {
+                //reset
+
+                //change round
+                Log.i("timer","putChessTimer end");
+
+                game.changeRound();
+
+            }
+        }.start();
+        timerRunning = true;
     }
 }
+

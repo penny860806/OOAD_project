@@ -108,7 +108,7 @@ public class Game {
         /* 判斷勝利 */
         /* 城 */
         boolean player1Win = false , player2Win = false;
-        if(castle.chess != null){
+        if(castle.chess != null && castle.player.myRound == true){
             castle.setOccupiedRound(castle.getOccupiedRound()+1);
             if(castle.getOccupiedRound() >= 3){
                 if(castle.player == player1){
@@ -121,13 +121,13 @@ public class Game {
         }
 
         /* 棋子數小於五 */
-        if(player1.chessNum <= 5){
-            player2Win = true;
-        }
-        else if(player2.chessNum <= 5){
-            player1Win = true;
-        }
-
+//        if(player1.chessNum <= 5){
+//            player2Win = true;
+//        }
+//        if(player2.chessNum <= 5){
+//            player1Win = true;
+//        }
+        Log.i("change round","player1: "+player1.chessNum+"\nplayer2: "+player2.chessNum);
         if(player1Win && !player2Win){
             blueWin();
         }
@@ -139,7 +139,8 @@ public class Game {
         }
         System.out.println("Change Round complete. whose round:" + whoseRound().ID);
         GameController.movementFinish();
-
+        NewGame.playChessTimer.resetTimer();
+        GameController.changeState(GameController.initial);
     }
 
     /**
@@ -206,6 +207,9 @@ public class Game {
                     }
                 }
             }
+        }
+        if(GameController.clickChess.ImDead == true){
+            GameController.changeState(GameController.initial);
         }
         return flag;
     }
@@ -401,12 +405,17 @@ public class Game {
     }
 
     public void blueWin(){//藍方勝利
+        Log.i("game","blueWin");
         Text.PlayChess.messageBlock.setText("藍方勝利");
     }
     public void redWin(){//紅方勝利
+        Log.i("game","redWin");
+
         Text.PlayChess.messageBlock.setText("紅方勝利");
     }
     public void tie(){//平手
+        Log.i("game","Tie");
+
         Text.PlayChess.messageBlock.setText("雙方平手");
     }
 

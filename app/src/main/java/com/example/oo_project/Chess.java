@@ -36,7 +36,7 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 			@Override
 			public void onClick(View v) {
 				System.out.println("Chess clicked");
-//				if(clickAvail)
+				if(clickAvail)
 					GameController.setClickChess((Chess) v);
 			}
 		});

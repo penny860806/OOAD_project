@@ -23,6 +23,9 @@ public class Clip extends Chess {
         int dir = 0;
         boolean flag = false;
         if (targetChess.canBePush == false || targetChess.team == this.team) {
+            Text.PlayChess.messageBlock.setText(Text.PlayChess.notAvailTarget);
+
+
             return 0;
         }
 
@@ -36,13 +39,19 @@ public class Clip extends Chess {
         //System.out.println(this.positionBlock.x+"\n"+this.positionBlock.y);
         //Chess tmp=this;
         if (flag != true) {
-            return 0;
+            Text.PlayChess.messageBlock.setText(Text.PlayChess.notAvailTarget);
+            return reError;
         }
 
         while (this.positionBlock.getNeighbor(dir).isEmpty()) {
             moveChess(dir);
             System.out.println("--------------------------------------" + this.positionBlock.x + "\n" + this.positionBlock.y);
-            targetChess.moveChess(dir);
+            if(targetChess.ImDead == false) {
+                targetChess.moveChess(dir);
+            }
+            if(ImDead == true ){
+                break;
+            }
         }
 //        System.out.println("----------------------------------"+tmp.positionBlock.getNeighbor(1).isEmpty());
 //        moveChess(dir);
@@ -54,6 +63,7 @@ public class Clip extends Chess {
     }
 
     public int skill() {
+        Text.PlayChess.messageBlock.setText(Text.PlayChess.clickChessAround);
         return reChessClick;
     }
 }

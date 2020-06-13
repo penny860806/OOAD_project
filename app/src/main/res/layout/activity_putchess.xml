@@ -237,18 +237,14 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/round"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/left_number"
             android:textSize="25sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="15"
-            android:textSize="25sp" />
+
 
     </LinearLayout>
     //chess information for put chess

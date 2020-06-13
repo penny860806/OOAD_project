@@ -48,8 +48,7 @@ public class Rhino extends Chess {
 
         boolean temp = true , A , B;
         while (temp) { // if no push can be apply and no chess dead, than break
-            A = bePush(dir, targetChess);
-            moveChess(dir);
+            A = bePush(dir, this);
             B = game.checkAllDeath();
             temp = A || B;
             if(this.ImDead == true){

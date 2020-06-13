@@ -36,6 +36,7 @@ public class Jet extends Chess {
     }
 
     public int skill() {
+        team.skillPoint--;
         for (int dir = 0; dir < 6; dir++) {
             if (positionBlock.getNeighbor(dir).chess != null && positionBlock.getNeighbor(dir).chess.canBePush == true) {
                 positionBlock.getNeighbor(dir).chess.moveChess(dir);
@@ -43,6 +44,8 @@ public class Jet extends Chess {
             game.checkAllDeath();
         }
         Text.PlayChess.messageBlock.setText(Text.PlayChess.clickBlockAround);
+
+
         return Chess.reBlockClick;
     }
 

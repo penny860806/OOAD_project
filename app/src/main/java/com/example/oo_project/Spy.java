@@ -23,18 +23,24 @@ public class Spy extends Chess {
     @Override
     public int skill(Block targetBlock) {
         if (moveChess(targetBlock)) {
-            step -= 1;
+            step --;
             if (step == 0) {
                 step = 4;
-                return 3;
+                return reInitial;
             }
+            Text.PlayChess.messageBlock.setText("間諜技能:剩餘"+Integer.toString(step)+"步");
+
             return reBlockClick;
         } else {
-            return 0;
+            Text.PlayChess.messageBlock.setText(Text.PlayChess.notAvailTarget);
+
+            return reBlockClick;
         }
     }
 
     public int skill() {
+        Text.PlayChess.messageBlock.setText(Text.PlayChess.clickBlockAround);
+
         return reBlockClick;
     }
 }

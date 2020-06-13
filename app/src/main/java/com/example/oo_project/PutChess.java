@@ -19,7 +19,7 @@ public class PutChess extends AppCompatActivity {
     static TextView[] chessText ;
     static int chessRemain = 1, round = 1;
     static Player playerNow;
-    final static int lastRound = 3;
+    final static int lastRound = 2;
     private static int[][] chessAmount;
 
     public PutChess(Game game, NewGame newGame) {
@@ -30,7 +30,7 @@ public class PutChess extends AppCompatActivity {
         chessText = new TextView[8];
         for (int i = 0; i < chessAmount.length; i++) {
             for (int j = 0; j < chessAmount[i].length; j++) {
-                chessAmount[i][j] = 4;
+                chessAmount[i][j] = 3;
             }
         }
     }
@@ -95,31 +95,24 @@ public class PutChess extends AppCompatActivity {
             } else if (selectedChessId == game.RhinoId) {
                 chess = new Rhino(newGame, playerNow, block);
                 GameView.chessView_Rhino(chess);
-                chessRemain--;
             } else if (selectedChessId == game.RockId) {
                 chess = new Rock(newGame, playerNow, block);
                 GameView.chessView_Rock(chess);
-                chessRemain--;
             } else if (selectedChessId == game.ClipId) {
                 chess = new Clip(newGame, playerNow, block);
                 GameView.chessView_Clip(chess);
-                chessRemain--;
             } else if (selectedChessId == game.HerculesId) {
                 chess = new Hercules(newGame, playerNow, block);
                 GameView.chessView_Hercules(chess);
-                chessRemain--;
             } else if (selectedChessId == game.JetId) {
                 chess = new Jet(newGame, playerNow, block);
                 GameView.chessView_Jet(chess);
-                chessRemain--;
             } else if (selectedChessId == game.HorseId) {
                 chess = new Horse(newGame, playerNow, block);
                 GameView.chessView_Horse(chess);
-                chessRemain--;
             } else if (selectedChessId == game.SpyId) {
                 chess = new Spy(newGame, playerNow, block);
                 GameView.chessView_Spy(chess);
-                chessRemain--;
             }
 
             if(playerNow == game.player1 ){
@@ -164,6 +157,12 @@ public class PutChess extends AppCompatActivity {
                 chessRemain = 1;
             }
             if(round > lastRound){
+                if(game.player1.myRound == true){
+                    game.GM.lowestLayout.setBackgroundColor(Color.parseColor("#ff33b5e5"));
+                }
+                else {
+                    game.GM.lowestLayout.setBackgroundColor(Color.parseColor("#ffff4444"));
+                }
                 return 2; //finish
             }
         }
@@ -183,14 +182,15 @@ public class PutChess extends AppCompatActivity {
 
         Text.PutChess.messageBlock.setText("");
         Text.PutChess.chessNameBlock.setText("");
+        Text.PutChess.round.setText("剩餘"+Integer.toString(lastRound-round)+"回合");
         if(playerNow == game.player1) {
             game.GM.lowestLayout.setBackgroundColor(Color.parseColor("#ff33b5e5")); //blue player backgound (holo_blue_light)
 
         }
         if(playerNow == game.player2) {
-            game.GM.lowestLayout.setBackgroundColor(Color.parseColor("#ffff4444")
+            game.GM.lowestLayout.setBackgroundColor(Color.parseColor("#ffff4444"));
                     //blue player backgound (holo_blue_light)
-            );
+
         }
 
         return 0;
@@ -236,6 +236,8 @@ public class PutChess extends AppCompatActivity {
 
         Text.PutChess.messageBlock.setText("");
         Text.PutChess.chessNameBlock.setText("");
+        Text.PutChess.round.setText("剩餘"+Integer.toString(lastRound-round)+"回合");
+
         if(playerNow == game.player1) {
             game.GM.lowestLayout.setBackgroundColor(Color.parseColor("#ff33b5e5")); //blue player backgound (holo_blue_light)
 

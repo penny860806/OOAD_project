@@ -10,13 +10,13 @@ public class Player {
     static final short baseSkillPoint = 3;
     int chessNum = 0;
 
-    public void countMove(short move) {
-        this.movePoint = move;
-    }
-
-    public void countSkill(short spring) {
-        this.movePoint = spring;
-    }
+//    public void countMove(short move) {
+//        this.movePoint = move;
+//    }
+//
+//    public void countSkill(short spring) {
+//        this.movePoint = spring;
+//    }
 
     public void toSurrender() {
         surrender = true;
@@ -32,9 +32,9 @@ public class Player {
         movePoint--;
     }
 
-    public int getMovePoint() {
-        return movePoint;
-    }
+//    public int getMovePoint() {
+//        return movePoint;
+//    }
 
 
 }
