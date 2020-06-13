@@ -98,6 +98,7 @@ public class FullscreenActivity extends AppCompatActivity {
 
         //放音樂 play background music
         BGMusic = MediaPlayer.create(FullscreenActivity.this,R.raw.background);
+        BGMusic.setLooping(true);
         BGMusic.start();
 
         mVisible = true;
