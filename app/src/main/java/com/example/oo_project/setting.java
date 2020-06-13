@@ -35,13 +35,8 @@ public class setting extends AppCompatActivity {
                 //stop music
                 FullscreenActivity.BGMusic.stop();
                 //blue wins
-                if (Game.whoseRound() == Game.player1) {
-                    Intent intent = new Intent(setting.this, red_win.class);
-                    startActivity(intent);
-                } else if (Game.whoseRound() == Game.player2) {
-                    Intent intent = new Intent(setting.this, blue_win.class);
-                    startActivity(intent);
-                }
+                Intent intent = new Intent(setting.this, endGame.class);
+                startActivity(intent);
             }
         });
 

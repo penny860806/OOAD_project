@@ -5,18 +5,18 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".red_win"
-    android:background="@drawable/winner_red_bg"
+    tools:context=".endGame"
+    android:background="@color/black"
     >
     <View
         android:layout_width="match_parent"
         android:layout_height="352dp"/>
     <Button
-        android:id="@+id/red_finish"
+        android:id="@+id/finish"
         android:layout_width="120dp"
         android:layout_height="60dp"
         android:layout_gravity="right"
         android:text="@string/Finish"
         android:textSize="30sp"
-        android:background="@android:color/holo_purple"/>
+        android:background="@color/holo_purple"/>
 </LinearLayout>

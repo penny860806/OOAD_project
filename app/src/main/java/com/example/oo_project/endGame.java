@@ -7,14 +7,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class blue_win extends AppCompatActivity {
+public class endGame extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_blue_win);
-        Button B_GoBack = (Button) findViewById(R.id.blue_finish);
-        B_GoBack.setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.activity_end_game);
+
+        Button GoBack = (Button) findViewById(R.id.finish);
+        GoBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //restart app
