@@ -50,13 +50,6 @@
                 android:text="@string/surrender"
                 android:textSize="30dp"></Button>
 
-            <Button
-                android:id="@+id/saveGame"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="@string/save"
-                android:textSize="30sp"></Button>
         </LinearLayout>
 
         <LinearLayout

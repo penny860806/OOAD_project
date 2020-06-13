@@ -100,6 +100,9 @@ public class GameController {
     public static int getState() {
         return state;
     }
+    public static Game getGame(){
+        return game;
+    }
 
     public static void changeState(int choice) {
         state = choice;

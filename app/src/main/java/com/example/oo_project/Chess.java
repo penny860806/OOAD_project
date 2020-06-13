@@ -48,6 +48,10 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 	}
 	public Chess(Context context,String name, Player team, Block positionBlock) {
 		this( context, name, 1,  team,  positionBlock );
+		if(this.positionBlock instanceof Castle){
+			Castle castle = (Castle) positionBlock;
+			castle.chessLast = this;
+		}
 	}
 
 

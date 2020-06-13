@@ -46,7 +46,7 @@ public class Game {
                     fountainList[temp++] = (Fountain) map.map[i][j];
                 }
                 if (GM.map[i][j] != null && map.map[i][j] instanceof Castle) {
-                    castle = (Castle)map.map[i][j];
+                    castle = (Castle) map.map[i][j];
                 }
 
             }
@@ -101,7 +101,7 @@ public class Game {
         }
         if (whoseRound() == player2) {
             GM.lowestLayout.setBackgroundColor(Color.parseColor("#ffff4444"));  //red player backgound (holo_red_light)
-            
+
         }
 
 
@@ -113,28 +113,25 @@ public class Game {
             if(castle.getOccupiedRound() >= 3){
                 if(castle.player == player1){
                     player1Win = true;
-                }
-                else if(castle.player == player2){
+                } else if (castle.player == player2) {
                     player2Win = true;
                 }
             }
         }
 
         /* 棋子數小於五 */
-//        if(player1.chessNum <= 5){
-//            player2Win = true;
-//        }
-//        if(player2.chessNum <= 5){
-//            player1Win = true;
-//        }
+        if(player1.chessNum <= 5){
+            player2Win = true;
+        }
+        if(player2.chessNum <= 5){
+            player1Win = true;
+        }
         Log.i("change round","player1: "+player1.chessNum+"\nplayer2: "+player2.chessNum);
         if(player1Win && !player2Win){
             blueWin();
-        }
-        else if(player2Win && !player1Win){
+        } else if (player2Win && !player1Win) {
             redWin();
-        }
-        else if (player1Win && player2Win){
+        } else if (player1Win && player2Win) {
             tie();
         }
         System.out.println("Change Round complete. whose round:" + whoseRound().ID);
@@ -155,16 +152,16 @@ public class Game {
             for (int j = 0; j < GM.map[i].length - 1; j++) {
                 if (GM.map[i][j] != null) {
                     Chess chess = GM.map[i][j].chess;
-                    if(chess instanceof TransferTower){
+                    if (chess instanceof TransferTower) {
                         boolean temp = true;
                         for (int k = 0; k < 6; k++) {
                             Chess nei_chess = chess.positionBlock.getNeighbor(k).chess;
-                            if (nei_chess != null && nei_chess.team != null && (chess.team==nei_chess.team)) { // 有隊友
+                            if (nei_chess != null && nei_chess.team != null && (chess.team == nei_chess.team)) { // 有隊友
                                 temp = false;
                                 break;
                             }
                         }
-                        if(temp == true) {
+                        if (temp == true) {
                             chess.ImDead = true;
                             flag = true;
                         }
@@ -174,10 +171,9 @@ public class Game {
                         for (int k = 0; k < 6; k++) {
                             Chess nei_chess = chess.positionBlock.getNeighbor(k).chess;
                             if (nei_chess != null && nei_chess.team != null) {
-                                if (chess.deathTeam && (chess.team==nei_chess.team)){
+                                if (chess.deathTeam && (chess.team == nei_chess.team)) {
                                     count++;
-                                }
-                                else if(!chess.deathTeam && (chess.team!=nei_chess.team)){
+                                } else if (!chess.deathTeam && (chess.team != nei_chess.team)) {
                                     count++;
                                 }
                             }
@@ -191,7 +187,7 @@ public class Game {
                 }
             }
         }
-        if(flag == true) {
+        if (flag == true) {
             for (int i = 0; i < GM.map.length - 1; i++) {
                 for (int j = 0; j < GM.map[i].length - 1; j++) {
                     if (GM.map[i][j] != null) {
@@ -230,15 +226,17 @@ public class Game {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void saveGame(Context context) throws JSONException, IOException {
-        //紀錄whoseRound、Map、ControllerState
+        //"playerInfo=whoseRound=occupiedCastle=mapInfo
 
         String save = "";
         //save player info : playerID, movePoint, skillPoint, whoseRound
         save = save + player1.ID + ":" + player1.movePoint + ":"
-                + player1.skillPoint + ",";
+                + player1.skillPoint + ":" + player1.chessNum + ",";
         save = save + player2.ID + ":" + player2.movePoint + ":"
-                + player2.skillPoint;
+                + player2.skillPoint + ":" + player2.chessNum;
         save += "=" + whoseRound().ID + "=";
+        Castle castle = (Castle) GM.map[GM.getLength() - 1][GM.getLength() - 1];
+        save += castle.getOccupiedRound() + "=";
 
         //save map info
         for (Block[] array : GM.map) {
@@ -306,9 +304,11 @@ public class Game {
             player1.ID = p1_info[0];
             player1.movePoint = Short.parseShort(p1_info[1]);
             player1.skillPoint = Short.parseShort(p1_info[2]);
+            player1.chessNum = Integer.parseInt(p1_info[3]);
             player2.ID = p2_info[0];
             player2.movePoint = Short.parseShort(p2_info[1]);
             player2.skillPoint = Short.parseShort(p2_info[2]);
+            player2.chessNum = Integer.parseInt(p2_info[3]);
             //load whoseRound
             if (all_info[1].equals(player1.ID)) {
                 player1.myRound = true;
@@ -319,12 +319,15 @@ public class Game {
             } else {
                 System.out.println("load whoseRound error");
             }
+            //load castle's occupied_round
+            Castle castle = (Castle) GM.map[GM.getLength() - 1][GM.getLength() - 1];
+            castle.setOccupiedRound(Integer.parseInt(all_info[2]));
             //load map information
             if (all_info.length < 3) {
                 Toast toast = Toast.makeText(context, "no saved map", Toast.LENGTH_SHORT);
                 toast.show();
             } else {
-                temp_info = all_info[2].split(",");
+                temp_info = all_info[3].split(",");
                 for (int i = 0; i < temp_info.length; i++) {
                     String[] block_info = temp_info[i].split(":");
                     int x = Integer.parseInt(block_info[0]), y = Integer.parseInt(block_info[1]);
@@ -340,58 +343,70 @@ public class Game {
                         switch (name) {
                             case "clip":
                                 chess = new Clip(context, name, player1, GM.map[y][x]);
+                                GameView.chessView_Clip(chess);
                                 break;
                             case "horse":
                                 chess = new Horse(context, name, player1, GM.map[y][x]);
+                                GameView.chessView_Horse(chess);
                                 break;
                             case "rhino":
                                 chess = new Rhino(context, name, player1, GM.map[y][x]);
+                                GameView.chessView_Rhino(chess);
                                 break;
                             case "rock":
                                 chess = new Rock(context, name, player1, GM.map[y][x]);
+                                GameView.chessView_Rock(chess);
                                 break;
                             case "spy":
                                 chess = new Spy(context, name, player1, GM.map[y][x]);
+                                GameView.chessView_Spy(chess);
                                 break;
                             case "transfertower":
                                 chess = new TransferTower(context, name, player1, GM.map[y][x]);
+                                GameView.chessView_TransferTower(chess);
                                 break;
                             case "jet":
                                 chess = new Jet(context, name, player1, GM.map[y][x]);
+                                GameView.chessView_Jet(chess);
                                 break;
                             default:
                                 chess = new Chess(context, name, player1, GM.map[y][x]);
                         }
-                        GameView.chessView_Blue(chess);
                         System.out.println(chess.team.ID);
                         System.out.println(chess.chessName);
                     } else {
                         switch (name) {
                             case "clip":
                                 chess = new Clip(context, name, player2, GM.map[y][x]);
+                                GameView.chessView_Clip(chess);
                                 break;
                             case "horse":
                                 chess = new Horse(context, name, player2, GM.map[y][x]);
+                                GameView.chessView_Horse(chess);
                                 break;
                             case "rhino":
                                 chess = new Rhino(context, name, player2, GM.map[y][x]);
+                                GameView.chessView_Rhino(chess);
                                 break;
                             case "rock":
                                 chess = new Rock(context, name, player2, GM.map[y][x]);
+                                GameView.chessView_Rock(chess);
                                 break;
                             case "spy":
                                 chess = new Spy(context, name, player2, GM.map[y][x]);
+                                GameView.chessView_Spy(chess);
                                 break;
                             case "transfertower":
                                 chess = new TransferTower(context, name, player2, GM.map[y][x]);
+                                GameView.chessView_TransferTower(chess);
                                 break;
                             case "jet":
                                 chess = new Jet(context, name, player2, GM.map[y][x]);
+                                GameView.chessView_Jet(chess);
                                 break;
                             default:
                                 chess = new Chess(context, name, player2, GM.map[y][x]);
                         }
-                        GameView.chessView_Red(chess);
                         System.out.println(chess.team.ID);
                         System.out.println(chess.chessName);
                     }
@@ -407,16 +422,17 @@ public class Game {
     public void blueWin(){//藍方勝利
         Log.i("game","blueWin");
         Text.PlayChess.messageBlock.setText("藍方勝利");
+        NewGame.EndGAME(2);
+
     }
     public void redWin(){//紅方勝利
         Log.i("game","redWin");
-
         Text.PlayChess.messageBlock.setText("紅方勝利");
+        NewGame.EndGAME(1);
     }
     public void tie(){//平手
-        Log.i("game","Tie");
-
         Text.PlayChess.messageBlock.setText("雙方平手");
+        NewGame.EndGAME(3);
     }
 
 }

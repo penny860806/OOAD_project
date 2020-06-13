@@ -109,6 +109,9 @@ public class FullscreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FullscreenActivity.this, NewGame.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("state",1);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
@@ -117,6 +120,9 @@ public class FullscreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FullscreenActivity.this, NewGame.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("state",2);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });

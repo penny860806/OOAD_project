@@ -22,7 +22,12 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import org.json.JSONException;
 
+import java.io.IOException;
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.nio.ReadOnlyBufferException;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
@@ -58,14 +63,18 @@ public class NewGame extends AppCompatActivity {
         }
     };
     public LinearLayout NewGame_back;
+    
+    static Context EGame;
     //全域Timer
-    public static CustomTimer putChessTimer , playChessTimer;
+    public static CustomTimer putChessTimer, playChessTimer;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_game);
+
+        EGame = this;
 
         NewGame_back = (LinearLayout) findViewById(R.id.Map);
         NewGame_back.setOnLongClickListener(new View.OnLongClickListener() {
@@ -87,7 +96,6 @@ public class NewGame extends AppCompatActivity {
         PutChess putChess = new PutChess(test, this);
         final GameController gameController = new GameController(test);
         Chess.setRequirement(test);
-
 
         //控制切換右側畫面
         LayoutInflater inflater = getLayoutInflater();
@@ -133,6 +141,23 @@ public class NewGame extends AppCompatActivity {
                 //切換到設定介面
                 Intent intent = new Intent(NewGame.this, setting.class);
                 startActivity(intent);
+            }
+        });
+        //儲存遊戲 按鍵
+        Button SaveGame = (Button) findViewById(R.id.saveGame);
+        SaveGame.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onClick(View v) {
+                //呼叫儲存遊戲
+                try {
+                    GameController.getGame().saveGame(getApplicationContext());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
 
@@ -323,6 +348,33 @@ public class NewGame extends AppCompatActivity {
             });
 
         }
+        Bundle bundle = getIntent().getExtras();
+        int new_or_old = bundle.getInt("state");
+        if (new_or_old == 1) {
+            //new game
+        } else if (new_or_old == 2) {
+            //old game
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                try {
+                    test.loadGame(getApplicationContext());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            //change state
+            GameController.changeState(0);
+            GameView.changePage();
+        } else {
+            //error
+        }
+    }
+
+    //Game finish
+    static public void EndGAME(int who) {
+        //遊戲結束的畫面
+        Intent EndGame = new Intent(EGame, endGame.class);
+        EndGame.putExtra("who", who);
+        EGame.startActivity(EndGame);
     }
 
     @Override
@@ -361,5 +413,11 @@ public class NewGame extends AppCompatActivity {
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        playChessTimer.stopTimer();
     }
 }

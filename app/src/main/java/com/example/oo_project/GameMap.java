@@ -44,7 +44,9 @@ public class GameMap {
         setMapEdge();
 
     }
-
+    public int getLength(){
+        return length;
+    }
     //Display map
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void mapLayout(Context context, LinearLayout layout) {

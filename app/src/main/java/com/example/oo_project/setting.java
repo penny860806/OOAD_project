@@ -34,19 +34,19 @@ public class setting extends AppCompatActivity {
             public void onClick(View v) {
                 //stop music
                 FullscreenActivity.BGMusic.stop();
-                //blue wins
-                Intent intent = new Intent(setting.this, endGame.class);
-                startActivity(intent);
-            }
-        });
-
-        //儲存遊戲 按鍵
-        Button SaveGame = (Button) findViewById(R.id.saveGame);
-        SaveGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //呼叫儲存遊戲
-
+                //who wins
+                int who=0;
+                if(Game.whoseRound()==Game.player1) {
+                    //who=1;
+                    Game.blueWin();
+                }
+                else {
+                    //who=2;
+                    Game.redWin();
+                }
+                //Intent intent = new Intent(setting.this, endGame.class);
+                //intent.putExtra("who", who);
+                //startActivity(intent);
             }
         });
 
