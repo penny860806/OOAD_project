@@ -314,7 +314,7 @@ public class Game {
             if (all_info[1].equals(player1.ID)) {
                 player1.myRound = true;
                 player2.myRound = false;
-            } else if (all_info[1] == player2.ID) {
+            } else if (all_info[1].equals(player2.ID)) {
                 player1.myRound = false;
                 player2.myRound = true;
             } else {
@@ -324,7 +324,7 @@ public class Game {
             Castle castle = (Castle) GM.map[GM.getLength() - 1][GM.getLength() - 1];
             castle.setOccupiedRound(Integer.parseInt(all_info[2]));
             //load map information
-            if (all_info.length < 3) {
+            if (all_info.length < 4) {
                 Toast toast = Toast.makeText(context, "no saved map", Toast.LENGTH_SHORT);
                 toast.show();
             } else {

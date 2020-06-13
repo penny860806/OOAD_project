@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 public class CustomTimer {
+    boolean flag = false;
     CountDownTimer countDownTimer;
     final long maxTime = 600000;
     long timeLeftMS = maxTime;
@@ -116,6 +117,7 @@ class PutChessTimer extends CustomTimer{
                 }
             }
         }.start();
+        flag = true;
         timerRunning = true;
     }
 }
@@ -144,6 +146,7 @@ class PlayChessTimer extends CustomTimer{
 
             }
         }.start();
+        flag = true;
         timerRunning = true;
     }
 }

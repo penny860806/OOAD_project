@@ -9,7 +9,7 @@ public class Jet extends Chess {
 
 
     Jet(Context context, String name, Player team, Block positionBlock) {
-        super(context, "氣場", 1, team, positionBlock, true);
+        super(context, name, 1, team, positionBlock, true);
         deathNum = 3;
     }
 

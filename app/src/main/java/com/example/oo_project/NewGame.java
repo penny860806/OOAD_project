@@ -364,6 +364,16 @@ public class NewGame extends AppCompatActivity {
             //change state
             GameController.changeState(0);
             GameView.changePage();
+            if (test.whoseRound() == test.player1) {
+                GM.lowestLayout.setBackgroundColor(Color.parseColor("#ff33b5e5")); //blue player backgound (holo_blue_light)
+            }
+            if (test.whoseRound() == test.player2) {
+                GM.lowestLayout.setBackgroundColor(Color.parseColor("#ffff4444"));  //red player backgound (holo_red_light)
+            }
+            Text.PlayChess.movePoint_blue.setText(String.valueOf(test.player1.movePoint));
+            Text.PlayChess.skillPoint_blue.setText(String.valueOf(test.player1.skillPoint));
+            Text.PlayChess.movePoint_red.setText(String.valueOf(test.player2.movePoint));
+            Text.PlayChess.skillPoint_red.setText(String.valueOf(test.player2.skillPoint));
         } else {
             //error
         }
@@ -418,8 +428,8 @@ public class NewGame extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        playChessTimer.stopTimer();
-        putChessTimer.stopTimer();
+        if(playChessTimer.flag) playChessTimer.stopTimer();
+        if(putChessTimer.flag) putChessTimer.stopTimer();
         finish();
     }
 }
