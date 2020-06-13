@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.ToggleButton;
 
 public class setting extends AppCompatActivity {
@@ -16,6 +17,15 @@ public class setting extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
+
+        LinearLayout move_function = (LinearLayout) findViewById(R.id.moveFunction);
+        //放棋階段不能按投降，不能儲存
+        if(GameController.getState()==GameController.putChessState){
+            move_function.setVisibility(View.INVISIBLE);
+        }
+        else{
+            move_function.setVisibility(View.VISIBLE);
+        }
 
         //投降 按鍵
         Button surrender = (Button) findViewById(R.id.surrender);
@@ -44,6 +54,7 @@ public class setting extends AppCompatActivity {
 
             }
         });
+
 
         //返回遊戲 按鍵
         Button backgame = (Button) findViewById(R.id.backgame);
