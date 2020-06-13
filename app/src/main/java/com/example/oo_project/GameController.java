@@ -116,6 +116,7 @@ public class GameController {
             clickChess = null;
             clickChess2 = null;
             clickBlock = null;
+            request = 0;
             System.out.println("change to initial");
             Text.PlayChess.messageBlock.setText(Text.PlayChess.clickChess);
         }
@@ -136,10 +137,15 @@ public class GameController {
         if(state == putChessState){
             int temp = PutChess.putChess(clickBlock);
             clickBlock = null;
+
             if(temp == 2){
                 changeState(initial);
                 GameView.changePage();
                 System.out.println(game.whoseRound().ID);
+                game.changeRound();
+                if(game.player1.myRound != true){
+                    game.changeRound();
+                }
             }
             else if(temp != 0) {
                 Log.i("commonHandler","putChessState error 136");
@@ -199,6 +205,7 @@ public class GameController {
             clickBlock = null;
 
             if(returnOfSkill == 0){
+                request = 0;
                 Log.i("skillHandler ","228 error in skillHandler (skill() error)");
             }
             else if(returnOfSkill == 1) {// require chess

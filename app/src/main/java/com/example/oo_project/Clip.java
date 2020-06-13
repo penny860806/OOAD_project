@@ -2,6 +2,7 @@ package com.example.oo_project;
 
 import android.content.Context;
 import android.os.SystemClock;
+import android.util.Log;
 
 public class Clip extends Chess {
     public boolean canBePush = true;
@@ -23,23 +24,20 @@ public class Clip extends Chess {
         int dir = 0;
         boolean flag = false;
         if (targetChess.canBePush == false || targetChess.team == this.team) {
-            Text.PlayChess.messageBlock.setText(Text.PlayChess.notAvailTarget);
-
-
+            Text.PlayChess.messageBlock.setText(Text.PlayChess.notAvailTarget+"27");
             return 0;
         }
-
         for (dir = 0; dir < 6; dir++) {
+            if(targetChess.positionBlock == null){
+                Log.i("clip","error34");
+            }
             if (targetChess.positionBlock.getNeighbor(dir) == this.positionBlock) {
                 flag = true;
                 break;
             }
         }
-        //System.out.println("----------------------------------------dir---------------------------------------------------------------------------"+dir);
-        //System.out.println(this.positionBlock.x+"\n"+this.positionBlock.y);
-        //Chess tmp=this;
         if (flag != true) {
-            Text.PlayChess.messageBlock.setText(Text.PlayChess.notAvailTarget);
+            Text.PlayChess.messageBlock.setText(Text.PlayChess.notAvailTarget+"47");
             return reError;
         }
 
@@ -53,17 +51,13 @@ public class Clip extends Chess {
                 break;
             }
         }
-//        System.out.println("----------------------------------"+tmp.positionBlock.getNeighbor(1).isEmpty());
-//        moveChess(dir);
-//        targetChess.moveChess(dir);
-//        System.out.println("*********************************************"+this.positionBlock.x+"\n"+this.positionBlock.y);
 
 
-        return 3;
+        return reInitial;
     }
 
     public int skill() {
-        Text.PlayChess.messageBlock.setText(Text.PlayChess.clickChessAround);
+        Text.PlayChess.messageBlock.setText(Text.PlayChess.clickChessAround+"70");
         return reChessClick;
     }
 }
