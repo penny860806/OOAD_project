@@ -27,5 +27,5 @@
     <string name="backtogame">返回</string>
     <string name="music">音樂：</string>
     <string name="save">儲存</string>
-    //還有個個角色與他們的文字說明要加進來這邊
+    <string name="quickstart">快速開始</string>
 </resources>
