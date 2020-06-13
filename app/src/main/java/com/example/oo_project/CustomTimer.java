@@ -7,8 +7,8 @@ import android.widget.TextView;
 
 public class CustomTimer {
     CountDownTimer countDownTimer;
-    final long maxTime = 10000;
-    long timeLeftMS = 10000;
+    final long maxTime = 30000;
+    long timeLeftMS = maxTime;
     boolean timerRunning = false;
     TextView timerView;
     static Game game;
@@ -103,7 +103,7 @@ class PutChessTimer extends CustomTimer{
             public void onFinish() {
                 //reset
                 stopTimer();
-                timeLeftMS = 10000;
+                timeLeftMS = maxTime;
                 //change round
                 Log.i("timer","putChessTimer end");
                 stopTimer();
