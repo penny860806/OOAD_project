@@ -378,6 +378,14 @@ public class NewGame extends AppCompatActivity {
             putChessTimer.stopTimer();
             playChessTimer.stopTimer();
             playChessTimer.startTimer();
+            for (int i = 0; i < GM.map.length; i++) {
+                for (int j = 0; j < GM.map[i].length; j++) {
+
+                    if (GM.map[i][j] != null && GM.map[i][j].chess != null && GM.map[i][j].chess.team != null) {
+                        GM.map[i][j].chess.setClickAvail(GM.map[i][j].chess.team.myRound);
+                    }
+                }
+            }
         } else if(new_or_old ==3){
             //quick start
             GM.genSampleBoard();
@@ -398,6 +406,14 @@ public class NewGame extends AppCompatActivity {
             putChessTimer.stopTimer();
             playChessTimer.stopTimer();
             playChessTimer.startTimer();
+            for (int i = 0; i < GM.map.length; i++) {
+                for (int j = 0; j < GM.map[i].length; j++) {
+
+                    if (GM.map[i][j] != null && GM.map[i][j].chess != null && GM.map[i][j].chess.team != null) {
+                        GM.map[i][j].chess.setClickAvail(GM.map[i][j].chess.team.myRound);
+                    }
+                }
+            }
 
         }else{
             //error
