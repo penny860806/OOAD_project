@@ -1,6 +1,7 @@
 package com.example.oo_project;
 
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -106,7 +107,6 @@ public class GameController {
         state = choice;
         if (state == moveState) {
             listenFor = blockL;
-
             System.out.println("change to moveState");
         } else if (state == initial) {
             listenFor = chessL;
@@ -134,8 +134,9 @@ public class GameController {
         if (state == putChessState) {
             int temp = PutChess.putChess(clickBlock);
             clickBlock = null;
-
             if (temp == 2) {
+                //讓存檔鍵出現
+                NewGame.SaveGame.setVisibility(View.VISIBLE);
                 changeState(initial);
                 GameView.changePage();
                 System.out.println(game.whoseRound().ID);

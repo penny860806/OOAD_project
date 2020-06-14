@@ -65,6 +65,7 @@ public class NewGame extends AppCompatActivity {
     public LinearLayout NewGame_back;
     
     static Context EGame;
+    static Button SaveGame;
     //全域Timer
     public static CustomTimer putChessTimer, playChessTimer;
 
@@ -144,7 +145,9 @@ public class NewGame extends AppCompatActivity {
             }
         });
         //儲存遊戲 按鍵
-        Button SaveGame = (Button) findViewById(R.id.saveGame);
+        SaveGame = (Button) findViewById(R.id.saveGame);
+        //讓存檔鍵消失
+        NewGame.SaveGame.setVisibility(View.INVISIBLE);
         SaveGame.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
@@ -160,6 +163,7 @@ public class NewGame extends AppCompatActivity {
 
             }
         });
+
 
 
         //下棋 角色說明文字部分可以上下滾動
@@ -354,6 +358,8 @@ public class NewGame extends AppCompatActivity {
             //new game
         } else if (new_or_old == 2) {
             //old game
+            //讓存檔鍵出現
+            NewGame.SaveGame.setVisibility(View.VISIBLE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 try {
                     test.loadGame(getApplicationContext());
@@ -380,6 +386,8 @@ public class NewGame extends AppCompatActivity {
             playChessTimer.startTimer();
         } else if(new_or_old ==3){
             //quick start
+            //讓存檔鍵出現
+            NewGame.SaveGame.setVisibility(View.VISIBLE);
             GM.genSampleBoard();
             //change state
             GameController.changeState(0);
