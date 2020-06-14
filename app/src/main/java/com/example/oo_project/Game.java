@@ -93,6 +93,22 @@ public class Game {
             if (fountainOccupy_player2 >= 4) {
                 player2.movePoint++;
             }
+            if(player1.myRound == true) {
+                Text.PlayChess.messageBlock.setText("已佔領 " + Integer.toString(fountainOccupy_player1) + " 座泉");
+                if(fountainOccupy_player1 >= 4){
+                    Text.PlayChess.messageBlock.append("\n並給予額外移動步數");
+                }
+            }
+            else if(player2.myRound == true) {
+                Text.PlayChess.messageBlock.setText("已佔領 " + Integer.toString(fountainOccupy_player2) + " 座泉");
+                if(fountainOccupy_player2 >= 4){
+                    Text.PlayChess.messageBlock.append("\n並給予額外移動步數");
+                }
+
+            }
+
+
+
         }
         /* 缺換底色 */
         if (whoseRound() == player1) {
@@ -110,6 +126,8 @@ public class Game {
         boolean player1Win = false, player2Win = false;
         if (castle.chess != null && castle.player.myRound == true) {
             castle.setOccupiedRound(castle.getOccupiedRound() + 1);
+            Text.PlayChess.messageBlock.setText("已佔領城 "+Integer.toString(castle.getOccupiedRound())+" 回合");
+
             if (castle.getOccupiedRound() >= 3) {
                 if (castle.player == player1) {
                     player1Win = true;
@@ -120,12 +138,12 @@ public class Game {
         }
 
         /* 棋子數小於五 */
-        if(player1.chessNum <= 5){
-            player2Win = true;
-        }
-        if(player2.chessNum <= 5){
-            player1Win = true;
-        }
+//        if(player1.chessNum <= 5){
+//            player2Win = true;
+//        }
+//        if(player2.chessNum <= 5){
+//            player1Win = true;
+//        }
         Log.i("change round", "player1: " + player1.chessNum + "\nplayer2: " + player2.chessNum);
         if (player1Win && !player2Win) {
             blueWin();
@@ -146,6 +164,9 @@ public class Game {
      * @return
      */
     public boolean checkAllDeath() {
+        if(GameController.getState() == GameController.putChessState){
+            return false;
+        }
         int count = 0;
         boolean flag = false;
         for (int i = 0; i < GM.map.length - 1; i++) {
@@ -206,7 +227,7 @@ public class Game {
                 }
             }
         }
-        if (GameController.clickChess.ImDead == true) {
+        if (GameController.clickChess != null && GameController.clickChess.ImDead == true) {
             GameController.changeState(GameController.initial);
         }
         return flag;

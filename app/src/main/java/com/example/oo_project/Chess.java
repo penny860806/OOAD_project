@@ -36,6 +36,7 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 			@Override
 			public void onClick(View v) {
 				System.out.println("Chess clicked");
+				Text.PlayChess.chessInfo((Chess)v);
 				if(clickAvail || GameController.getState()!=GameController.initial)
 					GameController.setClickChess((Chess) v);
 			}
@@ -57,10 +58,6 @@ public class Chess extends androidx.appcompat.widget.AppCompatImageView {
 
 
 
-	public void Death(Block theBlock) {
-		theBlock.chess=null;
-		theBlock.player=null;
-	}
 
 	public boolean moveChess(Block targetBlock){
 		System.out.println("moveChess" );

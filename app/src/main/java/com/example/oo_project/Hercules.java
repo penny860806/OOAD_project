@@ -80,6 +80,7 @@ public class Hercules extends Chess {
             Text.PlayChess.messageBlock.setText(Text.PlayChess.notAvailTarget);
             return reBlockClick;
         }
+        game.checkAllDeath();
         return reInitial;
     }
 
