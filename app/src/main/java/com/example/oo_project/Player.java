@@ -4,8 +4,8 @@ public class Player {
     boolean myRound = false;
     boolean surrender = false;
     String ID = "請輸入角色名稱";
-    short movePoint = 1;
-    short skillPoint = 1;
+    short movePoint = baseMovePoint;
+    short skillPoint = baseSkillPoint;
     static final short baseMovePoint = 1;
     static final short baseSkillPoint = 1;
     int chessNum = 0;

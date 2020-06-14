@@ -197,7 +197,7 @@ public class GameMap {
 
 
     public void genSampleBoard() {
-        String contents = "blue:1:3:15,red:1:3:15=blue=0=2:1:jet:red,3:1:transfertower:red,4:1:jet:red,1:2:spy:blue,2:2:rhino:red,3:2:clip:red,4:2:clip:red,5:2:rhino:red,6:2:spy:blue,1:3:horse:red,2:3:rock:red,3:3:hercules:red,5:3:hercules:red,6:3:rock:red,7:3:horse:red,3:7:horse:blue,4:7:rock:blue,5:7:hercules:blue,7:7:hercules:blue,8:7:rock:blue,9:7:horse:blue,4:8:spy:red,5:8:rhino:blue,6:8:clip:blue,7:8:clip:blue,8:8:rhino:blue,9:8:spy:red,6:9:jet:blue,7:9:transfertower:blue,8:9:jet:blue";
+        String contents = "blue:1:1:15,red:1:1:15=blue=0=2:1:jet:red,3:1:transfertower:red,4:1:jet:red,1:2:spy:blue,2:2:rhino:red,3:2:clip:red,4:2:clip:red,5:2:rhino:red,6:2:spy:blue,1:3:horse:red,2:3:rock:red,3:3:hercules:red,5:3:hercules:red,6:3:rock:red,7:3:horse:red,3:7:horse:blue,4:7:rock:blue,5:7:hercules:blue,7:7:hercules:blue,8:7:rock:blue,9:7:horse:blue,4:8:spy:red,5:8:rhino:blue,6:8:clip:blue,7:8:clip:blue,8:8:rhino:blue,9:8:spy:red,6:9:jet:blue,7:9:transfertower:blue,8:9:jet:blue";
         String[] all_info = contents.split("=");
         //load player information
         String[] temp_info = all_info[0].split(",");
