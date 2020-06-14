@@ -52,9 +52,10 @@ public class GameController {
 
     public static boolean setClickChess(Chess chess) {
 
-        if (listenFor == chessL) {
-            Text.PlayChess.chessInfo(chess);
+        if (listenFor == chessL || state == chessMenu) {
+
             clickChess = chess;
+            Text.PlayChess.chessInfo(chess);
             System.out.println("set chess");
             commonHandler();
             return true;
@@ -208,7 +209,7 @@ public class GameController {
             } else if (returnOfSkill == Chess.reInitial) {// finish and go to initial
                 Log.i("skillHandler ", "skill properly");
                 request = 0;
-
+                Text.PlayChess.messageBlock.setText("");
                 changeState(initial);
             }
 

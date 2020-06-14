@@ -93,6 +93,22 @@ public class Game {
             if (fountainOccupy_player2 >= 4) {
                 player2.movePoint++;
             }
+            if(player1.myRound == true) {
+                Text.PlayChess.messageBlock.setText("已佔領 " + Integer.toString(fountainOccupy_player1) + " 座泉");
+                if(fountainOccupy_player1 >= 4){
+                    Text.PlayChess.messageBlock.append("\n並給予額外移動步數");
+                }
+            }
+            else if(player2.myRound == true) {
+                Text.PlayChess.messageBlock.setText("已佔領 " + Integer.toString(fountainOccupy_player2) + " 座泉");
+                if(fountainOccupy_player2 >= 4){
+                    Text.PlayChess.messageBlock.append("\n並給予額外移動步數");
+                }
+
+            }
+
+
+
         }
         /* 缺換底色 */
         if (whoseRound() == player1) {
@@ -110,6 +126,8 @@ public class Game {
         boolean player1Win = false, player2Win = false;
         if (castle.chess != null && castle.player.myRound == true) {
             castle.setOccupiedRound(castle.getOccupiedRound() + 1);
+            Text.PlayChess.messageBlock.setText("已佔領城 "+Integer.toString(castle.getOccupiedRound())+" 回合");
+
             if (castle.getOccupiedRound() >= 3) {
                 if (castle.player == player1) {
                     player1Win = true;
