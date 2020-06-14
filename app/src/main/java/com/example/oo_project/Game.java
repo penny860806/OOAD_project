@@ -58,14 +58,14 @@ public class Game {
         player1.myRound = !player1.myRound;
         player2.myRound = !player2.myRound;
 
-        for (int i = 0; i < GM.map.length; i++) {
-            for (int j = 0; j < GM.map[i].length; j++) {
-
-                if (GM.map[i][j] != null && GM.map[i][j].chess != null && GM.map[i][j].chess.team != null) {
-                    GM.map[i][j].chess.setClickAvail(GM.map[i][j].chess.team.myRound);
-                }
-            }
-        }
+//        for (int i = 0; i < GM.map.length; i++) {
+//            for (int j = 0; j < GM.map[i].length; j++) {
+//
+//                if (GM.map[i][j] != null && GM.map[i][j].chess != null && GM.map[i][j].chess.team != null) {
+//                    GM.map[i][j].chess.setClickAvail(GM.map[i][j].chess.team.myRound);
+//                }
+//            }
+//        }
         /* skill point & move point initialize*/
         {
             player1.movePoint = Player.baseMovePoint;
