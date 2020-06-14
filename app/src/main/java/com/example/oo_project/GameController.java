@@ -52,7 +52,7 @@ public class GameController {
 
     public static boolean setClickChess(Chess chess) {
 
-        if (listenFor == chessL || state == chessMenu) {
+        if ((listenFor == chessL || state == chessMenu) && chess.team == Game.whoseRound()) {
 
             clickChess = chess;
             Text.PlayChess.chessInfo(chess);
@@ -79,6 +79,7 @@ public class GameController {
             game.changeRound();
             changeState(initial);
         } else if (b == cancelButton) {
+            Text.PlayChess.messageBlock.setText("");
             changeState(initial);
         } else if (listenFor == buttonL) {
             clickButton = b;
@@ -137,6 +138,7 @@ public class GameController {
 
             if (temp == 2) {
                 changeState(initial);
+                Text.PlayChess.messageBlock.setText("");
                 GameView.changePage();
                 System.out.println(game.whoseRound().ID);
                 game.changeRound();
@@ -231,7 +233,7 @@ public class GameController {
                     clickChess = null;
                     clickBlock = null;
                     changeState(initial);
-
+                    Text.PlayChess.messageBlock.setText("");
                 }
 
             } else {
@@ -244,29 +246,6 @@ public class GameController {
 
     }//handle every click on blocks, chess button and chess
 
-//    private static boolean moveHandler() {
-//
-//        Log.i("moveHandler", "moveHandler");
-//        if (clickBlock instanceof Fountain && game.fountainList[0].checkCanEnter(clickChess)){
-//            Text.PlayChess.messageBlock.setText("這個棋子不能進入泉，請選擇另一個格子");
-//        }
-//        if (clickBlock instanceof Castle && game.castle.checkCanEnter(clickChess)){
-//            Text.PlayChess.messageBlock.setText("這個棋子不能進入城，請選擇另一個格子");
-//        }
-//        boolean ret = clickChess.moveChess(clickBlock);
-//        game.checkAllDeath();
-//        if (ret) {
-//            game.whoseRound().movePointDec();
-//        }
-//        return ret;
-//    }
-
-
-//    private static void checkIfChangeRound (){
-//        if (game.whoseRound().getMovePoint() == 0 && game.whoseRound().skillPoint == 0) {
-//            game.ChangeRound();
-//        }
-//    }
 
     /**
      * check textView of skillPoint and movePoint
