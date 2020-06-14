@@ -23,6 +23,9 @@ public class Hercules extends Chess {
 
     Hercules(Context context, Player team, Block positionBlock) {
         this(context, "hercules",  team, positionBlock);
+        targetBlock = null;
+        targetChess = null;
+        super.deathNum=4;
     }
 
 

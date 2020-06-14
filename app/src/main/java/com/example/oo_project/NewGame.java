@@ -364,6 +364,7 @@ public class NewGame extends AppCompatActivity {
             //change state
             GameController.changeState(0);
             GameView.changePage();
+            GameController.commonHandler();
             if (test.whoseRound() == test.player1) {
                 GM.lowestLayout.setBackgroundColor(Color.parseColor("#ff33b5e5")); //blue player backgound (holo_blue_light)
             }
@@ -374,7 +375,31 @@ public class NewGame extends AppCompatActivity {
             Text.PlayChess.skillPoint_blue.setText(String.valueOf(test.player1.skillPoint));
             Text.PlayChess.movePoint_red.setText(String.valueOf(test.player2.movePoint));
             Text.PlayChess.skillPoint_red.setText(String.valueOf(test.player2.skillPoint));
-        } else {
+            putChessTimer.stopTimer();
+            playChessTimer.stopTimer();
+            playChessTimer.startTimer();
+        } else if(new_or_old ==3){
+            //quick start
+            GM.genSampleBoard();
+            //change state
+            GameController.changeState(0);
+            GameView.changePage();
+            GameController.commonHandler();
+            if (test.whoseRound() == test.player1) {
+                GM.lowestLayout.setBackgroundColor(Color.parseColor("#ff33b5e5")); //blue player backgound (holo_blue_light)
+            }
+            if (test.whoseRound() == test.player2) {
+                GM.lowestLayout.setBackgroundColor(Color.parseColor("#ffff4444"));  //red player backgound (holo_red_light)
+            }
+            Text.PlayChess.movePoint_blue.setText(String.valueOf(test.player1.movePoint));
+            Text.PlayChess.skillPoint_blue.setText(String.valueOf(test.player1.skillPoint));
+            Text.PlayChess.movePoint_red.setText(String.valueOf(test.player2.movePoint));
+            Text.PlayChess.skillPoint_red.setText(String.valueOf(test.player2.skillPoint));
+            putChessTimer.stopTimer();
+            playChessTimer.stopTimer();
+            playChessTimer.startTimer();
+
+        }else{
             //error
         }
     }

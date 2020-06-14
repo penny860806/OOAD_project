@@ -199,6 +199,7 @@ public class Game {
                             if (chess.ImDead == true) {
                                 Log.i("death", chess.chessName + " " + Integer.toString(chess.deathNum));
                                 chess.team.chessNum--;
+                                Log.i("death", chess.team.ID+":"+String.valueOf(chess.team.chessNum));
                                 chess.positionBlock.chess = null;
                                 chess.positionBlock.player = null;
                                 GameView.removeChess_View(chess);
@@ -377,6 +378,7 @@ public class Game {
                             case "hercules":
                                 chess = new Hercules(context, name, player1, GM.map[y][x]);
                                 GameView.chessView_Hercules(chess);
+                                break;
                             default:
                                 chess = new Chess(context, name, player1, GM.map[y][x]);
                         }
@@ -415,6 +417,7 @@ public class Game {
                             case "hercules":
                                 chess = new Hercules(context, name, player2, GM.map[y][x]);
                                 GameView.chessView_Hercules(chess);
+                                break;
                             default:
                                 chess = new Chess(context, name, player2, GM.map[y][x]);
                         }

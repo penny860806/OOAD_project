@@ -116,6 +116,17 @@ public class FullscreenActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        Button quickStart = (Button) findViewById(R.id.quickGame);
+        quickStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FullscreenActivity.this, NewGame.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("state",3);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
         Button oldGame = (Button) findViewById(R.id.OldGame);
         oldGame.setOnClickListener(new View.OnClickListener() {
             @Override
