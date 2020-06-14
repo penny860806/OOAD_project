@@ -114,8 +114,8 @@ public class GameController {
             clickBlock = null;
             request = 0;
             System.out.println("change to initial");
-            Text.PlayChess.messageBlock.setText("請選取棋子");
-            Text.PlayChess.messageBlock.setText(Text.PlayChess.clickChess);
+            Text.PlayChess.chessNameBlock.setText("請選擇一顆我方棋子");
+
         } else if (state == skillState) {
             System.out.println("change to skillState");
         } else if (state == chessMenu) {
@@ -277,7 +277,7 @@ public class GameController {
             game.castle.setOccupiedRound(0);
             game.castle.chessLast = game.castle.chess;
         }
-
+        game.checkAllDeath();
         Text.PlayChess.skillPoint_blue.setText(Integer.toString(game.player1.skillPoint));
         Text.PlayChess.movePoint_blue.setText(Integer.toString(game.player1.movePoint));
         Text.PlayChess.skillPoint_red.setText(Integer.toString(game.player2.skillPoint));

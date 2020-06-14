@@ -19,7 +19,7 @@ public class PutChess extends AppCompatActivity {
     static TextView[] chessText ;
     static int chessRemain = 1, round = 1;
     static Player playerNow;
-    final static int lastRound = 16;
+    final static int lastRound = 6;
     private static int[][] chessAmount;
 
     public PutChess(Game game, NewGame newGame) {

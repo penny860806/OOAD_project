@@ -5,9 +5,9 @@ public class Player {
     boolean surrender = false;
     String ID = "請輸入角色名稱";
     short movePoint = 1;
-    short skillPoint = 3;
+    short skillPoint = 1;
     static final short baseMovePoint = 1;
-    static final short baseSkillPoint = 3;
+    static final short baseSkillPoint = 1;
     int chessNum = 0;
 
 //    public void countMove(short move) {
